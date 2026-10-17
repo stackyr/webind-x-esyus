@@ -1,0 +1,310 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Light Theme Tokens */
+    --color-bg-base: #F8FAFC;
+    --color-bg-subtle: #F1F5F9;
+    --color-bg-surface: rgba(255, 255, 255, 0.85);
+    --color-bg-surface-hover: rgba(255, 255, 255, 0.98);
+    --color-bg-card: #FFFFFF;
+
+    --color-border-subtle: rgba(15, 23, 42, 0.08);
+    --color-border-hover: rgba(15, 23, 42, 0.18);
+    --color-border-active: rgba(2, 132, 199, 0.4);
+
+    --color-text-heading: #0F172A;
+    --color-text-body: #334155;
+    --color-text-muted: #64748B;
+    --color-text-faint: #94A3B8;
+
+    --color-accent-webind: #0284C7;
+    --color-accent-esyus: #6366F1;
+    --color-accent-glow: rgba(2, 132, 199, 0.15);
+
+    --shadow-glass: 0 4px 24px -1px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+    --shadow-glass-hover: 0 12px 36px -4px rgba(0, 0, 0, 0.1), 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+    --shadow-inner-glow: inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  }
+
+  html.dark, :root[class~="dark"] {
+    /* Liquid Precision Ultra-Premium Dark Tokens (Linear / Apple SaaS Aesthetic) */
+    --color-bg-base: #060911;
+    --color-bg-subtle: #0B101E;
+    --color-bg-surface: rgba(13, 19, 35, 0.75);
+    --color-bg-surface-hover: rgba(20, 29, 52, 0.9);
+    --color-bg-card: #0E1528;
+
+    --color-border-subtle: rgba(255, 255, 255, 0.09);
+    --color-border-hover: rgba(255, 255, 255, 0.2);
+    --color-border-active: rgba(56, 189, 248, 0.5);
+
+    --color-text-heading: #FFFFFF;
+    --color-text-body: #CBD5E1;
+    --color-text-muted: #94A3B8;
+    --color-text-faint: #64748B;
+
+    --color-accent-webind: #38BDF8;
+    --color-accent-esyus: #818CF8;
+    --color-accent-glow: rgba(56, 189, 248, 0.2);
+
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    --shadow-glass-hover: 0 16px 48px 0 rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    --shadow-inner-glow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  }
+
+  * {
+    border-color: var(--color-border-subtle);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-text-body);
+    overflow-x: hidden;
+  }
+
+  html.dark body,
+  .dark body {
+    background-color: #060911;
+    color: #CBD5E1;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-webind);
+}
+
+/* Glass Surfaces */
+.glass-surface {
+  background: var(--color-bg-surface);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-surface-interactive {
+  background: var(--color-bg-surface);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-glass);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-surface-interactive:hover {
+  background: var(--color-bg-surface-hover);
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-glass-hover);
+  transform: translateY(-2px);
+}
+
+.glass-pill {
+  background: var(--color-bg-surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 9999px;
+}
+
+/* Ambient Radial Backgrounds */
+.bg-ambient-mesh {
+  background-color: #F8FAFC;
+  background-image: 
+    radial-gradient(at 15% 10%, rgba(2, 132, 199, 0.05) 0px, transparent 40%),
+    radial-gradient(at 85% 15%, rgba(99, 102, 241, 0.04) 0px, transparent 45%),
+    radial-gradient(at 50% 60%, rgba(14, 165, 233, 0.03) 0px, transparent 55%);
+}
+
+html.dark .bg-ambient-mesh,
+.dark .bg-ambient-mesh {
+  background-color: #060911;
+  background-image: 
+    radial-gradient(ellipse 90% 50% at 50% -10%, rgba(56, 189, 248, 0.12), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 25%, rgba(129, 140, 248, 0.09), transparent 60%),
+    radial-gradient(ellipse 50% 30% at 10% 45%, rgba(14, 165, 233, 0.07), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(99, 102, 241, 0.08), transparent 70%);
+}
+
+/* Dark Mode Specular Border Highlights */
+.specular-border {
+  position: relative;
+}
+
+.specular-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  pointer-events: none;
+}
+
+html.dark .specular-border::before,
+.dark .specular-border::before {
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.4), rgba(255, 255, 255, 0.3), transparent);
+}
+
+/* Text Utility Shortcuts */
+.text-heading {
+  color: var(--color-text-heading);
+}
+
+.text-body-custom {
+  color: var(--color-text-body);
+}
+
+.text-muted-custom {
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   PRO ANIMATIONS: MARQUEE, LIQUID GLASS, AND TYPEWRITER
+   ========================================================================== */
+
+/* Typewriter Blinking Cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 0.9s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Infinite Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 35s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Liquid Fluid Glowing Orbs */
+@keyframes fluid-pulse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.35;
+  }
+  33% {
+    transform: translate(25px, -35px) scale(1.1);
+    opacity: 0.55;
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+    opacity: 0.4;
+  }
+}
+
+.animate-fluid-pulse {
+  animation: fluid-pulse 14s ease-in-out infinite;
+}
+
+@keyframes fluid-pulse-delayed {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  33% {
+    transform: translate(-30px, 25px) scale(1.15);
+    opacity: 0.5;
+  }
+  66% {
+    transform: translate(25px, -20px) scale(0.9);
+    opacity: 0.35;
+  }
+}
+
+.animate-fluid-pulse-delayed {
+  animation: fluid-pulse-delayed 18s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+/* Premium Liquid Glass Card with Specular Gradient */
+.liquid-card {
+  position: relative;
+  background: var(--color-bg-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 1.5rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 50%, rgba(56, 189, 248, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+html.dark .liquid-card::before,
+.dark .liquid-card::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 45%, rgba(56, 189, 248, 0.3));
+}
+
+.liquid-card:hover {
+  background: var(--color-bg-surface-hover);
+  border-color: var(--color-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15), 0 0 30px -10px rgba(56, 189, 248, 0.15);
+}
+
+html.dark .liquid-card:hover,
+.dark .liquid-card:hover {
+  box-shadow: 0 24px 48px -15px rgba(0, 0, 0, 0.7), 0 0 35px -5px rgba(56, 189, 248, 0.22);
+}
+

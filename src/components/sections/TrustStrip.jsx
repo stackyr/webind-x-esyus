@@ -19,7 +19,7 @@ export function TrustStrip() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-20px' }}
-                className="liquid-card border border-sky-500/25 dark:border-sky-400/20 hover:border-sky-400 dark:hover:border-sky-300 p-4 sm:p-5 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 cursor-default group shadow-md hover:shadow-sky-500/20"
+                className="liquid-card border border-sky-500/25 dark:border-sky-400/20 hover:border-sky-400 dark:hover:border-sky-300 p-4 sm:p-5 rounded-2xl cursor-default group shadow-md will-change-transform"
               >
                 <div className="flex items-start gap-3.5">
                   <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-[#0E1528] flex items-center justify-center shrink-0 text-slate-800 dark:text-sky-400 border border-slate-200/60 dark:border-white/10 shadow-inner group-hover:scale-105 group-hover:border-sky-500/40 transition-all">

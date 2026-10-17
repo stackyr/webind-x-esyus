@@ -202,7 +202,7 @@ export function Hero() {
             className="pt-8 sm:pt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left"
           >
             {/* Card 1: WEBIND Design */}
-            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-sky-50/60 to-white/95 dark:from-[#0F1932]/98 dark:via-[#0B1224]/95 dark:to-[#050811]/98 border border-sky-500/35 dark:border-sky-400/30 shadow-lg shadow-sky-500/5 dark:shadow-black/40 hover:border-sky-400 dark:hover:border-sky-300 hover:shadow-[0_20px_45px_-10px_rgba(56,189,248,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-sky-50/60 to-white/95 dark:from-[#0F1932]/98 dark:via-[#0B1224]/95 dark:to-[#050811]/98 border border-sky-500/35 dark:border-sky-400/30 shadow-lg shadow-sky-500/5 dark:shadow-black/40 hover:border-sky-400 dark:hover:border-sky-300 hover:shadow-md hover:shadow-sky-500/10 transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-1 cursor-default will-change-transform">
               <div className="flex items-center justify-between mb-3">
                 <BrandLogo variant="webind" size="lg" className="group-hover:scale-105 transition-transform" />
                 <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-300 font-semibold border border-sky-500/30 shadow-xs">
@@ -222,7 +222,7 @@ export function Hero() {
             </div>
 
             {/* Card 2: ESYUS Cloud Engine */}
-            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-indigo-50/60 to-white/95 dark:from-[#111636]/98 dark:via-[#0D1026]/95 dark:to-[#050811]/98 border border-indigo-500/35 dark:border-indigo-400/30 shadow-lg shadow-indigo-500/5 dark:shadow-black/40 hover:border-indigo-400 dark:hover:border-indigo-300 hover:shadow-[0_20px_45px_-10px_rgba(99,102,241,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-indigo-50/60 to-white/95 dark:from-[#111636]/98 dark:via-[#0D1026]/95 dark:to-[#050811]/98 border border-indigo-500/35 dark:border-indigo-400/30 shadow-lg shadow-indigo-500/5 dark:shadow-black/40 hover:border-indigo-400 dark:hover:border-indigo-300 hover:shadow-md hover:shadow-indigo-500/10 transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-1 cursor-default will-change-transform">
               <div className="flex items-center justify-between mb-3">
                 <BrandLogo variant="esyus" size="lg" className="group-hover:scale-105 transition-transform" />
                 <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 font-semibold border border-indigo-500/30 shadow-xs">
@@ -242,7 +242,7 @@ export function Hero() {
             </div>
 
             {/* Card 3: Mobile Apps */}
-            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-cyan-50/60 to-white/95 dark:from-[#0E1C2E]/98 dark:via-[#091524]/95 dark:to-[#050811]/98 border border-cyan-500/35 dark:border-cyan-400/30 shadow-lg shadow-cyan-500/5 dark:shadow-black/40 hover:border-cyan-400 dark:hover:border-cyan-300 hover:shadow-[0_20px_45px_-10px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-cyan-50/60 to-white/95 dark:from-[#0E1C2E]/98 dark:via-[#091524]/95 dark:to-[#050811]/98 border border-cyan-500/35 dark:border-cyan-400/30 shadow-lg shadow-cyan-500/5 dark:shadow-black/40 hover:border-cyan-400 dark:hover:border-cyan-300 hover:shadow-md hover:shadow-cyan-500/10 transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-1 cursor-default will-change-transform">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all">
                   <Smartphone className="w-5 h-5" />
@@ -264,7 +264,7 @@ export function Hero() {
             </div>
 
             {/* Card 4: Unified Guarantee */}
-            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-emerald-50/60 to-white/95 dark:from-[#0B1E22]/98 dark:via-[#071519]/95 dark:to-[#050811]/98 border border-emerald-500/35 dark:border-emerald-400/30 shadow-lg shadow-emerald-500/5 dark:shadow-black/40 hover:border-emerald-400 dark:hover:border-emerald-300 hover:shadow-[0_20px_45px_-10px_rgba(16,185,129,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-emerald-50/60 to-white/95 dark:from-[#0B1E22]/98 dark:via-[#071519]/95 dark:to-[#050811]/98 border border-emerald-500/35 dark:border-emerald-400/30 shadow-lg shadow-emerald-500/5 dark:shadow-black/40 hover:border-emerald-400 dark:hover:border-emerald-300 hover:shadow-md hover:shadow-emerald-500/10 transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-1 cursor-default will-change-transform">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
                   <ShieldCheck className="w-5 h-5" />

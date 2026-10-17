@@ -72,7 +72,7 @@ export function TechMarquee() {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-[#F8FAFC] dark:from-[#070B16] to-transparent z-10" />
 
         {/* Row 1: Primary Tech Stack (Scrolling Left) */}
-        <div className="flex animate-marquee gap-3 sm:gap-4 py-2 hover:[animation-play-state:paused]">
+        <div className="flex animate-marquee gap-3 sm:gap-4 py-2">
           {[...PRIMARY_TECH, ...PRIMARY_TECH].map((tech, idx) => {
             const Icon = tech.icon
             return (
@@ -105,7 +105,7 @@ export function TechMarquee() {
         </div>
 
         {/* Row 2: Architecture & Capabilities (Scrolling Right) */}
-        <div className="flex animate-marquee-reverse gap-3 sm:gap-4 py-2 mt-2 sm:mt-3 hover:[animation-play-state:paused]">
+        <div className="flex animate-marquee-reverse gap-3 sm:gap-4 py-2 mt-2 sm:mt-3">
           {[...CAPABILITIES, ...CAPABILITIES].map((cap, idx) => {
             const Icon = cap.icon
             return (

@@ -37,6 +37,21 @@ export function SmoothScroll({ children }) {
     lenisRef.current = lenis
     window.__lenis = lenis
 
+    // Zero-jank hover bypass: disable hover calculations & repaints while scrolling
+    let scrollTimeout = null
+    const handleScroll = () => {
+      if (!document.body.classList.contains('is-scrolling')) {
+        document.body.classList.add('is-scrolling')
+      }
+      clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(() => {
+        document.body.classList.remove('is-scrolling')
+      }, 100)
+    }
+
+    lenis.on('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
     let animationFrameId
 
     function raf(time) {
@@ -48,6 +63,10 @@ export function SmoothScroll({ children }) {
 
     return () => {
       cancelAnimationFrame(animationFrameId)
+      lenis.off('scroll', handleScroll)
+      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(scrollTimeout)
+      document.body.classList.remove('is-scrolling')
       lenis.destroy()
       window.__lenis = null
     }

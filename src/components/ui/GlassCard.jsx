@@ -28,8 +28,6 @@ export function GlassCard({
   if (asMotion) {
     return (
       <motion.div className={surfaceClass} {...props}>
-        {/* Subtle top edge specular highlight */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent" />
         {children}
       </motion.div>
     )
@@ -37,8 +35,6 @@ export function GlassCard({
 
   return (
     <div className={surfaceClass} {...props}>
-      {/* Subtle top edge specular highlight */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent" />
       {children}
     </div>
   )

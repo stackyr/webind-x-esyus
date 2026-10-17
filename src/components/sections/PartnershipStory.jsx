@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import {
   GitMerge,
   CheckCircle2,
@@ -6,7 +7,6 @@ import {
 } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
-import { GlassCard } from '../ui/GlassCard'
 import { Badge } from '../ui/Badge'
 import { PARTNERSHIP_STEPS, BRAND_CONFIG } from '../../data/siteData'
 
@@ -15,6 +15,9 @@ export function PartnershipStory() {
 
   return (
     <section id="partnership" className="py-24 sm:py-32 relative overflow-hidden bg-slate-50/30 dark:bg-[#050811]/40 border-t border-slate-200/80 dark:border-white/10">
+      {/* Background radial glow */}
+      <div className="pointer-events-none absolute top-1/3 right-1/4 w-[450px] h-[350px] bg-sky-500/10 dark:bg-sky-500/5 blur-3xl rounded-full -z-10 animate-fluid-pulse" />
+
       <Container size="wide">
         
         {/* Section Header */}
@@ -25,14 +28,20 @@ export function PartnershipStory() {
           description="Most companies hire one agency for marketing websites and another for complex software or mobile apps—creating communication bottlenecks, mismatched code, and inflated costs. Our partnership solves this completely."
         />
 
-        {/* Dual Brand Identity & Role Matrix */}
+        {/* Dual Brand Identity & Role Matrix with Scroll Animation */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           
           {/* WEBIND Pillar */}
-          <GlassCard elevation="md" className="border-sky-500/20 dark:border-sky-500/30 dark:bg-gradient-to-br dark:from-[#0B101E] dark:to-[#050811] relative p-6 sm:p-8 dark:shadow-xl dark:shadow-black/40">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.5 }}
+            className="liquid-card border border-sky-500/35 dark:border-sky-400/30 hover:border-sky-400 dark:hover:border-sky-300 relative p-6 sm:p-8 rounded-3xl group"
+          >
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-md shadow-sky-500/20">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-md shadow-sky-500/30">
                   W
                 </div>
                 <div>
@@ -62,13 +71,19 @@ export function PartnershipStory() {
                 </div>
               ))}
             </div>
-          </GlassCard>
+          </motion.div>
 
           {/* ESYUS Technology Pillar */}
-          <GlassCard elevation="md" className="border-indigo-500/20 dark:border-indigo-500/30 dark:bg-gradient-to-br dark:from-[#0B101E] dark:to-[#050811] relative p-6 sm:p-8 dark:shadow-xl dark:shadow-black/40">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.5 }}
+            className="liquid-card border border-indigo-500/35 dark:border-indigo-400/30 hover:border-indigo-400 dark:hover:border-indigo-300 relative p-6 sm:p-8 rounded-3xl group"
+          >
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-mono font-bold text-sm shadow-md shadow-indigo-500/20">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-mono font-bold text-sm shadow-md shadow-indigo-500/30">
                   E
                 </div>
                 <div>
@@ -98,7 +113,7 @@ export function PartnershipStory() {
                 </div>
               ))}
             </div>
-          </GlassCard>
+          </motion.div>
 
         </div>
 
@@ -120,9 +135,9 @@ export function PartnershipStory() {
                 key={step.number}
                 type="button"
                 onClick={() => setActiveStep(idx)}
-                className={`p-4 rounded-2xl text-left transition-all border cursor-pointer ${
+                className={`p-4 rounded-2xl text-left transition-all border cursor-pointer select-none active:scale-[0.98] ${
                   activeStep === idx
-                    ? 'glass-surface border-sky-500/50 dark:border-sky-400 dark:bg-sky-950/40 shadow-md ring-1 ring-sky-500/30'
+                    ? 'liquid-card border-sky-500/50 dark:border-sky-400/80 bg-white dark:bg-sky-950/40 shadow-md ring-1 ring-sky-500/30'
                     : 'bg-white/40 dark:bg-[#080D1A]/60 border-slate-200/60 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 dark:hover:bg-[#0B1224]'
                 }`}
               >
@@ -141,51 +156,62 @@ export function PartnershipStory() {
             ))}
           </div>
 
-          {/* Active Step Deep-Dive Panel */}
-          <GlassCard elevation="md" className="p-6 sm:p-8 border border-slate-200/80 dark:border-white/12 dark:bg-gradient-to-br dark:from-[#0B101E] dark:to-[#050811] dark:shadow-2xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-              
-              <div className="lg:col-span-8 space-y-4">
-                <div className="flex items-center gap-2.5">
-                  <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-300 border border-sky-500/20 dark:border-sky-400/30">
-                    PHASE {PARTNERSHIP_STEPS[activeStep].number}
-                  </span>
-                  <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-                    Lead: <strong className="text-slate-800 dark:text-slate-200">{PARTNERSHIP_STEPS[activeStep].owner}</strong>
-                  </span>
+          {/* Active Step Deep-Dive Panel with Smooth Transition */}
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStep}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.25 }}
+                className="liquid-card p-6 sm:p-8 border border-sky-500/35 dark:border-sky-400/30 hover:border-sky-400 dark:hover:border-sky-300 rounded-3xl group shadow-2xl"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                  
+                  <div className="lg:col-span-8 space-y-4">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-300 border border-sky-500/20 dark:border-sky-400/30">
+                        PHASE {PARTNERSHIP_STEPS[activeStep].number}
+                      </span>
+                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                        Lead: <strong className="text-slate-800 dark:text-slate-200">{PARTNERSHIP_STEPS[activeStep].owner}</strong>
+                      </span>
+                    </div>
+
+                    <h4 className="text-2xl font-bold text-slate-900 dark:text-white">
+                      {PARTNERSHIP_STEPS[activeStep].title} — {PARTNERSHIP_STEPS[activeStep].phase}
+                    </h4>
+
+                    <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {PARTNERSHIP_STEPS[activeStep].description}
+                    </p>
+
+                    <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#040712] border border-slate-200/60 dark:border-white/10 text-xs text-slate-700 dark:text-slate-200 flex items-start gap-2.5">
+                      <Zap className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                      <span>
+                        <strong className="font-semibold text-slate-900 dark:text-white">Commercial Benefit: </strong>
+                        {PARTNERSHIP_STEPS[activeStep].detail}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="lg:col-span-4 p-5 rounded-2xl bg-gradient-to-tr from-slate-100 to-slate-200/40 dark:from-[#090F20] dark:to-[#040712] border border-slate-200/80 dark:border-white/12 text-center space-y-3 shadow-md">
+                    <div className="w-10 h-10 mx-auto rounded-xl bg-sky-500/10 text-sky-500 dark:text-sky-400 flex items-center justify-center">
+                      <GitMerge className="w-5 h-5" />
+                    </div>
+                    <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+                      Client Advantage
+                    </div>
+                    <p className="text-xs text-slate-600 dark:text-slate-300">
+                      Single contract, consolidated communication channels, and unified engineering standards across web and mobile.
+                    </p>
+                  </div>
+
                 </div>
-
-                <h4 className="text-2xl font-bold text-slate-900 dark:text-white">
-                  {PARTNERSHIP_STEPS[activeStep].title} — {PARTNERSHIP_STEPS[activeStep].phase}
-                </h4>
-
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {PARTNERSHIP_STEPS[activeStep].description}
-                </p>
-
-                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#040712] border border-slate-200/60 dark:border-white/10 text-xs text-slate-700 dark:text-slate-200 flex items-start gap-2.5">
-                  <Zap className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                  <span>
-                    <strong className="font-semibold text-slate-900 dark:text-white">Commercial Benefit: </strong>
-                    {PARTNERSHIP_STEPS[activeStep].detail}
-                  </span>
-                </div>
-              </div>
-
-              <div className="lg:col-span-4 p-5 rounded-2xl bg-gradient-to-tr from-slate-100 to-slate-200/40 dark:from-[#090F20] dark:to-[#040712] border border-slate-200/80 dark:border-white/12 text-center space-y-3 shadow-md">
-                <div className="w-10 h-10 mx-auto rounded-xl bg-sky-500/10 text-sky-500 dark:text-sky-400 flex items-center justify-center">
-                  <GitMerge className="w-5 h-5" />
-                </div>
-                <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-white">
-                  Client Advantage
-                </div>
-                <p className="text-xs text-slate-600 dark:text-slate-300">
-                  Single contract, consolidated communication channels, and unified engineering standards across web and mobile.
-                </p>
-              </div>
-
-            </div>
-          </GlassCard>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
         </div>
 

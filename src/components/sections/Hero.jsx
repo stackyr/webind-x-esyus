@@ -1,37 +1,52 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import {
   ArrowRight,
   Layers,
-  Smartphone,
+  Store,
   Globe,
-  CheckCircle2,
-  Activity,
   Terminal,
+  Smartphone,
+  ShieldCheck,
   Zap,
   Sparkles,
 } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
-import { TypewriterText } from '../ui/TypewriterText'
+import { KineticTextRotator } from '../ui/KineticTextRotator'
+import { useOrderModal } from '../../context/useOrderModal'
 
 export function Hero() {
-  const [activeLayer, setActiveLayer] = useState('all') // 'all', 'web', 'software', 'mobile'
+  const { openOrderModal } = useOrderModal()
   const heroRef = useRef(null)
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true
+      videoRef.current.muted = true
+      videoRef.current.play().catch(() => {
+        // Autoplay policy fallback
+      })
+    }
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   })
 
-  const canvasY = useTransform(scrollYProgress, [0, 1], [0, 45])
-  const canvasRotate = useTransform(scrollYProgress, [0, 1], [0, 4])
-  const canvasScale = useTransform(scrollYProgress, [0, 1], [1, 0.97])
+  const glowY = useTransform(scrollYProgress, [0, 1], [0, 60])
+  const cardsScale = useTransform(scrollYProgress, [0, 1], [1, 0.98])
 
   const handleScrollTo = (id) => {
     const el = document.querySelector(id)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
+      if (window.__lenis) {
+        window.__lenis.scrollTo(el, { offset: -85, duration: 1.25 })
+      } else {
+        el.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   }
 
@@ -39,365 +54,236 @@ export function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-36 overflow-hidden bg-ambient-mesh"
+      className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-36 overflow-hidden bg-slate-100/40 dark:bg-[#060911]"
     >
-      {/* Dynamic Animated Liquid Glass Glowing Orbs */}
-      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] sm:w-[900px] sm:h-[450px] bg-gradient-to-tr from-sky-500/15 via-indigo-500/15 to-transparent blur-3xl rounded-full -z-10 animate-fluid-pulse" />
-      <div className="pointer-events-none absolute top-1/2 right-10 w-[400px] h-[300px] bg-gradient-to-br from-cyan-400/10 via-sky-500/10 to-transparent blur-3xl rounded-full -z-10 animate-fluid-pulse-delayed" />
+      {/* Ambient Autoplay Background Video (Blended Highlights & Shadows) */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls={false}
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover opacity-50 dark:opacity-65 filter contrast-125 brightness-100 pointer-events-none"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
 
+        {/* Ambient Color Tone Overlay (Blends video highlights and shadows with studio dark/light palette) */}
+        <div className="absolute inset-0 bg-[#F8FAFC]/40 dark:bg-[#060911]/55 mix-blend-multiply" />
 
-      <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
-          {/* Left Column: Headline, Narrative & CTAs */}
-          <div className="lg:col-span-6 xl:col-span-6 text-left space-y-6 sm:space-y-8">
-            
-            {/* Studio Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2"
+        {/* Center Content Soft Vignette: softens video directly behind text so headline & paragraph are 100% crisp */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_65%_55%_at_50%_38%,rgba(248,250,252,0.85)_0%,rgba(248,250,252,0.45)_55%,transparent_90%)] dark:bg-[radial-gradient(ellipse_65%_55%_at_50%_38%,rgba(6,9,17,0.88)_0%,rgba(6,9,17,0.45)_55%,transparent_90%)]" />
+
+        {/* Seamless Top & Bottom Gradients (Smooth fade to navbar and next sections) */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F8FAFC] dark:from-[#060911] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F8FAFC] dark:from-[#060911] to-transparent" />
+      </div>
+
+      {/* Dynamic Animated Liquid Glass Glowing Orbs & Ambient Background */}
+      <motion.div
+        style={{ y: glowY }}
+        className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] sm:w-[1000px] sm:h-[500px] bg-gradient-to-tr from-sky-500/20 via-indigo-500/15 to-cyan-400/15 blur-[120px] rounded-full z-0 animate-fluid-pulse"
+      />
+      <div className="pointer-events-none absolute top-1/2 -left-40 w-[450px] h-[350px] bg-gradient-to-br from-cyan-400/15 via-sky-500/10 to-transparent blur-[100px] rounded-full z-0 animate-fluid-pulse-delayed" />
+      <div className="pointer-events-none absolute top-1/3 -right-40 w-[450px] h-[350px] bg-gradient-to-bl from-indigo-500/15 via-purple-500/10 to-transparent blur-[100px] rounded-full z-0 animate-fluid-pulse" />
+
+      {/* Subtle modern dot grid overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:28px_28px] opacity-10 dark:opacity-15 z-0" />
+
+      <Container size="wide" className="relative z-10">
+        <div className="max-w-5xl mx-auto text-center space-y-8 sm:space-y-10">
+
+          {/* Studio Announcement Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="inline-flex items-center justify-center"
+          >
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-semibold tracking-wide bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/12 shadow-lg shadow-sky-500/5 backdrop-blur-xl group hover:border-sky-500/40 transition-all cursor-default">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500" />
+              </span>
+              <span className="text-slate-800 dark:text-slate-200 font-mono text-[11px] uppercase tracking-wider">
+                WEBIND <span className="text-sky-500 font-bold">×</span> ESYUS
+              </span>
+              <span className="text-slate-300 dark:text-slate-700">|</span>
+              <span className="text-sky-600 dark:text-sky-400 font-medium">
+                Liquid Digital Product Studio
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
+                <Sparkles className="w-2.5 h-2.5" />
+                Unified Architecture
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Main Dynamic Headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.08 }}
+            className="space-y-3"
+          >
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-[1.1] sm:leading-[1.12]">
+              <span className="block text-slate-950 dark:text-white">
+                Architecting the Next Era of
+              </span>
+              <span className="block mt-1 sm:mt-2">
+                <KineticTextRotator
+                  phrases={[
+                    'Bespoke Web Flagships.',
+                    'Resilient Cloud Systems.',
+                    'High-Impact Digital Brands.',
+                    'Native iOS & Android Apps.',
+                    'Modern SaaS Platforms.',
+                    'Scalable Enterprise APIs.',
+                  ]}
+                />
+              </span>
+            </h1>
+          </motion.div>
+
+          {/* Editorial Subtitle Narrative */}
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.16 }}
+            className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto"
+          >
+            <strong className="font-semibold text-slate-900 dark:text-white">WEBIND</strong> designs bespoke digital flagships, interactive web experiences, and brand identities.{' '}
+            <strong className="font-semibold text-slate-900 dark:text-white">ESYUS Technology</strong> engineers resilient cloud engines, enterprise backends, and mobile ecosystems.{' '}
+            <span className="text-sky-600 dark:text-sky-400 font-medium">One unified partnership. Zero vendor hand-off friction.</span>
+          </motion.p>
+
+          {/* Action CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.22 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-2"
+          >
+            <button
+              type="button"
+              onClick={() => openOrderModal()}
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-sky-600 via-cyan-500 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold text-sm sm:text-base shadow-xl shadow-sky-500/25 hover:shadow-sky-500/40 active:scale-[0.98] transition-all cursor-pointer w-full sm:w-auto min-h-[50px] group"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-white/80 dark:bg-slate-900/90 border border-slate-200/80 dark:border-white/12 shadow-sm backdrop-blur-md">
-                <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500" />
-                </span>
-                <span className="text-slate-800 dark:text-slate-200">
-                  WEBIND <span className="text-slate-400">×</span> ESYUS
-                </span>
-                <span className="hidden sm:inline text-slate-300 dark:text-slate-700">|</span>
-                <span className="hidden sm:inline text-sky-600 dark:text-sky-400 font-mono">
-                  LIQUID DIGITAL PRODUCT STUDIO
-                </span>
-              </div>
-            </motion.div>
+              <Store className="w-4 h-4 text-white/90" />
+              <span>Order Business Website</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
 
-            {/* Main Headline with Animated Text Writing Loop */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.05 }}
-              className="space-y-3"
+            <Button
+              variant="glass"
+              size="lg"
+              leftIcon={Layers}
+              onClick={() => handleScrollTo('#services')}
+              className="w-full sm:w-auto justify-center min-h-[50px] px-8"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-[66px] font-extrabold tracking-tight text-slate-950 dark:text-white leading-[1.08]">
-                Your next idea.{' '}
-                <span className="block min-h-[1.25em] text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-cyan-500 to-indigo-600 dark:from-sky-400 dark:via-cyan-300 dark:to-indigo-300">
-                  <TypewriterText
-                    words={[
-                      'Built for the real world.',
-                      'Engineered with liquid precision.',
-                      'High-velocity SaaS platforms.',
-                      'Enterprise cloud systems.',
-                      'Native iOS & Android apps.',
-                      'Conversion-driven websites.'
-                    ]}
-                  />
-                </span>
-              </h1>
-            </motion.div>
+              Explore Capabilities
+            </Button>
+          </motion.div>
 
-            {/* Supporting Narrative */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-xl"
-            >
-              <strong className="font-semibold text-slate-900 dark:text-white">WEBIND</strong> designs
-              bespoke websites, marketing flagships, and digital brands.{' '}
-              <strong className="font-semibold text-slate-900 dark:text-white">ESYUS Technology</strong>{' '}
-              engineers custom cloud systems, enterprise backends, and mobile applications.{' '}
-              Together, we deliver frictionless digital products with zero vendor hand-off gaps.
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="flex flex-wrap items-center gap-3.5 sm:gap-4 pt-2"
-            >
-              <Button
-                variant="primary"
-                size="lg"
-                rightIcon={ArrowRight}
-                onClick={() => handleScrollTo('#inquiry')}
-                className="shadow-xl shadow-slate-950/10 dark:shadow-white/5"
-              >
-                Start a Project
-              </Button>
-
-              <Button
-                variant="glass"
-                size="lg"
-                leftIcon={Layers}
-                onClick={() => handleScrollTo('#services')}
-              >
-                Explore Services
-              </Button>
-            </motion.div>
-
-            {/* Trust Proof Micro-Strip */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="pt-4 border-t border-slate-200/60 dark:border-white/10 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-500 dark:text-slate-400 font-medium"
-            >
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-sky-500" />
-                <span>Websites & Landing Pages</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
-                <span>Custom Software & Cloud</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-500" />
-                <span>iOS & Android Apps</span>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column: Connected Liquid Precision Product Canvas */}
-          <div className="lg:col-span-6 xl:col-span-6 relative">
-            
-            {/* Interactive Architecture Filter Bar */}
-            <div className="flex items-center justify-between mb-3 px-1">
-              <div className="flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
-                <Activity className="w-3.5 h-3.5 text-emerald-500 animate-pulse" />
-                <span>CONNECTED STACK PREVIEW</span>
-              </div>
-              <div className="flex items-center gap-1 p-0.5 rounded-lg bg-slate-200/50 dark:bg-slate-800/60 border border-slate-300/40 dark:border-white/10 text-[11px]">
-                <button
-                  type="button"
-                  onClick={() => setActiveLayer('all')}
-                  className={`px-2.5 py-1 rounded-md transition-all font-medium cursor-pointer ${
-                    activeLayer === 'all'
-                      ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-xs font-semibold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                  }`}
-                >
-                  Unified
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveLayer('web')}
-                  className={`px-2.5 py-1 rounded-md transition-all font-medium cursor-pointer ${
-                    activeLayer === 'web'
-                      ? 'bg-sky-500 text-white shadow-xs font-semibold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-sky-500'
-                  }`}
-                >
+          {/* Modern Interactive Studio Architecture Bento Strip with Color Borders & Gradient Backgrounds */}
+          <motion.div
+            style={{ scale: cardsScale }}
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="pt-8 sm:pt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left"
+          >
+            {/* Card 1: WEBIND Design */}
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/95 via-sky-50/40 to-white/80 dark:from-[#0F1932]/90 dark:via-[#0B1224]/85 dark:to-[#050811]/90 border border-sky-500/35 dark:border-sky-400/30 shadow-lg shadow-sky-500/5 dark:shadow-black/40 backdrop-blur-2xl hover:border-sky-400 dark:hover:border-sky-300 hover:shadow-[0_20px_45px_-10px_rgba(56,189,248,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 group-hover:scale-110 group-hover:bg-sky-500/20 transition-all">
+                  <Globe className="w-5 h-5" />
+                </div>
+                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-300 font-semibold border border-sky-500/30 shadow-xs">
                   WEBIND
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveLayer('software')}
-                  className={`px-2.5 py-1 rounded-md transition-all font-medium cursor-pointer ${
-                    activeLayer === 'software'
-                      ? 'bg-indigo-600 text-white shadow-xs font-semibold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-indigo-400'
-                  }`}
-                >
-                  ESYUS Core
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveLayer('mobile')}
-                  className={`px-2.5 py-1 rounded-md transition-all font-medium cursor-pointer ${
-                    activeLayer === 'mobile'
-                      ? 'bg-cyan-500 text-white shadow-xs font-semibold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-cyan-400'
-                  }`}
-                >
-                  Mobile
-                </button>
+                </span>
+              </div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight mb-1 group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
+                Design & Web Flagships
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-300 leading-relaxed mb-3">
+                Bespoke interactive frontend, micro-animations, and fluid design systems.
+              </p>
+              <div className="flex items-center gap-1.5 text-[11px] font-mono text-sky-600 dark:text-sky-400 font-medium pt-1 border-t border-sky-500/15 dark:border-white/5">
+                <Zap className="w-3 h-3 text-sky-500 animate-pulse" />
+                <span>Lighthouse 99+ Score</span>
               </div>
             </div>
 
-            {/* Main Interactive Stage Container with Scroll Parallax */}
-            <motion.div
-              style={{ y: canvasY, scale: canvasScale }}
-              className="relative rounded-3xl p-4 sm:p-6 liquid-card border border-slate-200/80 dark:border-white/12 dark:bg-[#090E1C]/90 shadow-2xl backdrop-blur-2xl specular-border"
-            >
-              
-              {/* Layer 1: WEBIND Web Experience Browser Mockup */}
-              <motion.div
-                animate={{
-                  opacity: activeLayer === 'all' || activeLayer === 'web' ? 1 : 0.35,
-                  scale: activeLayer === 'web' ? 1.02 : 1,
-                  y: activeLayer === 'web' ? -4 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-                className="rounded-2xl overflow-hidden border border-slate-200/80 dark:border-white/10 bg-white/90 dark:bg-[#0C1224] shadow-lg mb-4"
-              >
-                {/* Browser Chrome Header */}
-                <div className="px-4 py-2.5 bg-slate-100/80 dark:bg-[#070B16] border-b border-slate-200/60 dark:border-white/10 flex items-center justify-between">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-rose-400/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80" />
-                  </div>
-                  <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-white/70 dark:bg-[#0F172A] border border-slate-200/60 dark:border-white/10 text-[11px] font-mono text-slate-600 dark:text-slate-300">
-                    <Globe className="w-3 h-3 text-sky-500" />
-                    <span>webind.studio/client-portal</span>
-                  </div>
-                  <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-500/20">
-                    WEBIND LIVE
-                  </span>
+            {/* Card 2: ESYUS Cloud Engine */}
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/95 via-indigo-50/40 to-white/80 dark:from-[#111636]/90 dark:via-[#0D1026]/85 dark:to-[#050811]/90 border border-indigo-500/35 dark:border-indigo-400/30 shadow-lg shadow-indigo-500/5 dark:shadow-black/40 backdrop-blur-2xl hover:border-indigo-400 dark:hover:border-indigo-300 hover:shadow-[0_20px_45px_-10px_rgba(99,102,241,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500/20 transition-all">
+                  <Terminal className="w-5 h-5" />
                 </div>
-
-                {/* Web Viewport Content */}
-                <div className="p-4 sm:p-5 space-y-3.5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-xs font-semibold text-sky-600 dark:text-sky-400 uppercase tracking-wider font-mono">
-                        Frontend Commerce Engine
-                      </div>
-                      <div className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-                        Global Order Stream & Conversion
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">
-                        Lighthouse Score
-                      </div>
-                      <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400 font-mono">
-                        99/100
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Micro Visual Chart/Graph in Mockup */}
-                  <div className="h-14 w-full bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-sky-500/5 dark:from-sky-500/20 dark:via-indigo-500/15 dark:to-transparent rounded-xl border border-sky-500/20 dark:border-sky-500/30 p-2 flex items-end gap-1.5">
-                    {[38, 62, 45, 80, 55, 90, 75, 96, 84, 100].map((h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 bg-gradient-to-t from-sky-500 to-indigo-500 rounded-t-sm transition-all duration-500 hover:brightness-125"
-                        style={{ height: `${h}%` }}
-                      />
-                    ))}
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-mono pt-1">
-                    <span>TTFB: 42ms</span>
-                    <span>Edge Cached: Global</span>
-                    <span className="text-sky-500 dark:text-sky-400 font-medium">Synced with ESYUS Core</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Lower Dual Node System: ESYUS Software Backend & Mobile App Screen */}
-              <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
-                
-                {/* ESYUS Software Backend Terminal Node */}
-                <motion.div
-                  animate={{
-                    opacity: activeLayer === 'all' || activeLayer === 'software' ? 1 : 0.35,
-                    scale: activeLayer === 'software' ? 1.02 : 1,
-                    y: activeLayer === 'software' ? -4 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="sm:col-span-7 rounded-2xl p-4 bg-slate-950 dark:bg-[#040711] text-slate-200 border border-slate-800 dark:border-indigo-500/20 shadow-md font-mono text-xs space-y-2.5"
-                >
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800 dark:border-white/10 text-[11px]">
-                    <div className="flex items-center gap-1.5 text-indigo-400">
-                      <Terminal className="w-3.5 h-3.5" />
-                      <span className="font-semibold">ESYUS CLOUD ENGINE</span>
-                    </div>
-                    <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/40">
-                      ONLINE
-                    </span>
-                  </div>
-
-                  <div className="space-y-1.5 text-[11px] text-slate-400">
-                    <p className="flex justify-between">
-                      <span className="text-slate-500">API Gateway:</span>
-                      <span className="text-slate-200 font-semibold">POST /v2/orders/settle</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span className="text-slate-500">Latency:</span>
-                      <span className="text-emerald-400">14ms p99</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span className="text-slate-500">PostgreSQL Pool:</span>
-                      <span className="text-indigo-300">Healthy (0.4% load)</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span className="text-slate-500">Push Dispatcher:</span>
-                      <span className="text-sky-300">APNs & FCM active</span>
-                    </p>
-                  </div>
-
-                  <div className="pt-1 flex items-center gap-2 text-[10px] text-slate-500">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping" />
-                    <span>Real-time webhook relay to Mobile Client</span>
-                  </div>
-                </motion.div>
-
-                {/* ESYUS Mobile App Mockup Screen */}
-                <motion.div
-                  animate={{
-                    opacity: activeLayer === 'all' || activeLayer === 'mobile' ? 1 : 0.35,
-                    scale: activeLayer === 'mobile' ? 1.02 : 1,
-                    y: activeLayer === 'mobile' ? -4 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="sm:col-span-5 rounded-2xl p-3.5 bg-gradient-to-b from-slate-900 to-slate-950 dark:from-[#090F20] dark:to-[#040711] border border-slate-800 dark:border-cyan-500/20 text-white shadow-md flex flex-col justify-between"
-                >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-[11px]">
-                      <div className="flex items-center gap-1 font-mono text-cyan-400 font-semibold">
-                        <Smartphone className="w-3.5 h-3.5" />
-                        <span>ESYUS MOBILE</span>
-                      </div>
-                      <span className="text-[10px] font-mono text-slate-400">iOS 18</span>
-                    </div>
-
-                    <div className="p-2.5 rounded-xl bg-white/5 dark:bg-white/[0.04] border border-white/10 space-y-1">
-                      <div className="text-[10px] text-slate-400 uppercase tracking-wider">
-                        Client Balance
-                      </div>
-                      <div className="text-base font-extrabold text-white tracking-tight">
-                        $142,850.00
-                      </div>
-                      <div className="flex items-center gap-1 text-[10px] text-emerald-400 font-mono">
-                        <Zap className="w-2.5 h-2.5" />
-                        <span>Instant Push Confirmed</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-2 mt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400">
-                    <span>Touch ID: Ready</span>
-                    <span className="text-cyan-400">Synced</span>
-                  </div>
-                </motion.div>
-
-              </div>
-
-              {/* Bottom Connection Status Banner */}
-              <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
-                <div className="flex items-center gap-2">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500" />
-                  </span>
-                  <span className="font-medium text-slate-700 dark:text-slate-200">
-                    Zero-Friction Studio Architecture
-                  </span>
-                </div>
-                <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
-                  WEBIND Frontend ↔ ESYUS Backend & Mobile
+                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 font-semibold border border-indigo-500/30 shadow-xs">
+                  ESYUS CORE
                 </span>
               </div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
+                Cloud Systems & APIs
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-300 leading-relaxed mb-3">
+                High-throughput Go & Node backends, PostgreSQL, and scalable microservices.
+              </p>
+              <div className="flex items-center gap-1.5 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-medium pt-1 border-t border-indigo-500/15 dark:border-white/5">
+                <Zap className="w-3 h-3 text-indigo-500 animate-pulse" />
+                <span>&lt;20ms p99 Latency</span>
+              </div>
+            </div>
 
-            </motion.div>
+            {/* Card 3: Mobile Apps */}
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/95 via-cyan-50/40 to-white/80 dark:from-[#0E1C2E]/90 dark:via-[#091524]/85 dark:to-[#050811]/90 border border-cyan-500/35 dark:border-cyan-400/30 shadow-lg shadow-cyan-500/5 dark:shadow-black/40 backdrop-blur-2xl hover:border-cyan-400 dark:hover:border-cyan-300 hover:shadow-[0_20px_45px_-10px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all">
+                  <Smartphone className="w-5 h-5" />
+                </div>
+                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 font-semibold border border-cyan-500/30 shadow-xs">
+                  MOBILE
+                </span>
+              </div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight mb-1 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
+                Native iOS & Android
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-300 leading-relaxed mb-3">
+                Cross-platform mobile applications, biometric auth, and live push notifications.
+              </p>
+              <div className="flex items-center gap-1.5 text-[11px] font-mono text-cyan-600 dark:text-cyan-400 font-medium pt-1 border-t border-cyan-500/15 dark:border-white/5">
+                <Zap className="w-3 h-3 text-cyan-500 animate-pulse" />
+                <span>Instant Offline Sync</span>
+              </div>
+            </div>
 
-          </div>
+            {/* Card 4: Unified Guarantee */}
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/95 via-emerald-50/40 to-white/80 dark:from-[#0B1E22]/90 dark:via-[#071519]/85 dark:to-[#050811]/90 border border-emerald-500/35 dark:border-emerald-400/30 shadow-lg shadow-emerald-500/5 dark:shadow-black/40 backdrop-blur-2xl hover:border-emerald-400 dark:hover:border-emerald-300 hover:shadow-[0_20px_45px_-10px_rgba(16,185,129,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 font-semibold border border-emerald-500/30 shadow-xs">
+                  GUARANTEED
+                </span>
+              </div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                Zero-Friction Handoff
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-300 leading-relaxed mb-3">
+                Designers and backend engineers work in sync. No separate agency overhead.
+              </p>
+              <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-medium pt-1 border-t border-emerald-500/15 dark:border-white/5">
+                <Zap className="w-3 h-3 text-emerald-500 animate-pulse" />
+                <span>99.98% SLA Availability</span>
+              </div>
+            </div>
+          </motion.div>
 
         </div>
       </Container>

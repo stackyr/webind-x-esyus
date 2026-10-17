@@ -24,9 +24,10 @@ export function TypewriterText({
 
     if (isDeleting) {
       if (currentText === '') {
-        setIsDeleting(false)
-        setWordIndex((prev) => (prev + 1) % words.length)
-        timer = setTimeout(() => {}, 250)
+        timer = setTimeout(() => {
+          setIsDeleting(false)
+          setWordIndex((prev) => (prev + 1) % words.length)
+        }, 280)
       } else {
         timer = setTimeout(() => {
           setCurrentText(currentWord.substring(0, currentText.length - 1))

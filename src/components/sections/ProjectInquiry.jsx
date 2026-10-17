@@ -14,7 +14,6 @@ import {
 } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
-import { GlassCard } from '../ui/GlassCard'
 import { Button } from '../ui/Button'
 import { INQUIRY_OPTIONS, BRAND_CONFIG } from '../../data/siteData'
 
@@ -184,8 +183,14 @@ export function ProjectInquiry({ preselectedService }) {
           description="Tell us about your objectives. We will review your scope and follow up with a concrete architecture proposal and milestone roadmap within 24 business hours."
         />
 
-        {/* Main Wizard Card */}
-        <GlassCard elevation="lg" className="border border-slate-200/80 dark:border-white/12 dark:bg-[#0B101E]/95 dark:shadow-2xl dark:shadow-black/70 p-6 sm:p-10">
+        {/* Main Wizard Card with Liquid Glass Styling and Scroll Motion */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5 }}
+          className="liquid-card border border-slate-200/80 dark:border-white/12 dark:bg-[#0B101E]/95 dark:shadow-2xl dark:shadow-black/70 p-4 sm:p-10 rounded-3xl"
+        >
           
           {/* Progress Bar & Step Indicators */}
           {!submitted && (
@@ -758,7 +763,7 @@ export function ProjectInquiry({ preselectedService }) {
             </div>
           )}
 
-        </GlassCard>
+        </motion.div>
 
       </Container>
     </section>

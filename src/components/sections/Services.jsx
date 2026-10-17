@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'motion/react'
 import {
   Globe,
   Server,
@@ -9,28 +10,27 @@ import {
 } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
-import { GlassCard } from '../ui/GlassCard'
 import { Badge } from '../ui/Badge'
 import { Button } from '../ui/Button'
 import { SERVICES_DATA } from '../../data/siteData'
+import { useOrderModal } from '../../context/useOrderModal'
 
-export function Services({ onSelectService }) {
+export function Services() {
+  const { openOrderModal } = useOrderModal()
   const webService = SERVICES_DATA.find((s) => s.id === 'web-development')
   const softwareService = SERVICES_DATA.find((s) => s.id === 'custom-software')
   const mobileService = SERVICES_DATA.find((s) => s.id === 'mobile-applications')
 
-  const handleInquiryFor = (serviceId) => {
-    if (onSelectService) {
-      onSelectService(serviceId)
-    }
-    const el = document.querySelector('#inquiry')
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }
+  const handleInquiryFor = () => {
+    openOrderModal()
   }
 
   return (
     <section id="services" className="py-24 sm:py-32 relative overflow-hidden">
+      {/* Background radial glow */}
+      <div className="pointer-events-none absolute top-1/2 left-1/4 w-[500px] h-[400px] bg-sky-500/10 dark:bg-sky-500/5 blur-3xl rounded-full -z-10 animate-fluid-pulse" />
+      <div className="pointer-events-none absolute bottom-10 right-10 w-[500px] h-[400px] bg-indigo-500/10 dark:bg-indigo-500/5 blur-3xl rounded-full -z-10 animate-fluid-pulse-delayed" />
+
       <Container size="wide">
         
         {/* Section Header */}
@@ -44,12 +44,18 @@ export function Services({ onSelectService }) {
         <div className="space-y-8">
           
           {/* 1. Large Featured Card: Web Development — WEBIND */}
-          <GlassCard elevation="lg" className="border border-slate-200/80 dark:border-white/12 dark:bg-gradient-to-br dark:from-[#0B101E] dark:via-[#080D1A] dark:to-[#050811] dark:shadow-2xl dark:shadow-black/60 p-6 sm:p-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5 }}
+            className="liquid-card border border-sky-500/35 dark:border-sky-400/30 hover:border-sky-400 dark:hover:border-sky-300 p-6 sm:p-10 rounded-3xl group"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
               
               {/* Left Column: Narrative, Outcomes, Deliverables */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="flex flex-wrap items-center gap-2.5">
+              <div className="lg:col-span-7 space-y-5 sm:space-y-6">
+                <div className="flex flex-wrap items-center gap-2">
                   <Badge variant="webind" dot dotColor="bg-sky-400">
                     WEBIND STUDIO LEAD
                   </Badge>
@@ -58,7 +64,7 @@ export function Services({ onSelectService }) {
                   </span>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2.5 sm:space-y-3">
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
                     {webService.title}
                   </h3>
@@ -75,7 +81,7 @@ export function Services({ onSelectService }) {
                   <div className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                     Commercial & Technical Outcomes:
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {webService.outcomes.map((outcome, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
                         <CheckCircle2 className="w-4 h-4 text-sky-500 shrink-0 mt-0.5" />
@@ -86,7 +92,7 @@ export function Services({ onSelectService }) {
                 </div>
 
                 {/* Deliverables Tags */}
-                <div className="pt-2 flex flex-wrap gap-2">
+                <div className="pt-2 flex flex-wrap gap-1.5 sm:gap-2">
                   {webService.deliverables.map((deliv) => (
                     <span
                       key={deliv}
@@ -98,12 +104,13 @@ export function Services({ onSelectService }) {
                 </div>
 
                 {/* Direct Action */}
-                <div className="pt-3">
+                <div className="pt-2 sm:pt-3">
                   <Button
                     variant="primary"
                     size="md"
                     rightIcon={ArrowRight}
                     onClick={() => handleInquiryFor('website')}
+                    className="w-full sm:w-auto justify-center min-h-[44px]"
                   >
                     Initiate Web Project
                   </Button>
@@ -149,18 +156,18 @@ export function Services({ onSelectService }) {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 text-center">
-                      <div className="p-2 rounded-lg bg-slate-50 dark:bg-[#070B16] border border-slate-200/50 dark:border-white/10">
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">SEO</div>
-                        <div className="text-sm font-bold text-slate-900 dark:text-white font-mono">100%</div>
+                    <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center">
+                      <div className="p-1.5 sm:p-2 rounded-lg bg-slate-50 dark:bg-[#070B16] border border-slate-200/50 dark:border-white/10">
+                        <div className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-mono">SEO</div>
+                        <div className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-mono">100%</div>
                       </div>
-                      <div className="p-2 rounded-lg bg-slate-50 dark:bg-[#070B16] border border-slate-200/50 dark:border-white/10">
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Best Practice</div>
-                        <div className="text-sm font-bold text-slate-900 dark:text-white font-mono">100%</div>
+                      <div className="p-1.5 sm:p-2 rounded-lg bg-slate-50 dark:bg-[#070B16] border border-slate-200/50 dark:border-white/10">
+                        <div className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-mono">Best Practice</div>
+                        <div className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-mono">100%</div>
                       </div>
-                      <div className="p-2 rounded-lg bg-slate-50 dark:bg-[#070B16] border border-slate-200/50 dark:border-white/10">
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Accessibility</div>
-                        <div className="text-sm font-bold text-slate-900 dark:text-white font-mono">100%</div>
+                      <div className="p-1.5 sm:p-2 rounded-lg bg-slate-50 dark:bg-[#070B16] border border-slate-200/50 dark:border-white/10">
+                        <div className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-mono">Accessibility</div>
+                        <div className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-mono">100%</div>
                       </div>
                     </div>
                   </div>
@@ -172,14 +179,20 @@ export function Services({ onSelectService }) {
               </div>
 
             </div>
-          </GlassCard>
+          </motion.div>
 
           {/* 2 & 3. Dual Supporting Cards: Custom Software & Mobile Apps (ESYUS Technology) */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             
             {/* Supporting Card 1: Custom Software — ESYUS Technology */}
-            <GlassCard elevation="md" className="border border-slate-200/80 dark:border-white/12 dark:bg-gradient-to-br dark:from-[#0B101E] dark:to-[#050811] flex flex-col justify-between p-6 sm:p-8 dark:shadow-xl dark:shadow-black/50">
-              <div className="space-y-5">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.45, delay: 0.1 }}
+              className="liquid-card border border-indigo-500/35 dark:border-indigo-400/30 hover:border-indigo-400 dark:hover:border-indigo-300 flex flex-col justify-between p-6 sm:p-8 rounded-3xl group"
+            >
+              <div className="space-y-4 sm:space-y-5">
                 <div className="flex items-center justify-between">
                   <Badge variant="esyus" dot dotColor="bg-indigo-400">
                     ESYUS TECHNOLOGY LEAD
@@ -235,22 +248,29 @@ export function Services({ onSelectService }) {
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-slate-200/60 dark:border-white/10 mt-6 flex items-center justify-between">
+              <div className="pt-5 sm:pt-6 border-t border-slate-200/60 dark:border-white/10 mt-5 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <Button
                   variant="outline"
                   size="sm"
                   rightIcon={ArrowRight}
                   onClick={() => handleInquiryFor('software')}
+                  className="w-full sm:w-auto justify-center min-h-[44px]"
                 >
                   Configure Custom Software
                 </Button>
-                <span className="text-xs font-mono text-slate-400">Full Source Handover</span>
+                <span className="text-xs font-mono text-slate-400 text-center sm:text-right">Full Source Handover</span>
               </div>
-            </GlassCard>
+            </motion.div>
 
             {/* Supporting Card 2: Mobile Applications — ESYUS Technology */}
-            <GlassCard elevation="md" className="border border-slate-200/80 dark:border-white/12 dark:bg-gradient-to-br dark:from-[#0B101E] dark:to-[#050811] flex flex-col justify-between p-6 sm:p-8 dark:shadow-xl dark:shadow-black/50">
-              <div className="space-y-5">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.45, delay: 0.2 }}
+              className="liquid-card border border-cyan-500/35 dark:border-cyan-400/30 hover:border-cyan-400 dark:hover:border-cyan-300 flex flex-col justify-between p-6 sm:p-8 rounded-3xl group"
+            >
+              <div className="space-y-4 sm:space-y-5">
                 <div className="flex items-center justify-between">
                   <Badge variant="esyus" dot dotColor="bg-cyan-400">
                     ESYUS TECHNOLOGY LEAD
@@ -306,18 +326,19 @@ export function Services({ onSelectService }) {
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-slate-200/60 dark:border-white/10 mt-6 flex items-center justify-between">
+              <div className="pt-5 sm:pt-6 border-t border-slate-200/60 dark:border-white/10 mt-5 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <Button
                   variant="outline"
                   size="sm"
                   rightIcon={ArrowRight}
                   onClick={() => handleInquiryFor('mobile')}
+                  className="w-full sm:w-auto justify-center min-h-[44px]"
                 >
                   Build Mobile Application
                 </Button>
-                <span className="text-xs font-mono text-slate-400">iOS + Android Parity</span>
+                <span className="text-xs font-mono text-slate-400 text-center sm:text-right">iOS + Android Parity</span>
               </div>
-            </GlassCard>
+            </motion.div>
 
           </div>
 

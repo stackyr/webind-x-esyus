@@ -1,11 +1,13 @@
 import React from 'react'
 import { Container } from '../ui/Container'
 import { BRAND_CONFIG } from '../../data/siteData'
+import { useOrderModal } from '../../context/useOrderModal'
 
 const CURRENT_YEAR = new Date().getFullYear()
 
 export function Footer() {
   const currentYear = CURRENT_YEAR
+  const { openOrderModal } = useOrderModal()
 
   const handleScrollTo = (e, href) => {
     e.preventDefault()
@@ -94,13 +96,13 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href="#inquiry"
-                  onClick={(e) => handleScrollTo(e, '#inquiry')}
-                  className="hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+                <button
+                  type="button"
+                  onClick={() => openOrderModal()}
+                  className="hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Project Inquiry
-                </a>
+                  Order Business Website
+                </button>
               </li>
             </ul>
           </div>

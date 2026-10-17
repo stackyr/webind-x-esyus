@@ -77,11 +77,15 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#F8FAFC] dark:from-[#060911] via-[#F8FAFC]/80 dark:via-[#060911]/80 to-transparent" />
       </div>
 
-      {/* Lightweight Ambient Radial Glow (Zero scroll listeners, zero GPU frame drop) */}
-      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-tr from-sky-500/10 via-indigo-500/10 to-transparent blur-3xl opacity-50 z-0" />
+      {/* Volumetric Overhead Studio Spotlight */}
+      <div className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 w-[900px] sm:w-[1200px] h-[600px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(56,189,248,0.2)_0%,rgba(99,102,241,0.12)_45%,transparent_75%)] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(56,189,248,0.25)_0%,rgba(99,102,241,0.16)_45%,transparent_75%)] blur-2xl z-0" />
 
-      {/* Premium Architectural Grid Pattern with Soft Edge Vignette */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(56,189,248,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(56,189,248,0.06)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(56,189,248,0.09)_1px,transparent_1px),linear-gradient(to_bottom,rgba(56,189,248,0.09)_1px,transparent_1px)] [background-size:44px_44px] [mask-image:radial-gradient(ellipse_80%_65%_at_50%_35%,black_45%,transparent_85%)] opacity-85" />
+      {/* Dual Volumetric Aurora Blooms (WEBIND Cyan on Left + ESYUS Indigo on Right) */}
+      <div className="pointer-events-none absolute top-1/4 -left-24 w-[420px] h-[420px] bg-sky-500/15 dark:bg-sky-500/20 rounded-full blur-[130px] z-0" />
+      <div className="pointer-events-none absolute top-1/3 -right-24 w-[420px] h-[420px] bg-indigo-500/15 dark:bg-indigo-500/20 rounded-full blur-[130px] z-0" />
+
+      {/* Luminous Specular Horizon Flare Line */}
+      <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-sky-400/35 dark:via-sky-400/45 to-transparent z-0" />
 
       <Container size="wide" className="relative z-10">
         <div className="max-w-5xl mx-auto text-center space-y-8 sm:space-y-10">

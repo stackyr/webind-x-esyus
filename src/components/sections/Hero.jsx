@@ -77,8 +77,8 @@ export function Hero() {
       {/* Lightweight Ambient Radial Glow (Zero scroll listeners, zero GPU frame drop) */}
       <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-tr from-sky-500/10 via-indigo-500/10 to-transparent blur-3xl opacity-50 z-0" />
 
-      {/* Subtle modern dot grid overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:28px_28px] opacity-10 dark:opacity-15 z-0" />
+      {/* Premium Architectural Grid Pattern with Soft Edge Vignette */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(56,189,248,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(56,189,248,0.06)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(56,189,248,0.09)_1px,transparent_1px),linear-gradient(to_bottom,rgba(56,189,248,0.09)_1px,transparent_1px)] [background-size:44px_44px] [mask-image:radial-gradient(ellipse_80%_65%_at_50%_35%,black_45%,transparent_85%)] opacity-85" />
 
       <Container size="wide" className="relative z-10">
         <div className="max-w-5xl mx-auto text-center space-y-8 sm:space-y-10">

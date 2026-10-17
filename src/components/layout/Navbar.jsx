@@ -140,6 +140,10 @@ export function Navbar() {
                 <span className="text-slate-800 dark:text-slate-100 font-semibold tracking-wide">
                   ESYUS
                 </span>
+                <span className="hidden sm:inline-flex items-center gap-1 text-[9px] font-mono uppercase text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded-full border border-emerald-500/20 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Live
+                </span>
                 <span className="hidden md:inline-block text-[10px] tracking-widest font-mono uppercase text-sky-600 dark:text-sky-300 bg-sky-50 dark:bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-200/60 dark:border-sky-500/30 font-semibold">
                   STUDIO
                 </span>
@@ -182,9 +186,9 @@ export function Navbar() {
               })}
             </div>
 
-            {/* Right Action Cluster: Theme Toggle + Desktop Primary CTA + Mobile Hamburger */}
-            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-              {/* Theme Toggle Button (Desktop/Tablet; On mobile, accessible via bottom dock and slide-up drawer) */}
+            {/* Right Action Cluster: Desktop CTA + Mobile Quick Controls */}
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+              {/* Desktop Theme Toggle Button */}
               <button
                 type="button"
                 onClick={toggleTheme}
@@ -198,7 +202,7 @@ export function Navbar() {
                 )}
               </button>
 
-              {/* Single Primary CTA: Start a Project (Hidden on mobile per user request, visible on tablet & laptop) */}
+              {/* Single Primary CTA: Start a Project (Desktop/Tablet) */}
               <button
                 type="button"
                 onClick={() => openOrderModal()}
@@ -208,15 +212,42 @@ export function Navbar() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform shrink-0" />
               </button>
 
-              {/* Mobile Hamburger Button */}
-              <button
-                type="button"
-                onClick={toggleMobileMenu}
-                aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-                className="lg:hidden w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors cursor-pointer border border-slate-200/60 dark:border-white/10 active:scale-95 shrink-0"
-              >
-                {isMobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
-              </button>
+              {/* Mobile App Bar Cluster (Instant Theme Toggle + Quick Order + Menu Trigger) */}
+              <div className="lg:hidden flex items-center gap-1.5 shrink-0">
+                {/* Mobile Quick Theme Toggle */}
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 bg-slate-100/90 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors cursor-pointer border border-slate-200/60 dark:border-white/10 active:scale-90 shrink-0"
+                >
+                  {theme === 'dark' ? (
+                    <Sun className="w-3.5 h-3.5 text-amber-400" />
+                  ) : (
+                    <Moon className="w-3.5 h-3.5 text-slate-700" />
+                  )}
+                </button>
+
+                {/* Mobile Quick Order Pill */}
+                <button
+                  type="button"
+                  onClick={() => openOrderModal()}
+                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold text-[11px] shadow-xs active:scale-90 transition-transform cursor-pointer"
+                >
+                  <span>Order</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+
+                {/* Mobile Menu Sheet Trigger */}
+                <button
+                  type="button"
+                  onClick={toggleMobileMenu}
+                  aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-200 bg-slate-100/90 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors cursor-pointer border border-slate-200/60 dark:border-white/10 active:scale-90 shrink-0"
+                >
+                  {isMobileMenuOpen ? <X className="w-4 h-4 text-sky-500" /> : <Menu className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
           </nav>
         </div>

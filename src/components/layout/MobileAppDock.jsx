@@ -153,16 +153,16 @@ export function MobileAppDock() {
          ========================================================================= */}
       <aside
         aria-label="Mobile Navigation Dock"
-        className={`fixed bottom-[calc(0.85rem+env(safe-area-inset-bottom,0px))] inset-x-0 mx-auto w-fit z-40 lg:hidden px-3 transition-all duration-300 pointer-events-none ${
+        className={`fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] inset-x-0 mx-auto w-fit max-w-[94vw] z-40 lg:hidden px-2 transition-all duration-300 pointer-events-none ${
           visible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
         }`}
       >
         <div className="relative pointer-events-auto">
-          {/* Ambient Chroma Glow Aura behind dock */}
-          <div className="absolute -inset-1.5 bg-gradient-to-r from-sky-500/30 via-cyan-400/20 to-indigo-500/30 rounded-full blur-md opacity-80 dark:opacity-60 pointer-events-none -z-10" />
+          {/* Subtle Ambient Reflected Chroma Aura (refined, non-blotchy) */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-sky-500/25 via-cyan-400/15 to-indigo-500/25 rounded-full blur-lg opacity-70 dark:opacity-50 pointer-events-none -z-10" />
 
-          {/* Main Glassmorphic Dock Pill */}
-          <div className="relative flex items-center justify-between gap-1 sm:gap-2 px-3 py-1.5 rounded-full bg-white/85 dark:bg-[#070B19]/90 backdrop-blur-3xl border border-white/60 dark:border-white/15 shadow-[0_12px_36px_-6px_rgba(0,0,0,0.22)] dark:shadow-[0_18px_50px_-8px_rgba(0,0,0,0.85)] ring-1 ring-black/5 dark:ring-white/5">
+          {/* Liquid Glass Dynamic Island Capsule */}
+          <div className="relative flex items-center justify-between gap-1 sm:gap-2 px-2.5 py-1.5 rounded-full bg-white/85 dark:bg-[#070D1E]/90 backdrop-blur-2xl border border-white/70 dark:border-white/15 shadow-[0_12px_36px_-6px_rgba(0,0,0,0.25)] dark:shadow-[0_16px_45px_-8px_rgba(0,0,0,0.85)] ring-1 ring-black/5 dark:ring-white/5 before:absolute before:inset-x-6 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/70 dark:before:via-sky-400/40 before:to-transparent">
             {/* 1. Home Tab */}
             <button
               type="button"
@@ -177,12 +177,12 @@ export function MobileAppDock() {
               {activeTab === 'hero' && (
                 <motion.span
                   layoutId="dockActiveTabIndicator"
-                  className="absolute inset-0 rounded-full bg-sky-500/15 dark:bg-sky-400/20 border border-sky-400/30 dark:border-sky-400/40 -z-10 shadow-xs"
+                  className="absolute inset-0 rounded-full bg-sky-500/15 dark:bg-sky-400/20 border border-sky-400/35 dark:border-sky-400/40 -z-10 shadow-xs"
                   transition={{ type: 'spring', stiffness: 450, damping: 32 }}
                 />
               )}
               <Home className="w-4 h-4" />
-              <span className="text-[9px] tracking-tight mt-0.5">Home</span>
+              <span className="text-[10px] tracking-tight font-medium mt-0.5">Home</span>
             </button>
 
             {/* 2. Services Tab */}
@@ -199,33 +199,33 @@ export function MobileAppDock() {
               {activeTab === 'services' && (
                 <motion.span
                   layoutId="dockActiveTabIndicator"
-                  className="absolute inset-0 rounded-full bg-sky-500/15 dark:bg-sky-400/20 border border-sky-400/30 dark:border-sky-400/40 -z-10 shadow-xs"
+                  className="absolute inset-0 rounded-full bg-sky-500/15 dark:bg-sky-400/20 border border-sky-400/35 dark:border-sky-400/40 -z-10 shadow-xs"
                   transition={{ type: 'spring', stiffness: 450, damping: 32 }}
                 />
               )}
               <Layers className="w-4 h-4" />
-              <span className="text-[9px] tracking-tight mt-0.5">Services</span>
+              <span className="text-[10px] tracking-tight font-medium mt-0.5">Services</span>
             </button>
 
-            {/* 3. Centerpiece Elevated Jewel Button (Order Website) */}
-            <div className="relative -mt-5 px-1">
+            {/* 3. Centerpiece Elevated Radiant Action Button (Order Website) */}
+            <div className="relative px-1">
               <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.92 }}
                 type="button"
                 onClick={() => openOrderModal()}
-                className="relative w-12 h-12 rounded-full bg-gradient-to-tr from-sky-500 via-cyan-400 to-indigo-600 text-white shadow-[0_8px_25px_-2px_rgba(14,165,233,0.55)] ring-[3.5px] ring-white dark:ring-[#070B19] flex flex-col items-center justify-center cursor-pointer overflow-hidden group"
+                className="relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-tr from-sky-500 via-cyan-400 to-indigo-600 text-white shadow-[0_4px_20px_rgba(14,165,233,0.55)] border border-white/35 active:scale-95 transition-all cursor-pointer overflow-hidden group"
                 aria-label="Order Custom Website"
               >
                 {/* Specular light sheen */}
                 <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/20 to-white/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <Store className="w-5 h-5 text-white drop-shadow-sm" />
-                <span className="text-[7.5px] font-mono font-bold tracking-tight uppercase leading-none mt-0.5">
+                <Store className="w-3.5 h-3.5 text-white drop-shadow-sm shrink-0" />
+                <span className="text-[11px] font-bold tracking-tight leading-none">
                   Order
                 </span>
 
                 {/* Micro Pulsing Starburst Indicator */}
-                <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-amber-300 shadow-[0_0_6px_rgba(252,211,77,1)] animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-300 shadow-[0_0_6px_rgba(252,211,77,1)] animate-ping" />
               </motion.button>
             </div>
 
@@ -243,12 +243,12 @@ export function MobileAppDock() {
               {activeTab === 'work' && (
                 <motion.span
                   layoutId="dockActiveTabIndicator"
-                  className="absolute inset-0 rounded-full bg-sky-500/15 dark:bg-sky-400/20 border border-sky-400/30 dark:border-sky-400/40 -z-10 shadow-xs"
+                  className="absolute inset-0 rounded-full bg-sky-500/15 dark:bg-sky-400/20 border border-sky-400/35 dark:border-sky-400/40 -z-10 shadow-xs"
                   transition={{ type: 'spring', stiffness: 450, damping: 32 }}
                 />
               )}
               <Briefcase className="w-4 h-4" />
-              <span className="text-[9px] tracking-tight mt-0.5">Work</span>
+              <span className="text-[10px] tracking-tight font-medium mt-0.5">Work</span>
             </button>
 
             {/* 5. Menu Tab (Toggles Modern Dock Menu Sheet) */}
@@ -274,7 +274,7 @@ export function MobileAppDock() {
               ) : (
                 <LayoutGrid className="w-4 h-4" />
               )}
-              <span className="text-[9px] tracking-tight mt-0.5">Menu</span>
+              <span className="text-[10px] tracking-tight font-medium mt-0.5">Menu</span>
             </button>
           </div>
         </div>
@@ -294,6 +294,7 @@ export function MobileAppDock() {
             onClick={closeMobileMenu}
           >
             <motion.div
+              data-lenis-prevent
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
               exit={{ y: '100%' }}

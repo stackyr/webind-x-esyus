@@ -49,7 +49,7 @@ export function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-36 overflow-hidden bg-[#F8FAFC] dark:bg-[#060911]"
+      className="relative pt-24 pb-16 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-36 overflow-hidden bg-[#F8FAFC] dark:bg-[#060911]"
     >
       {/* Ambient Autoplay Background Video (Blended Highlights & Shadows) */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none will-change-transform transform-gpu">
@@ -88,7 +88,7 @@ export function Hero() {
       <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-sky-400/35 dark:via-sky-400/45 to-transparent z-0" />
 
       <Container size="wide" className="relative z-10">
-        <div className="max-w-5xl mx-auto text-center space-y-8 sm:space-y-10">
+        <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-10">
 
           {/* Studio Announcement Badge */}
           <motion.div
@@ -118,9 +118,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="space-y-3"
+            className="space-y-2 sm:space-y-3"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-[1.1] sm:leading-[1.12]">
+            <h1 className="text-3xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-[1.14] sm:leading-[1.12]">
               <span className="block text-slate-950 dark:text-white">
                 Architecting the Next Era of
               </span>
@@ -144,7 +144,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.16 }}
-            className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto"
+            className="text-xs sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto px-2 sm:px-0"
           >
             <strong className="font-semibold text-slate-900 dark:text-white">WEBIND</strong> designs bespoke digital flagships, interactive web experiences, and brand identities.{' '}
             <strong className="font-semibold text-slate-900 dark:text-white">ESYUS Technology</strong> engineers resilient cloud engines, enterprise backends, and mobile ecosystems.{' '}
@@ -156,16 +156,16 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.22 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-2"
+            className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 pt-1 sm:pt-2 w-full max-w-md mx-auto"
           >
             <button
               type="button"
               onClick={() => openOrderModal()}
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-sky-600 via-cyan-500 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold text-sm sm:text-base shadow-xl shadow-sky-500/25 hover:shadow-sky-500/40 active:scale-[0.98] transition-all cursor-pointer w-full sm:w-auto min-h-[50px] group"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-4 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-sky-600 via-cyan-500 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-base shadow-xl shadow-sky-500/25 hover:shadow-sky-500/40 active:scale-[0.97] transition-all cursor-pointer whitespace-nowrap group"
             >
-              <Store className="w-4 h-4 text-white/90" />
-              <span>Order Business Website</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <Store className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/90 shrink-0" />
+              <span>Order Website</span>
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform shrink-0" />
             </button>
 
             <Button
@@ -173,11 +173,23 @@ export function Hero() {
               size="lg"
               leftIcon={Layers}
               onClick={() => handleScrollTo('#services')}
-              className="w-full sm:w-auto justify-center min-h-[50px] px-8"
+              className="flex-1 sm:flex-initial justify-center min-h-[44px] sm:min-h-[50px] px-3 sm:px-8 text-xs sm:text-base py-3.5 sm:py-4 rounded-xl sm:rounded-2xl active:scale-[0.97] whitespace-nowrap"
             >
-              Explore Capabilities
+              Capabilities
             </Button>
           </motion.div>
+
+          {/* Mobile App Quick Feature Strip */}
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] sm:text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span className="inline-flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              48h Turnaround
+            </span>
+            <span className="text-slate-300 dark:text-slate-700">•</span>
+            <span>100% Custom Architecture</span>
+            <span className="text-slate-300 dark:text-slate-700">•</span>
+            <span>Direct WhatsApp</span>
+          </div>
 
           {/* Modern Interactive Studio Architecture Bento Strip with Color Borders & Gradient Backgrounds */}
           <motion.div

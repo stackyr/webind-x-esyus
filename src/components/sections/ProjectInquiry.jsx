@@ -95,10 +95,21 @@ export function ProjectInquiry({ preselectedService }) {
   const handleNext = () => {
     if (validateStep(currentStep)) {
       setCurrentStep((prev) => Math.min(prev + 1, totalSteps))
-      window.scrollTo({
-        top: document.querySelector('#inquiry')?.offsetTop - 80 || 0,
-        behavior: 'smooth',
-      })
+      const inquiryEl = document.querySelector('#inquiry')
+      if (inquiryEl) {
+        if (window.__lenis) {
+          window.__lenis.scrollTo(inquiryEl, {
+            offset: -85,
+            duration: 1.6,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)),
+          })
+        } else {
+          window.scrollTo({
+            top: inquiryEl.offsetTop - 85,
+            behavior: 'smooth',
+          })
+        }
+      }
     }
   }
 

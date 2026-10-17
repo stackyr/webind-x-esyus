@@ -35,7 +35,11 @@ export function Hero() {
     const el = document.querySelector(id)
     if (el) {
       if (window.__lenis) {
-        window.__lenis.scrollTo(el, { offset: -85, duration: 1.25 })
+        window.__lenis.scrollTo(el, {
+          offset: -85,
+          duration: 1.8,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)),
+        })
       } else {
         el.scrollIntoView({ behavior: 'smooth' })
       }

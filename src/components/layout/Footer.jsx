@@ -13,7 +13,15 @@ export function Footer() {
     e.preventDefault()
     const target = document.querySelector(href)
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
+      if (window.__lenis) {
+        window.__lenis.scrollTo(target, {
+          offset: -85,
+          duration: 1.8,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)),
+        })
+      } else {
+        target.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   }
 

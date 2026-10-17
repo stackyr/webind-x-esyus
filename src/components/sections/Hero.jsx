@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import { motion, useScroll, useTransform } from 'motion/react'
+import { motion } from 'motion/react'
 import {
   ArrowRight,
   Layers,
@@ -31,14 +31,6 @@ export function Hero() {
     }
   }, [])
 
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  })
-
-  const glowY = useTransform(scrollYProgress, [0, 1], [0, 60])
-  const cardsScale = useTransform(scrollYProgress, [0, 1], [1, 0.98])
-
   const handleScrollTo = (id) => {
     const el = document.querySelector(id)
     if (el) {
@@ -57,7 +49,7 @@ export function Hero() {
       className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-36 overflow-hidden bg-[#F8FAFC] dark:bg-[#060911]"
     >
       {/* Ambient Autoplay Background Video (Blended Highlights & Shadows) */}
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none will-change-transform transform-gpu">
         <video
           ref={videoRef}
           autoPlay
@@ -66,7 +58,7 @@ export function Hero() {
           playsInline
           controls={false}
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-60 filter contrast-115 brightness-105 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-60 filter contrast-115 brightness-105 pointer-events-none will-change-transform transform-gpu"
         >
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
@@ -82,13 +74,8 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#F8FAFC] dark:from-[#060911] via-[#F8FAFC]/80 dark:via-[#060911]/80 to-transparent" />
       </div>
 
-      {/* Dynamic Animated Liquid Glass Glowing Orbs & Ambient Background */}
-      <motion.div
-        style={{ y: glowY }}
-        className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] sm:w-[1000px] sm:h-[500px] bg-gradient-to-tr from-sky-500/20 via-indigo-500/15 to-cyan-400/15 blur-[120px] rounded-full z-0 animate-fluid-pulse"
-      />
-      <div className="pointer-events-none absolute top-1/2 -left-40 w-[450px] h-[350px] bg-gradient-to-br from-cyan-400/15 via-sky-500/10 to-transparent blur-[100px] rounded-full z-0 animate-fluid-pulse-delayed" />
-      <div className="pointer-events-none absolute top-1/3 -right-40 w-[450px] h-[350px] bg-gradient-to-bl from-indigo-500/15 via-purple-500/10 to-transparent blur-[100px] rounded-full z-0 animate-fluid-pulse" />
+      {/* Lightweight Ambient Radial Glow (Zero scroll listeners, zero GPU frame drop) */}
+      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-tr from-sky-500/10 via-indigo-500/10 to-transparent blur-3xl opacity-50 z-0" />
 
       {/* Subtle modern dot grid overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:28px_28px] opacity-10 dark:opacity-15 z-0" />
@@ -190,14 +177,13 @@ export function Hero() {
 
           {/* Modern Interactive Studio Architecture Bento Strip with Color Borders & Gradient Backgrounds */}
           <motion.div
-            style={{ scale: cardsScale }}
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="pt-8 sm:pt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left"
           >
             {/* Card 1: WEBIND Design */}
-            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/95 via-sky-50/40 to-white/80 dark:from-[#0F1932]/90 dark:via-[#0B1224]/85 dark:to-[#050811]/90 border border-sky-500/35 dark:border-sky-400/30 shadow-lg shadow-sky-500/5 dark:shadow-black/40 backdrop-blur-2xl hover:border-sky-400 dark:hover:border-sky-300 hover:shadow-[0_20px_45px_-10px_rgba(56,189,248,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-sky-50/60 to-white/95 dark:from-[#0F1932]/98 dark:via-[#0B1224]/95 dark:to-[#050811]/98 border border-sky-500/35 dark:border-sky-400/30 shadow-lg shadow-sky-500/5 dark:shadow-black/40 hover:border-sky-400 dark:hover:border-sky-300 hover:shadow-[0_20px_45px_-10px_rgba(56,189,248,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 group-hover:scale-110 group-hover:bg-sky-500/20 transition-all">
                   <Globe className="w-5 h-5" />
@@ -219,7 +205,7 @@ export function Hero() {
             </div>
 
             {/* Card 2: ESYUS Cloud Engine */}
-            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/95 via-indigo-50/40 to-white/80 dark:from-[#111636]/90 dark:via-[#0D1026]/85 dark:to-[#050811]/90 border border-indigo-500/35 dark:border-indigo-400/30 shadow-lg shadow-indigo-500/5 dark:shadow-black/40 backdrop-blur-2xl hover:border-indigo-400 dark:hover:border-indigo-300 hover:shadow-[0_20px_45px_-10px_rgba(99,102,241,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-indigo-50/60 to-white/95 dark:from-[#111636]/98 dark:via-[#0D1026]/95 dark:to-[#050811]/98 border border-indigo-500/35 dark:border-indigo-400/30 shadow-lg shadow-indigo-500/5 dark:shadow-black/40 hover:border-indigo-400 dark:hover:border-indigo-300 hover:shadow-[0_20px_45px_-10px_rgba(99,102,241,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500/20 transition-all">
                   <Terminal className="w-5 h-5" />
@@ -241,7 +227,7 @@ export function Hero() {
             </div>
 
             {/* Card 3: Mobile Apps */}
-            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/95 via-cyan-50/40 to-white/80 dark:from-[#0E1C2E]/90 dark:via-[#091524]/85 dark:to-[#050811]/90 border border-cyan-500/35 dark:border-cyan-400/30 shadow-lg shadow-cyan-500/5 dark:shadow-black/40 backdrop-blur-2xl hover:border-cyan-400 dark:hover:border-cyan-300 hover:shadow-[0_20px_45px_-10px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-cyan-50/60 to-white/95 dark:from-[#0E1C2E]/98 dark:via-[#091524]/95 dark:to-[#050811]/98 border border-cyan-500/35 dark:border-cyan-400/30 shadow-lg shadow-cyan-500/5 dark:shadow-black/40 hover:border-cyan-400 dark:hover:border-cyan-300 hover:shadow-[0_20px_45px_-10px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all">
                   <Smartphone className="w-5 h-5" />
@@ -263,7 +249,7 @@ export function Hero() {
             </div>
 
             {/* Card 4: Unified Guarantee */}
-            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/95 via-emerald-50/40 to-white/80 dark:from-[#0B1E22]/90 dark:via-[#071519]/85 dark:to-[#050811]/90 border border-emerald-500/35 dark:border-emerald-400/30 shadow-lg shadow-emerald-500/5 dark:shadow-black/40 backdrop-blur-2xl hover:border-emerald-400 dark:hover:border-emerald-300 hover:shadow-[0_20px_45px_-10px_rgba(16,185,129,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
+            <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-emerald-50/60 to-white/95 dark:from-[#0B1E22]/98 dark:via-[#071519]/95 dark:to-[#050811]/98 border border-emerald-500/35 dark:border-emerald-400/30 shadow-lg shadow-emerald-500/5 dark:shadow-black/40 hover:border-emerald-400 dark:hover:border-emerald-300 hover:shadow-[0_20px_45px_-10px_rgba(16,185,129,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
               <div className="flex items-center justify-between mb-3">
                 <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
                   <ShieldCheck className="w-5 h-5" />

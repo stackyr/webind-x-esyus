@@ -65,8 +65,12 @@ export function TechMarquee() {
         </p>
       </div>
 
-      {/* Marquee Wrapper with soft edge gradient mask */}
-      <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+      {/* Marquee Wrapper with lightweight edge gradient fades */}
+      <div className="relative w-full overflow-hidden">
+        {/* Soft edge gradient fades */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-28 bg-gradient-to-r from-[#F8FAFC] dark:from-[#070B16] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-[#F8FAFC] dark:from-[#070B16] to-transparent z-10" />
+
         {/* Row 1: Primary Tech Stack (Scrolling Left) */}
         <div className="flex animate-marquee gap-3 sm:gap-4 py-2 hover:[animation-play-state:paused]">
           {[...PRIMARY_TECH, ...PRIMARY_TECH].map((tech, idx) => {
@@ -74,7 +78,7 @@ export function TechMarquee() {
             return (
               <div
                 key={`tech-row1-${tech.name}-${idx}`}
-                className="group relative flex items-center gap-3.5 px-4 sm:px-5 py-3 rounded-2xl bg-white/70 dark:bg-[#0B1120]/80 border border-slate-200/80 dark:border-white/[0.08] shadow-sm hover:shadow-md dark:shadow-black/50 hover:border-sky-500/40 dark:hover:border-sky-400/40 transition-all backdrop-blur-xl shrink-0 cursor-default"
+                className="group relative flex items-center gap-3.5 px-4 sm:px-5 py-3 rounded-2xl bg-white/95 dark:bg-[#0B1120]/95 border border-slate-200/80 dark:border-white/[0.08] shadow-sm hover:shadow-md dark:shadow-black/50 hover:border-sky-500/40 dark:hover:border-sky-400/40 transition-all shrink-0 cursor-default"
               >
                 {/* Background glow on hover */}
                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${tech.glow} opacity-0 group-hover:opacity-100 transition-opacity -z-10`} />
@@ -107,7 +111,7 @@ export function TechMarquee() {
             return (
               <div
                 key={`cap-row2-${cap.name}-${idx}`}
-                className="group relative flex items-center gap-3.5 px-4 sm:px-5 py-3 rounded-2xl bg-white/70 dark:bg-[#090F1C]/80 border border-slate-200/70 dark:border-white/[0.07] shadow-sm hover:shadow-md dark:shadow-black/50 hover:border-indigo-500/40 dark:hover:border-indigo-400/40 transition-all backdrop-blur-xl shrink-0 cursor-default"
+                className="group relative flex items-center gap-3.5 px-4 sm:px-5 py-3 rounded-2xl bg-white/95 dark:bg-[#090F1C]/95 border border-slate-200/70 dark:border-white/[0.07] shadow-sm hover:shadow-md dark:shadow-black/50 hover:border-indigo-500/40 dark:hover:border-indigo-400/40 transition-all shrink-0 cursor-default"
               >
                 {/* Background glow on hover */}
                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${cap.glow} opacity-0 group-hover:opacity-100 transition-opacity -z-10`} />

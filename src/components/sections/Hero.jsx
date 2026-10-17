@@ -61,31 +61,34 @@ export function Hero() {
           playsInline
           controls={false}
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-60 filter contrast-115 brightness-105 pointer-events-none will-change-transform transform-gpu"
+          className="absolute inset-0 w-full h-full object-cover opacity-45 sm:opacity-55 dark:opacity-60 filter contrast-110 brightness-105 pointer-events-none will-change-transform transform-gpu"
         >
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
 
-        {/* Ambient Tone Overlay: In light mode, softens video into pure clean studio white */}
-        <div className="absolute inset-0 bg-white/70 dark:bg-[#060911]/55" />
+        {/* Ambient Tone Overlay: In light mode, balanced studio glass sheen allowing video motion to shine through */}
+        <div className="absolute inset-0 bg-white/45 dark:bg-[#060911]/55 backdrop-blur-[1px]" />
 
-        {/* Center Content Shield: completely dissolves video behind headline & paragraph text for 100% clean legibility */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_38%,rgba(248,250,252,0.98)_0%,rgba(248,250,252,0.88)_45%,rgba(248,250,252,0.3)_80%,transparent_100%)] dark:bg-[radial-gradient(ellipse_75%_65%_at_50%_38%,rgba(6,9,17,0.92)_0%,rgba(6,9,17,0.72)_45%,rgba(6,9,17,0.25)_80%,transparent_100%)]" />
+        {/* Center Content Shield: soft vignette ensuring 100% crisp typography while keeping surrounding video beautifully visible */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_65%_at_50%_38%,rgba(248,250,252,0.68)_0%,rgba(248,250,252,0.45)_50%,rgba(248,250,252,0.1)_85%,transparent_100%)] dark:bg-[radial-gradient(ellipse_75%_65%_at_50%_38%,rgba(6,9,17,0.92)_0%,rgba(6,9,17,0.72)_45%,rgba(6,9,17,0.25)_80%,transparent_100%)]" />
 
         {/* Seamless Top & Bottom Gradients (Smooth fade to navbar and next sections) */}
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#F8FAFC] dark:from-[#060911] via-[#F8FAFC]/80 dark:via-[#060911]/80 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#F8FAFC] dark:from-[#060911] via-[#F8FAFC]/80 dark:via-[#060911]/80 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#F8FAFC] dark:from-[#060911] via-[#F8FAFC]/70 dark:via-[#060911]/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#F8FAFC] dark:from-[#060911] via-[#F8FAFC]/70 dark:via-[#060911]/80 to-transparent" />
       </div>
 
-      {/* Volumetric Overhead Studio Spotlight */}
-      <div className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 w-[900px] sm:w-[1200px] h-[600px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(56,189,248,0.2)_0%,rgba(99,102,241,0.12)_45%,transparent_75%)] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(56,189,248,0.25)_0%,rgba(99,102,241,0.16)_45%,transparent_75%)] blur-2xl z-0" />
+      {/* Volumetric Overhead Studio Spotlight: vibrant studio glow in light & dark mode */}
+      <div className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 w-[900px] sm:w-[1200px] h-[600px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(14,165,233,0.35)_0%,rgba(99,102,241,0.22)_45%,transparent_75%)] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(56,189,248,0.25)_0%,rgba(99,102,241,0.16)_45%,transparent_75%)] blur-2xl z-0" />
 
-      {/* Dual Volumetric Aurora Blooms (WEBIND Cyan on Left + ESYUS Indigo on Right) */}
-      <div className="pointer-events-none absolute top-1/4 -left-24 w-[420px] h-[420px] bg-sky-500/15 dark:bg-sky-500/20 rounded-full blur-[130px] z-0" />
-      <div className="pointer-events-none absolute top-1/3 -right-24 w-[420px] h-[420px] bg-indigo-500/15 dark:bg-indigo-500/20 rounded-full blur-[130px] z-0" />
+      {/* Dual Volumetric Aurora Blooms (WEBIND Cyan on Left + ESYUS Indigo on Right) with rich saturated glow */}
+      <div className="pointer-events-none absolute top-1/4 -left-20 w-[460px] h-[460px] bg-sky-500/28 sm:bg-sky-500/32 dark:bg-sky-500/20 rounded-full blur-[110px] sm:blur-[140px] z-0" />
+      <div className="pointer-events-none absolute top-1/3 -right-20 w-[460px] h-[460px] bg-indigo-500/28 sm:bg-indigo-500/32 dark:bg-indigo-500/20 rounded-full blur-[110px] sm:blur-[140px] z-0" />
+
+      {/* Center Ambient Chroma Glow behind headline */}
+      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 w-[650px] h-[320px] bg-gradient-to-tr from-sky-400/30 via-cyan-300/20 to-indigo-400/25 dark:from-sky-500/15 dark:via-cyan-400/10 dark:to-indigo-500/15 rounded-full blur-3xl z-0" />
 
       {/* Luminous Specular Horizon Flare Line */}
-      <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-sky-400/35 dark:via-sky-400/45 to-transparent z-0" />
+      <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-sky-500/50 dark:via-sky-400/45 to-transparent z-0" />
 
       <Container size="wide" className="relative z-10">
         <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-10">

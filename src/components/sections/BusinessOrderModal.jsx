@@ -111,6 +111,7 @@ function BusinessOrderModalContent({ closeOrderModal, initialData }) {
   const [validationError, setValidationError] = useState('')
 
   const inputRef = useRef(null)
+  const scrollContainerRef = useRef(null)
 
   const updateField = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -176,6 +177,13 @@ function BusinessOrderModalContent({ closeOrderModal, initialData }) {
     if (currentQuestion > 0) {
       setCurrentQuestion((prev) => prev - 1)
       setValidationError('')
+    }
+  }, [currentQuestion])
+
+  // Ensure each new question starts scrolled to top cleanly
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({ top: 0, behavior: 'instant' })
     }
   }, [currentQuestion])
 
@@ -264,7 +272,12 @@ OTHER_NOTES: ${formData.otherNotes || ''}`
   const progressPercent = Math.min(100, Math.round(((currentQuestion + 1) / (TOTAL_QUESTIONS + 1)) * 100))
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-gradient-to-b from-white via-sky-50/30 to-white dark:from-[#060A16] dark:via-[#090F24] dark:to-[#04060E] text-slate-900 dark:text-white flex flex-col transition-colors duration-300">
+    <div
+      data-lenis-prevent
+      onWheel={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+      className="fixed inset-0 z-50 overflow-hidden bg-gradient-to-b from-white via-sky-50/30 to-white dark:from-[#060A16] dark:via-[#090F24] dark:to-[#04060E] text-slate-900 dark:text-white flex flex-col transition-colors duration-300"
+    >
       
       {/* Background Ambient Lighting & Liquid Orbs */}
       <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-sky-500/15 via-indigo-500/15 to-transparent blur-3xl rounded-full -z-10 animate-fluid-pulse" />
@@ -333,10 +346,15 @@ OTHER_NOTES: ${formData.otherNotes || ''}`
         </div>
       </header>
 
-      {/* Main Focus Area: Single Question at a Time */}
-      <main className="flex-1 overflow-y-auto px-4 sm:px-8 py-8 flex flex-col justify-center max-w-2xl mx-auto w-full">
-        
-        <AnimatePresence mode="wait">
+      {/* Main Focus Area: Single Question at a Time with full scroll freedom */}
+      <main
+        ref={scrollContainerRef}
+        id="order-modal-scroll"
+        data-lenis-prevent
+        className="flex-1 overflow-y-auto w-full px-4 sm:px-8 py-6 sm:py-8 overscroll-contain select-text"
+      >
+        <div className="max-w-2xl mx-auto w-full min-h-full flex flex-col justify-center py-4">
+          <AnimatePresence mode="wait">
           
           {/* QUESTION 1: Business Name */}
           {currentQuestion === 0 && (
@@ -817,7 +835,7 @@ OTHER_NOTES: ${formData.otherNotes || ''}`
               </div>
 
               {/* Items List */}
-              <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+              <div data-lenis-prevent className="space-y-2 max-h-48 overflow-y-auto pr-1">
                 {formData.items.filter((i) => i.name.trim() !== '').length === 0 ? (
                   <p className="text-xs text-slate-400 font-mono italic text-center py-4">
                     No items added yet. Type an item name and price above, or click below:
@@ -1123,6 +1141,7 @@ OTHER_NOTES: ${formData.otherNotes || ''}`
               {/* Collapsible raw 18-point brief text block */}
               {showSummaryBrief && (
                 <motion.div
+                  data-lenis-prevent
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
@@ -1150,6 +1169,7 @@ OTHER_NOTES: ${formData.otherNotes || ''}`
           )}
 
         </AnimatePresence>
+        </div>
 
       </main>
 

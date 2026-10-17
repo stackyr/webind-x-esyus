@@ -23,6 +23,15 @@ export function SmoothScroll({ children }) {
       gestureOrientation: 'vertical',
       infinite: false,
       autoResize: true,
+      allowNestedScroll: true,
+      prevent: (node) => {
+        if (!node || !(node instanceof Element)) return false
+        return (
+          node.hasAttribute?.('data-lenis-prevent') ||
+          Boolean(node.closest?.('[data-lenis-prevent]')) ||
+          Boolean(node.closest?.('#order-modal-scroll'))
+        )
+      },
     })
 
     lenisRef.current = lenis

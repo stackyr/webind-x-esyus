@@ -1,6 +1,7 @@
 import React from 'react'
 import { OrderModalProvider } from './context/OrderModalProvider'
 import { SmoothScroll } from './components/layout/SmoothScroll'
+import { LoadingScreen } from './components/ui/LoadingScreen'
 import { Navbar } from './components/layout/Navbar'
 import { Hero } from './components/sections/Hero'
 import { TechMarquee } from './components/sections/TechMarquee'
@@ -19,6 +20,9 @@ export default function App() {
   return (
     <OrderModalProvider>
       <SmoothScroll>
+        {/* Studio Loading Curtain on Reload / Initial Mount */}
+        <LoadingScreen />
+
         <div className="min-h-screen flex flex-col bg-ambient-mesh text-slate-800 dark:text-slate-100 dark:bg-[#060911] transition-colors duration-300 selection:bg-sky-500/30 selection:text-sky-200 pb-24 lg:pb-0 overflow-x-hidden w-full max-w-full">
           {/* Floating App Navigation with Reading Progress Bar & Active Section Tracker */}
           <Navbar />

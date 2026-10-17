@@ -1,5 +1,6 @@
 import React from 'react'
 import { OrderModalProvider } from './context/OrderModalProvider'
+import { MobileMenuProvider } from './context/MobileMenuProvider'
 import { SmoothScroll } from './components/layout/SmoothScroll'
 import { LoadingScreen } from './components/ui/LoadingScreen'
 import { Navbar } from './components/layout/Navbar'
@@ -19,7 +20,8 @@ import { BusinessOrderModal } from './components/sections/BusinessOrderModal'
 export default function App() {
   return (
     <OrderModalProvider>
-      <SmoothScroll>
+      <MobileMenuProvider>
+        <SmoothScroll>
         {/* Studio Loading Curtain on Reload / Initial Mount */}
         <LoadingScreen />
 
@@ -66,7 +68,8 @@ export default function App() {
         {/* Interactive Step-by-Step Business Order Modal */}
         <BusinessOrderModal />
       </div>
-    </SmoothScroll>
-  </OrderModalProvider>
+        </SmoothScroll>
+      </MobileMenuProvider>
+    </OrderModalProvider>
   )
 }

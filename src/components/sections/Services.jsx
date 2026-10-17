@@ -2,7 +2,6 @@ import React from 'react'
 import { motion } from 'motion/react'
 import {
   Globe,
-  Server,
   Smartphone,
   ArrowRight,
   CheckCircle2,
@@ -11,6 +10,7 @@ import {
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
 import { Badge } from '../ui/Badge'
+import { BrandLogo } from '../ui/BrandLogo'
 import { Button } from '../ui/Button'
 import { SERVICES_DATA } from '../../data/siteData'
 import { useOrderModal } from '../../context/useOrderModal'
@@ -55,7 +55,8 @@ export function Services() {
               
               {/* Left Column: Narrative, Outcomes, Deliverables */}
               <div className="lg:col-span-7 space-y-5 sm:space-y-6">
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <BrandLogo variant="webind" size="xs" />
                   <Badge variant="webind" dot dotColor="bg-sky-400">
                     WEBIND STUDIO LEAD
                   </Badge>
@@ -197,7 +198,7 @@ export function Services() {
                   <Badge variant="esyus" dot dotColor="bg-indigo-400">
                     ESYUS TECHNOLOGY LEAD
                   </Badge>
-                  <Server className="w-5 h-5 text-indigo-500" />
+                  <BrandLogo variant="esyus" size="sm" />
                 </div>
 
                 <div className="space-y-2">
@@ -275,7 +276,7 @@ export function Services() {
                   <Badge variant="esyus" dot dotColor="bg-cyan-400">
                     ESYUS TECHNOLOGY LEAD
                   </Badge>
-                  <Smartphone className="w-5 h-5 text-cyan-500" />
+                  <BrandLogo variant="esyus" size="sm" />
                 </div>
 
                 <div className="space-y-2">

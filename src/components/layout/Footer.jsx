@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from '../ui/Container'
+import { BrandLogo } from '../ui/BrandLogo'
 import { BRAND_CONFIG } from '../../data/siteData'
 import { useOrderModal } from '../../context/useOrderModal'
 
@@ -33,14 +34,7 @@ export function Footer() {
           {/* Brand & Summary Column */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex items-center -space-x-1">
-                <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-sky-600 to-sky-400 flex items-center justify-center text-white font-mono font-bold text-xs">
-                  W
-                </div>
-                <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-mono font-bold text-xs ring-2 ring-white dark:ring-slate-950">
-                  E
-                </div>
-              </div>
+              <BrandLogo size="md" />
               <div className="flex items-baseline gap-1.5 font-bold text-slate-900 dark:text-white tracking-tight">
                 <span>WEBIND</span>
                 <span className="text-slate-400 font-light text-xs">×</span>

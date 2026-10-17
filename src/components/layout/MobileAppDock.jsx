@@ -19,6 +19,7 @@ import {
 import { useTheme } from '../../context/useTheme'
 import { useOrderModal } from '../../context/useOrderModal'
 import { useMobileMenu } from '../../context/useMobileMenu'
+import { BrandLogo } from '../ui/BrandLogo'
 import { BRAND_CONFIG } from '../../data/siteData'
 
 export function MobileAppDock() {
@@ -306,14 +307,7 @@ export function MobileAppDock() {
               {/* Header: Studio Identity + Quick Utilities */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-200/70 dark:border-white/10">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex items-center -space-x-1">
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-sky-500 to-sky-400 flex items-center justify-center text-white font-mono font-bold text-xs shadow-xs">
-                      W
-                    </div>
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-mono font-bold text-xs ring-2 ring-white dark:ring-[#070B19] shadow-xs">
-                      E
-                    </div>
-                  </div>
+                  <BrandLogo size="sm" />
                   <div>
                     <div className="text-xs font-bold text-slate-900 dark:text-white tracking-tight leading-none">
                       WEBIND × ESYUS

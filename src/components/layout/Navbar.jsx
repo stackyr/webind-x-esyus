@@ -4,6 +4,7 @@ import { Sun, Moon, ArrowRight, Menu, X } from 'lucide-react'
 import { useTheme } from '../../context/useTheme'
 import { useOrderModal } from '../../context/useOrderModal'
 import { useMobileMenu } from '../../context/useMobileMenu'
+import { BrandLogo } from '../ui/BrandLogo'
 
 export function Navbar() {
   const { theme, toggleTheme } = useTheme()
@@ -130,14 +131,7 @@ export function Navbar() {
               aria-label="WEBIND and ESYUS Technology Homepage"
             >
               {/* Dual Brand Icon Graphic */}
-              <div className="flex items-center -space-x-1 shrink-0">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-tr from-sky-600 to-sky-400 flex items-center justify-center text-white shadow-sm shadow-sky-500/30 group-hover:scale-105 transition-transform">
-                  <span className="font-bold text-xs sm:text-sm font-mono tracking-tighter">W</span>
-                </div>
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-sm shadow-indigo-500/30 group-hover:scale-105 transition-transform ring-2 ring-white dark:ring-[#070B14]">
-                  <span className="font-bold text-xs sm:text-sm font-mono tracking-tighter">E</span>
-                </div>
-              </div>
+              <BrandLogo size="md" className="group-hover:scale-105 transition-transform" />
 
               {/* Brand Typography */}
               <div className="flex items-baseline gap-1 sm:gap-1.5 text-xs sm:text-base tracking-tight font-bold text-slate-900 dark:text-white shrink-0">

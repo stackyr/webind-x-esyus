@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Sparkles } from 'lucide-react'
+import { BrandLogo } from './BrandLogo'
 
 export function LoadingScreen() {
   const [progress, setProgress] = useState(0)
@@ -110,14 +111,8 @@ export function LoadingScreen() {
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="flex items-center -space-x-2"
             >
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 to-sky-400 flex items-center justify-center text-white shadow-xl shadow-sky-500/40">
-                <span className="font-bold text-lg font-mono tracking-tighter">W</span>
-              </div>
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-xl shadow-indigo-500/40 ring-4 ring-[#050811]">
-                <span className="font-bold text-lg font-mono tracking-tighter">E</span>
-              </div>
+              <BrandLogo size="xl" className="shadow-2xl shadow-sky-500/20" />
             </motion.div>
 
             {/* Typography */}

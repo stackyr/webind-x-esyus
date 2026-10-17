@@ -8,6 +8,7 @@ import {
 import { Container } from '../ui/Container'
 import { SectionHeader } from '../ui/SectionHeader'
 import { Badge } from '../ui/Badge'
+import { BrandLogo } from '../ui/BrandLogo'
 import { PARTNERSHIP_STEPS, BRAND_CONFIG } from '../../data/siteData'
 
 export function PartnershipStory() {
@@ -41,9 +42,7 @@ export function PartnershipStory() {
           >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-md shadow-sky-500/30">
-                  W
-                </div>
+                <BrandLogo variant="webind" size="lg" />
                 <div>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     {BRAND_CONFIG.webind.name}
@@ -83,9 +82,7 @@ export function PartnershipStory() {
           >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-mono font-bold text-sm shadow-md shadow-indigo-500/30">
-                  E
-                </div>
+                <BrandLogo variant="esyus" size="lg" />
                 <div>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     {BRAND_CONFIG.esyus.name}

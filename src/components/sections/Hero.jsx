@@ -4,8 +4,6 @@ import {
   ArrowRight,
   Layers,
   Store,
-  Globe,
-  Terminal,
   Smartphone,
   ShieldCheck,
   Zap,
@@ -13,6 +11,7 @@ import {
 } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
+import { BrandLogo } from '../ui/BrandLogo'
 import { KineticTextRotator } from '../ui/KineticTextRotator'
 import { useOrderModal } from '../../context/useOrderModal'
 
@@ -94,11 +93,8 @@ export function Hero() {
             transition={{ duration: 0.45 }}
             className="inline-flex items-center justify-center"
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-semibold tracking-wide bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/12 shadow-lg shadow-sky-500/5 backdrop-blur-xl group hover:border-sky-500/40 transition-all cursor-default">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500" />
-              </span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/12 shadow-lg shadow-sky-500/5 backdrop-blur-xl group hover:border-sky-500/40 transition-all cursor-default">
+              <BrandLogo size="xs" />
               <span className="text-slate-800 dark:text-slate-200 font-mono text-[11px] uppercase tracking-wider">
                 WEBIND <span className="text-sky-500 font-bold">×</span> ESYUS
               </span>
@@ -189,9 +185,7 @@ export function Hero() {
             {/* Card 1: WEBIND Design */}
             <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-sky-50/60 to-white/95 dark:from-[#0F1932]/98 dark:via-[#0B1224]/95 dark:to-[#050811]/98 border border-sky-500/35 dark:border-sky-400/30 shadow-lg shadow-sky-500/5 dark:shadow-black/40 hover:border-sky-400 dark:hover:border-sky-300 hover:shadow-[0_20px_45px_-10px_rgba(56,189,248,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
               <div className="flex items-center justify-between mb-3">
-                <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 group-hover:scale-110 group-hover:bg-sky-500/20 transition-all">
-                  <Globe className="w-5 h-5" />
-                </div>
+                <BrandLogo variant="webind" size="lg" className="group-hover:scale-105 transition-transform" />
                 <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-300 font-semibold border border-sky-500/30 shadow-xs">
                   WEBIND
                 </span>
@@ -211,9 +205,7 @@ export function Hero() {
             {/* Card 2: ESYUS Cloud Engine */}
             <div className="relative group p-5 rounded-2xl bg-gradient-to-br from-white/98 via-indigo-50/60 to-white/95 dark:from-[#111636]/98 dark:via-[#0D1026]/95 dark:to-[#050811]/98 border border-indigo-500/35 dark:border-indigo-400/30 shadow-lg shadow-indigo-500/5 dark:shadow-black/40 hover:border-indigo-400 dark:hover:border-indigo-300 hover:shadow-[0_20px_45px_-10px_rgba(99,102,241,0.3)] transition-all duration-300 hover:-translate-y-2 cursor-default">
               <div className="flex items-center justify-between mb-3">
-                <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500/20 transition-all">
-                  <Terminal className="w-5 h-5" />
-                </div>
+                <BrandLogo variant="esyus" size="lg" className="group-hover:scale-105 transition-transform" />
                 <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 font-semibold border border-indigo-500/30 shadow-xs">
                   ESYUS CORE
                 </span>

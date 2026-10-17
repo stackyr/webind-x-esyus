@@ -12,6 +12,7 @@ export const BRAND_CONFIG = {
     ],
     accentColor: '#38BDF8',
     gradient: 'from-sky-500 to-blue-600',
+    logo: '/logos/webind-circle.png',
   },
   esyus: {
     name: 'ESYUS Technology',
@@ -26,6 +27,7 @@ export const BRAND_CONFIG = {
     ],
     accentColor: '#818CF8',
     gradient: 'from-indigo-500 to-violet-600',
+    logo: '/logos/esyus-circle.png',
   },
   contact: {
     email: 'hello@webind-esyus.com',

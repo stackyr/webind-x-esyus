@@ -54,7 +54,7 @@ export function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-36 overflow-hidden bg-slate-100/40 dark:bg-[#060911]"
+      className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-36 overflow-hidden bg-[#F8FAFC] dark:bg-[#060911]"
     >
       {/* Ambient Autoplay Background Video (Blended Highlights & Shadows) */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
@@ -66,20 +66,20 @@ export function Hero() {
           playsInline
           controls={false}
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-50 dark:opacity-65 filter contrast-125 brightness-100 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-60 filter contrast-115 brightness-105 pointer-events-none"
         >
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
 
-        {/* Ambient Color Tone Overlay (Blends video highlights and shadows with studio dark/light palette) */}
-        <div className="absolute inset-0 bg-[#F8FAFC]/40 dark:bg-[#060911]/55 mix-blend-multiply" />
+        {/* Ambient Tone Overlay: In light mode, softens video into pure clean studio white */}
+        <div className="absolute inset-0 bg-white/70 dark:bg-[#060911]/55" />
 
-        {/* Center Content Soft Vignette: softens video directly behind text so headline & paragraph are 100% crisp */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_65%_55%_at_50%_38%,rgba(248,250,252,0.85)_0%,rgba(248,250,252,0.45)_55%,transparent_90%)] dark:bg-[radial-gradient(ellipse_65%_55%_at_50%_38%,rgba(6,9,17,0.88)_0%,rgba(6,9,17,0.45)_55%,transparent_90%)]" />
+        {/* Center Content Shield: completely dissolves video behind headline & paragraph text for 100% clean legibility */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_38%,rgba(248,250,252,0.98)_0%,rgba(248,250,252,0.88)_45%,rgba(248,250,252,0.3)_80%,transparent_100%)] dark:bg-[radial-gradient(ellipse_75%_65%_at_50%_38%,rgba(6,9,17,0.92)_0%,rgba(6,9,17,0.72)_45%,rgba(6,9,17,0.25)_80%,transparent_100%)]" />
 
         {/* Seamless Top & Bottom Gradients (Smooth fade to navbar and next sections) */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F8FAFC] dark:from-[#060911] to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F8FAFC] dark:from-[#060911] to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#F8FAFC] dark:from-[#060911] via-[#F8FAFC]/80 dark:via-[#060911]/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#F8FAFC] dark:from-[#060911] via-[#F8FAFC]/80 dark:via-[#060911]/80 to-transparent" />
       </div>
 
       {/* Dynamic Animated Liquid Glass Glowing Orbs & Ambient Background */}

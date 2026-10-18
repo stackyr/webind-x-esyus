@@ -175,14 +175,16 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
           </span>
         </div>
 
-        {/* CTA BUTTON: GET STARTED / CREATE ORDER */}
-        <div className="mt-5 sm:mt-8 flex flex-col items-center gap-3 w-full">
+        {/* CTA BUTTON: GET STARTED / CREATE ORDER (Compact, Sleek & Ultra-Premium) */}
+        <div className="mt-3.5 sm:mt-5 flex flex-col items-center justify-center w-full">
           <button
             onClick={onStartJointProject}
-            className="group inline-flex items-center justify-center gap-3 px-6 py-3.5 sm:px-10 sm:py-4 rounded-full bg-white text-[#080B10] hover:bg-[#F5F7FA] text-xs sm:text-sm md:text-base font-semibold tracking-tight transition-all duration-200 shadow-[0_0_35px_rgba(255,255,255,0.35)] hover:shadow-[0_0_55px_rgba(0,110,255,0.7)] hover:scale-105 active:scale-95 cursor-pointer w-full max-w-[280px] sm:w-auto"
+            className="group relative inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-b from-white via-[#FAFAFA] to-[#EDF2F7] text-[#080B10] text-[11px] sm:text-xs md:text-[13px] font-medium tracking-tight whitespace-nowrap transition-all duration-200 shadow-[0_2px_12px_rgba(0,0,0,0.35),0_0_26px_rgba(56,189,248,0.32)] hover:shadow-[0_4px_32px_rgba(56,189,248,0.6),0_0_16px_rgba(255,255,255,0.7)] hover:scale-[1.03] active:scale-[0.97] cursor-pointer ring-1 ring-white/80"
           >
             <span>Get Started / Create Order</span>
-            <ArrowRight className="w-4 h-4 stroke-[2.5] transition-transform duration-200 group-hover:translate-x-1" />
+            <span className="w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full bg-[#080B10] text-white flex items-center justify-center transition-all duration-200 group-hover:bg-[#0284C7] group-hover:translate-x-0.5">
+              <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 stroke-[2.5]" />
+            </span>
           </button>
         </div>
       </div>

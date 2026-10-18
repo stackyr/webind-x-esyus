@@ -63,6 +63,27 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
   const [formData, setFormData] = useState<OrderFormData>(DEFAULT_DATA);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [orderNumber, setOrderNumber] = useState<string>("");
+  const [themeMode, setThemeMode] = useState<"red" | "cyan">("red");
+
+  const isRed = themeMode === "red";
+  const primaryHex = isRed ? "#FF384C" : "#0070FF";
+  const glowShadow = isRed
+    ? "shadow-[0_0_20px_rgba(255,56,76,0.45)] hover:shadow-[0_0_30px_rgba(255,56,76,0.7)]"
+    : "shadow-[0_0_20px_rgba(0,112,255,0.45)] hover:shadow-[0_0_30px_rgba(0,112,255,0.7)]";
+  const nodeCurrentRing = isRed
+    ? "bg-[#FF384C] text-white shadow-[0_0_16px_rgba(255,56,76,0.85)] ring-4 ring-[#FF384C]/25"
+    : "bg-[#0070FF] text-white shadow-[0_0_16px_rgba(0,112,255,0.85)] ring-4 ring-[#0070FF]/25";
+  const nodePast = isRed ? "bg-[#FF384C] text-white" : "bg-[#0070FF] text-white";
+  const themeBadgeClasses = isRed
+    ? "bg-[#FF384C]/15 border-[#FF384C]/35 text-[#FFA3AE]"
+    : "bg-[#0070FF]/15 border-[#0070FF]/30 text-[#38BDF8]";
+  const themeTextAccent = isRed ? "text-[#FF384C]" : "text-[#0070FF]";
+  const themeBgAccent = isRed ? "bg-[#FF384C]" : "bg-[#0070FF]";
+  const themeBorderAccent = isRed ? "border-[#FF384C]" : "border-[#0070FF]";
+  const themeFocusBorder = isRed ? "focus:border-[#FF384C]" : "focus:border-[#0070FF]";
+  const ambientBackground = isRed
+    ? "radial-gradient(circle at 85% 25%, rgba(255, 56, 76, 0.22) 0%, rgba(180, 20, 40, 0.10) 35%, transparent 65%)"
+    : "radial-gradient(circle at 85% 25%, rgba(0, 112, 255, 0.18) 0%, rgba(0, 80, 200, 0.08) 35%, transparent 65%)";
 
   // Load saved draft from localStorage
   useEffect(() => {
@@ -143,49 +164,85 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 overflow-y-auto bg-[#070A0F]/96 backdrop-blur-2xl text-[#F5F7FA] selection:bg-[#0070FF] selection:text-white flex flex-col justify-between"
+      className="fixed inset-0 z-50 overflow-y-auto bg-[#070A0F]/96 backdrop-blur-2xl text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white flex flex-col justify-between"
+      style={{ accentColor: primaryHex }}
     >
-      {/* SOFT BLUE AMBIENT GLOW ON THE RIGHT SIDE (Matching the screenshot) */}
+      {/* DYNAMIC AMBIENT GLOW ON THE RIGHT SIDE (Crimson Red default or Cyan) */}
       <div
-        className="pointer-events-none fixed inset-0 z-0"
+        className="pointer-events-none fixed inset-0 z-0 transition-all duration-700"
         style={{
-          background:
-            "radial-gradient(circle at 85% 25%, rgba(0, 112, 255, 0.16) 0%, rgba(0, 80, 200, 0.08) 35%, transparent 65%)",
+          background: ambientBackground,
         }}
       />
 
-      {/* TOP HEADER: Webind × Esyus Branding & Close Button */}
+      {/* TOP HEADER: Webind × Esyus Branding, Red/Cyan Theme Switcher & Close Button */}
       <header className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 pt-6 sm:pt-8 pb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-            Webind <span className="text-[#0070FF] font-light">×</span> Esyus
+            Webind <span className={`font-light transition-colors ${themeTextAccent}`}>×</span> Esyus
           </span>
-          <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-[#0070FF]/15 border border-[#0070FF]/30 text-[#38BDF8] text-[11px] font-mono">
+          <span className={`hidden sm:inline-block px-2.5 py-0.5 rounded-full border text-[11px] font-mono transition-colors ${themeBadgeClasses}`}>
             Project Order Portal
           </span>
         </div>
 
-        <button
-          onClick={handleCloseAndReset}
-          className="p-2.5 rounded-full bg-[#121622] hover:bg-[#1A2234] border border-[#20293D] hover:border-white/30 text-[#94A3B8] hover:text-white active:scale-95 transition-all cursor-pointer"
-          aria-label="Close form"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Right Controls: Red vs Cyan Theme Switcher & Close Button */}
+        <div className="flex items-center gap-2.5 sm:gap-3.5">
+          {/* Discrete Red / Cyan Pill Toggle */}
+          <div className="flex items-center gap-1 p-1 rounded-full bg-[#121622]/95 border border-[#20293D] shadow-inner">
+            <button
+              type="button"
+              onClick={() => setThemeMode("red")}
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[11px] font-mono font-medium transition-all cursor-pointer ${
+                themeMode === "red"
+                  ? "bg-[#FF384C] text-white shadow-[0_0_12px_rgba(255,56,76,0.65)]"
+                  : "text-[#8E98A8] hover:text-white"
+              }`}
+              aria-label="Switch to Crimson Red theme"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff]" />
+              <span>Red</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setThemeMode("cyan")}
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[11px] font-mono font-medium transition-all cursor-pointer ${
+                themeMode === "cyan"
+                  ? "bg-[#0070FF] text-white shadow-[0_0_12px_rgba(0,112,255,0.65)]"
+                  : "text-[#8E98A8] hover:text-white"
+              }`}
+              aria-label="Switch to Cyan theme"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff]" />
+              <span>Cyan</span>
+            </button>
+          </div>
+
+          <button
+            onClick={handleCloseAndReset}
+            className="p-2.5 rounded-full bg-[#121622] hover:bg-[#1A2234] border border-[#20293D] hover:border-white/30 text-[#94A3B8] hover:text-white active:scale-95 transition-all cursor-pointer"
+            aria-label="Close form"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
       </header>
 
       {/* MOBILE STEP PROGRESS BAR (Shown only on screens < lg) */}
       <div className="relative z-10 w-full px-6 lg:hidden mb-4">
         <div className="flex items-center justify-between text-xs text-[#94A3B8] mb-2 font-mono">
-          <span className="text-[#0070FF] font-semibold">
+          <span className={`font-semibold ${themeTextAccent}`}>
             Step {currentStep} of {STEPS.length}
           </span>
           <span>{STEPS[currentStep - 1].title}</span>
         </div>
         <div className="w-full h-1.5 bg-[#141A26] rounded-full overflow-hidden">
           <div
-            className="h-full bg-[#0070FF] transition-all duration-300 rounded-full"
-            style={{ width: `${(currentStep / STEPS.length) * 100}%` }}
+            className="h-full transition-all duration-300 rounded-full"
+            style={{
+              width: `${(currentStep / STEPS.length) * 100}%`,
+              backgroundColor: primaryHex,
+            }}
           />
         </div>
       </div>
@@ -205,10 +262,10 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                 animate={{ opacity: 1, scale: 1 }}
                 className="p-6 sm:p-10 rounded-2xl bg-[#0D121C] border border-[#1E2638] shadow-2xl max-w-2xl"
               >
-                <div className="w-14 h-14 rounded-full bg-[#0070FF]/15 text-[#0070FF] border border-[#0070FF]/40 flex items-center justify-center mb-5">
+                <div className={`w-14 h-14 rounded-full ${themeBadgeClasses} flex items-center justify-center mb-5`}>
                   <CheckCircle2 className="w-8 h-8 stroke-[2.2]" />
                 </div>
-                <span className="text-xs font-mono uppercase tracking-widest text-[#0070FF] font-medium">
+                <span className={`text-xs font-mono uppercase tracking-widest ${themeTextAccent} font-medium`}>
                   Order Successfully Saved & Queued
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-light text-white tracking-tight mt-1 mb-3">
@@ -227,7 +284,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                   </div>
                   <div className="flex justify-between border-b border-[#141A26] pb-2">
                     <span className="text-[#64748B]">Budget Range:</span>
-                    <span className="font-medium text-[#0070FF]">${formData.budget}k USD</span>
+                    <span className={`font-medium ${themeTextAccent}`}>${formData.budget}k USD</span>
                   </div>
                   <div className="flex justify-between border-b border-[#141A26] pb-2">
                     <span className="text-[#64748B]">Payment Structure:</span>
@@ -242,7 +299,8 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                 <div className="flex items-center gap-3">
                   <button
                     onClick={handleCloseAndReset}
-                    className="px-8 py-3 rounded-xl bg-[#0070FF] hover:bg-[#0062E0] text-white font-medium text-sm transition-all active:scale-95 shadow-[0_0_20px_rgba(0,112,255,0.4)] cursor-pointer"
+                    style={{ backgroundColor: primaryHex }}
+                    className={`px-8 py-3 rounded-xl text-white font-medium text-sm transition-all active:scale-95 ${glowShadow} cursor-pointer`}
                   >
                     Done / Return to Website
                   </button>
@@ -285,14 +343,14 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                               onClick={() => updateFormData({ projectType: type })}
                               className={`p-4 rounded-xl border flex items-center gap-3.5 transition-all cursor-pointer ${
                                 isSelected
-                                  ? "bg-[#121722] border-white/50 text-white shadow-lg shadow-[#0070FF]/10 ring-1 ring-white/20"
+                                  ? `bg-[#121722] border-white/50 text-white shadow-lg ${isRed ? "shadow-[#FF384C]/15 ring-[#FF384C]/40" : "shadow-[#0070FF]/15 ring-[#0070FF]/40"} ring-1`
                                   : "bg-[#0E131E] border-[#20293D] text-[#94A3B8] hover:border-white/20 hover:text-white"
                               }`}
                             >
                               <div
                                 className={`w-5 h-5 rounded-full flex items-center justify-center border transition-all ${
                                   isSelected
-                                    ? "bg-[#0070FF] border-[#0070FF] text-white"
+                                    ? `${themeBgAccent} ${themeBorderAccent} text-white`
                                     : "border-[#3A455E] bg-[#0A0E17]"
                                 }`}
                               >
@@ -328,7 +386,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                             value={formData.businessName}
                             onChange={(e) => updateFormData({ businessName: e.target.value })}
                             placeholder="e.g. Apex Global Labs"
-                            className="w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none focus:border-[#0070FF] transition-all"
+                            className={`w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none ${themeFocusBorder} transition-all`}
                           />
                         </div>
 
@@ -341,7 +399,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                             value={formData.websiteUrl}
                             onChange={(e) => updateFormData({ websiteUrl: e.target.value })}
                             placeholder="https://yourbrand.com"
-                            className="w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none focus:border-[#0070FF] transition-all"
+                            className={`w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none ${themeFocusBorder} transition-all`}
                           />
                         </div>
 
@@ -405,14 +463,14 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                               onClick={() => toggleFeature(feat)}
                               className={`p-4 rounded-xl border flex items-center gap-3.5 transition-all cursor-pointer ${
                                 isSelected
-                                  ? "bg-[#121722] border-white/50 text-white shadow-lg shadow-[#0070FF]/10 ring-1 ring-white/20"
+                                  ? `bg-[#121722] border-white/50 text-white shadow-lg ${isRed ? "shadow-[#FF384C]/15 ring-[#FF384C]/40" : "shadow-[#0070FF]/15 ring-[#0070FF]/40"} ring-1`
                                   : "bg-[#0E131E] border-[#20293D] text-[#94A3B8] hover:border-white/20 hover:text-white"
                               }`}
                             >
                               <div
                                 className={`w-5 h-5 rounded-md flex items-center justify-center border transition-all ${
                                   isSelected
-                                    ? "bg-[#0070FF] border-[#0070FF] text-white"
+                                    ? `${themeBgAccent} ${themeBorderAccent} text-white`
                                     : "border-[#3A455E] bg-[#0A0E17]"
                                 }`}
                               >
@@ -454,14 +512,14 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                               onClick={() => toggleIntegration(item)}
                               className={`p-4 rounded-xl border flex items-center gap-3.5 transition-all cursor-pointer ${
                                 isSelected
-                                  ? "bg-[#121722] border-white/50 text-white shadow-lg shadow-[#0070FF]/10 ring-1 ring-white/20"
+                                  ? `bg-[#121722] border-white/50 text-white shadow-lg ${isRed ? "shadow-[#FF384C]/15 ring-[#FF384C]/40" : "shadow-[#0070FF]/15 ring-[#0070FF]/40"} ring-1`
                                   : "bg-[#0E131E] border-[#20293D] text-[#94A3B8] hover:border-white/20 hover:text-white"
                               }`}
                             >
                               <div
                                 className={`w-5 h-5 rounded-md flex items-center justify-center border transition-all ${
                                   isSelected
-                                    ? "bg-[#0070FF] border-[#0070FF] text-white"
+                                    ? `${themeBgAccent} ${themeBorderAccent} text-white`
                                     : "border-[#3A455E] bg-[#0A0E17]"
                                 }`}
                               >
@@ -508,7 +566,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                             }
                             className="w-full h-2 rounded-lg appearance-none cursor-pointer focus:outline-none"
                             style={{
-                              background: `linear-gradient(to right, #0070FF 0%, #0070FF ${
+                              background: `linear-gradient(to right, ${primaryHex} 0%, ${primaryHex} ${
                                 ((formData.budget - 15) / (250 - 15)) * 100
                               }%, #2A3245 ${
                                 ((formData.budget - 15) / (250 - 15)) * 100
@@ -518,7 +576,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                         </div>
 
                         {/* Budget Value Display (Matching '$ 105k' in screenshot) */}
-                        <div className="mt-3 text-sm font-normal text-white tracking-wide">
+                        <div className={`mt-3 text-sm font-semibold tracking-wide ${themeTextAccent}`}>
                           $ {formData.budget}k
                         </div>
                       </div>
@@ -543,7 +601,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                                 onClick={() => updateFormData({ paymentMethod: method.id })}
                                 className={`px-4 py-3 rounded-xl border flex items-center gap-3 transition-all cursor-pointer ${
                                   isSelected
-                                    ? "bg-[#121722] border-white/40 text-white shadow-md shadow-[#0070FF]/15"
+                                    ? `bg-[#121722] border-white/40 text-white shadow-md ${isRed ? "shadow-[#FF384C]/15" : "shadow-[#0070FF]/15"}`
                                     : "bg-[#0E131E] border-[#20293D] text-[#8E98A8] hover:border-white/20"
                                 }`}
                               >
@@ -551,7 +609,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                                 <div
                                   className={`w-4 h-4 rounded-full flex items-center justify-center border transition-all ${
                                     isSelected
-                                      ? "bg-[#0070FF] border-[#0070FF] text-white"
+                                      ? `${themeBgAccent} ${themeBorderAccent} text-white`
                                       : "border-[#3A455E] bg-[#0A0E17]"
                                   }`}
                                 >
@@ -614,7 +672,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                             value={formData.additionalNotes}
                             onChange={(e) => updateFormData({ additionalNotes: e.target.value })}
                             placeholder="Share links to benchmark websites, branding guidelines, or technical requirements..."
-                            className="w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none focus:border-[#0070FF] transition-all resize-none"
+                            className={`w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none ${themeFocusBorder} transition-all resize-none`}
                           />
                         </div>
                       </div>
@@ -642,7 +700,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                             value={formData.name}
                             onChange={(e) => updateFormData({ name: e.target.value })}
                             placeholder="e.g. Elena Vance"
-                            className="w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none focus:border-[#0070FF] transition-all"
+                            className={`w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none ${themeFocusBorder} transition-all`}
                           />
                         </div>
 
@@ -656,7 +714,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                             value={formData.email}
                             onChange={(e) => updateFormData({ email: e.target.value })}
                             placeholder="elena@company.com"
-                            className="w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none focus:border-[#0070FF] transition-all"
+                            className={`w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none ${themeFocusBorder} transition-all`}
                           />
                         </div>
 
@@ -669,7 +727,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                             value={formData.phone}
                             onChange={(e) => updateFormData({ phone: e.target.value })}
                             placeholder="+1 (555) 019-2834"
-                            className="w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none focus:border-[#0070FF] transition-all"
+                            className={`w-full px-4 py-3 rounded-xl bg-[#0E131E] border border-[#20293D] text-sm text-white placeholder-[#475569] focus:outline-none ${themeFocusBorder} transition-all`}
                           />
                         </div>
                       </div>
@@ -694,7 +752,8 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="h-11 px-7 rounded-xl bg-[#0070FF] hover:bg-[#0062E0] text-white text-sm font-medium tracking-tight shadow-[0_0_20px_rgba(0,112,255,0.4)] hover:shadow-[0_0_28px_rgba(0,112,255,0.65)] active:scale-95 transition-all duration-150 cursor-pointer flex items-center gap-2"
+                      style={{ backgroundColor: primaryHex }}
+                      className={`h-11 px-7 rounded-xl text-white text-sm font-medium tracking-tight ${glowShadow} active:scale-95 transition-all duration-150 cursor-pointer flex items-center gap-2`}
                     >
                       <span>{currentStep === 7 ? "Submit order" : "Next step"}</span>
                       {currentStep === 7 && <ArrowRight className="w-4 h-4 stroke-[2.2]" />}
@@ -713,11 +772,12 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
               {/* Continuous Vertical Track Line */}
               <div className="absolute top-4 bottom-4 left-4 w-[2px] bg-[#141A26] -translate-x-1/2 z-0" />
               
-              {/* Active Blue Connecting Track through completed steps */}
+              {/* Active Connecting Track through completed steps */}
               <div
-                className="absolute top-4 left-4 w-[2px] bg-[#0070FF] -translate-x-1/2 z-0 transition-all duration-300"
+                className="absolute top-4 left-4 w-[2px] -translate-x-1/2 z-0 transition-all duration-300"
                 style={{
                   height: `${((currentStep - 1) / (STEPS.length - 1)) * 100}%`,
+                  backgroundColor: primaryHex,
                 }}
               />
 
@@ -736,9 +796,9 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                     <div
                       className={`w-8 h-8 rounded-full flex items-center justify-center font-sans text-xs font-semibold shrink-0 transition-all duration-200 ${
                         isCurrent
-                          ? "bg-[#0070FF] text-white shadow-[0_0_15px_rgba(0,112,255,0.8)] ring-4 ring-[#0070FF]/25"
+                          ? nodeCurrentRing
                           : isPast
-                          ? "bg-[#0070FF] text-white"
+                          ? nodePast
                           : "bg-[#0E131E] border border-[#20293D] text-[#64748B] group-hover:border-white/30 group-hover:text-white"
                       }`}
                     >

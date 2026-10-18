@@ -39,12 +39,18 @@ export default function Home() {
       <ModernWaveLoader mode="red" onComplete={() => setIsLoading(false)} />
 
       {/* Floating Mobile App Bottom Dock */}
-      <MobileAppNavBar onInquireClick={() => handleOpenInquiry("Mobile Quick Inquiry")} />
+      {!isLoading && <MobileAppNavBar onInquireClick={() => handleOpenInquiry("Mobile Quick Inquiry")} />}
+
       {/* 1. Background Fixed Image Sequence Canvas */}
       <ImageSequenceCanvas />
 
       {/* 2. Section 1 Visual Sequence Area: WebindHero + FeatureFlowSection over continuous Image Sequence */}
-      <div id="sequence-section" className="relative z-10 w-full">
+      <div
+        id="sequence-section"
+        className={`relative z-10 w-full transition-opacity duration-700 ${
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}
+      >
         <WebindHero
           onStartProject={() => handleOpenInquiry()}
           onOpenNav={() => setIsNavOpen(true)}

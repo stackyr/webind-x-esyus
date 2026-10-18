@@ -305,19 +305,23 @@ export const ModernWaveLoader: React.FC<ModernWaveLoaderProps> = ({
       {!isFinished && (
         <motion.div
           key="wave-loader"
-          initial={{ opacity: 0 }}
+          id="preloader-root"
+          initial={false}
           animate={{ opacity: 1 }}
           exit={{
             opacity: 0,
             filter: "blur(22px)",
             transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
           }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className={containerClasses}
-          style={{ overflowX: "clip" }}
+          style={{ opacity: 1, overflowX: "clip" }}
         >
-          {/* Wave Canvas Engine */}
+          {/* Wave Canvas Engine with Instant Ambient Laser Glow */}
           <div className="relative w-full max-w-4xl h-60 sm:h-72 flex items-center justify-center px-4">
+            {/* Instant Ambient Laser Horizon (Visible in raw HTML before JS loads) */}
+            <div className={`absolute inset-x-8 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-transparent ${colorTheme === "red" ? "via-[#FF384C]" : "via-[#00D4FF]"} via-50% to-transparent opacity-85 blur-[1px] pointer-events-none`} />
+            <div className={`absolute inset-x-16 top-1/2 -translate-y-1/2 h-[26px] bg-gradient-to-r from-transparent ${colorTheme === "red" ? "via-[#FF384C]/45" : "via-[#00D4FF]/45"} via-50% to-transparent blur-[14px] pointer-events-none`} />
+
             <ModernCausticWaveCanvas
               colorTheme={colorTheme}
               height={280}

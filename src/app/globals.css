@@ -30,6 +30,14 @@
     overflow: hidden;
   }
 
+  /* Instant Preloader Root Stacking */
+  #preloader-root {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #000000;
+  }
+
   /* Bypass pointer hover recalculations while scrolling for butter-smooth 120fps (desktop mouse only) */
   @media (hover: hover) and (pointer: fine) {
     body.is-scrolling * {

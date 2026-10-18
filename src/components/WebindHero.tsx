@@ -52,22 +52,34 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject }) => {
               We design and develop high-performance websites and digital experiences that help ambitious brands grow.
             </p>
 
-            {/* Primary CTA: Minimal pill-shaped button labelled "Start a Project" with circular arrow */}
-            <button
-              onClick={onStartProject}
-              className="group inline-flex items-center justify-between sm:justify-start gap-3 pl-4 pr-2 py-2 sm:pl-5 sm:pr-2.5 sm:py-2 rounded-full bg-[#12161F]/90 backdrop-blur-md border border-[#202634] hover:border-[#FF384C]/60 active:scale-95 transition-all duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#FF384C] shadow-lg shadow-black/60 w-auto"
-              aria-label="Start a Project with Webind"
-            >
-              <span className="text-xs sm:text-base font-medium tracking-tight text-[#F5F7FA]">
-                Start a Project
-              </span>
-              <span
-                className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white text-[#080B10] transition-transform duration-200 group-hover:translate-x-0.5 group-active:scale-90"
-                aria-hidden="true"
+            {/* Primary CTA: Highlighted pill-shaped button labelled "Start a Project" with circular arrow */}
+            <div className="relative group w-auto">
+              {/* Subtle ambient backlight glow in Webind Crimson */}
+              <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#FF384C] via-[#FF1E38] to-[#FF5E73] opacity-65 blur-md group-hover:opacity-100 group-hover:blur-lg transition-all duration-300 pointer-events-none" />
+
+              <button
+                onClick={onStartProject}
+                className="relative inline-flex items-center justify-between sm:justify-start gap-2.5 sm:gap-3 pl-3.5 pr-2 py-2 sm:pl-4.5 sm:pr-2 sm:py-2 rounded-full bg-gradient-to-r from-[#171C26] via-[#10141D] to-[#171C26] border border-[#FF384C]/65 hover:border-[#FF384C] active:scale-95 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF384C] shadow-[0_0_22px_rgba(255,56,76,0.32),0_4px_16px_rgba(0,0,0,0.8)] w-auto"
+                aria-label="Start a Project with Webind"
               >
-                <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[2.5]" />
-              </span>
-            </button>
+                {/* Glowing live beacon indicator */}
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF384C] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF384C] shadow-[0_0_8px_#FF384C]" />
+                </span>
+
+                <span className="text-xs sm:text-base font-semibold tracking-tight text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+                  Start a Project
+                </span>
+
+                <span
+                  className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white text-[#080B10] shadow-[0_0_12px_rgba(255,255,255,0.4)] transition-all duration-200 group-hover:bg-[#FF384C] group-hover:text-white group-hover:translate-x-0.5 group-active:scale-90"
+                  aria-hidden="true"
+                >
+                  <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[2.5]" />
+                </span>
+              </button>
+            </div>
           </motion.div>
 
           {/* LOWER-RIGHT AREA: 2-column mobile app widget cards */}

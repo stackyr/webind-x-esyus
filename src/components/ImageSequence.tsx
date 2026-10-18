@@ -55,16 +55,37 @@ export default function ImageSequenceCanvas() {
     const iw = img.naturalWidth || 1920;
     const ih = img.naturalHeight || 1080;
 
-    // object-fit: cover calculation
-    const scale = Math.max(cw / iw, ch / ih);
-    const dw = iw * scale;
-    const dh = ih * scale;
-    const dx = (cw - dw) * 0.5;
-    const dy = (ch - dh) * 0.5;
+    // Check if current viewport is mobile / portrait orientation
+    const isMobile = (typeof window !== "undefined" && window.innerWidth < 768) || (cw / ch < 1.15);
 
-    ctx.fillStyle = "#080B10";
-    ctx.fillRect(0, 0, cw, ch);
-    ctx.drawImage(img, dx, dy, dw, dh);
+    let scale: number;
+    let dx: number;
+    let dy: number;
+
+    if (isMobile) {
+      // Mobile: Preserve original widescreen aspect ratio with slight natural zoom (1.22x), sides remain solid #080B10 black
+      const mobileZoom = 1.22;
+      scale = (cw / iw) * mobileZoom;
+      const dw = iw * scale;
+      const dh = ih * scale;
+      dx = (cw - dw) * 0.5;
+      dy = (ch - dh) * 0.44; // Centered gracefully in the optical view between hero header and bottom CTA
+
+      ctx.fillStyle = "#080B10";
+      ctx.fillRect(0, 0, cw, ch);
+      ctx.drawImage(img, dx, dy, dw, dh);
+    } else {
+      // Desktop: Standard cover fit
+      scale = Math.max(cw / iw, ch / ih);
+      const dw = iw * scale;
+      const dh = ih * scale;
+      dx = (cw - dw) * 0.5;
+      dy = (ch - dh) * 0.5;
+
+      ctx.fillStyle = "#080B10";
+      ctx.fillRect(0, 0, cw, ch);
+      ctx.drawImage(img, dx, dy, dw, dh);
+    }
   }, []);
 
   // Sync canvas resolution to window dimensions & devicePixelRatio

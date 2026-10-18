@@ -12,7 +12,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#080B10",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-[#080B10]" suppressHydrationWarning>
+    <html lang="en" className="bg-black" suppressHydrationWarning>
       <head>
         <link
           rel="preload"
@@ -31,7 +31,7 @@ export default function RootLayout({
           fetchPriority="high"
         />
       </head>
-      <body suppressHydrationWarning className="bg-[#080B10] text-[#F5F7FA]">
+      <body suppressHydrationWarning className="bg-black text-[#F5F7FA]">
         <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

@@ -95,7 +95,7 @@ export const FeatureFlowSection: React.FC = () => {
                   >
                     <div
                       onClick={() => setActiveItem(isExpanded ? null : feat.id)}
-                      className={`p-4 sm:p-6 rounded-2xl bg-[#0A0E17]/65 backdrop-blur-md border transition-all duration-200 cursor-pointer active:scale-[0.98] ${
+                      className={`p-4 sm:p-6 rounded-2xl bg-[#0A0E17]/92 sm:bg-[#0A0E17]/70 sm:backdrop-blur-md border transition-all duration-200 cursor-pointer active:scale-[0.98] ${
                         isExpanded
                           ? 'border-[#FF384C] shadow-[0_0_25px_rgba(255,56,76,0.25),0_12px_32px_rgba(0,0,0,0.8)] ring-1 ring-[#FF384C]/40'
                           : 'border-white/12 hover:border-[#FF384C]/60 shadow-[0_8px_30px_rgba(0,0,0,0.6)]'
@@ -159,7 +159,7 @@ export const FeatureFlowSection: React.FC = () => {
                     >
                       <div
                         onClick={() => setActiveItem(isExpanded ? null : feat.id)}
-                        className={`p-4 sm:p-6 rounded-2xl bg-[#0A0E17]/65 backdrop-blur-md border transition-all duration-200 cursor-pointer active:scale-[0.98] ${
+                        className={`p-4 sm:p-6 rounded-2xl bg-[#0A0E17]/92 sm:bg-[#0A0E17]/70 sm:backdrop-blur-md border transition-all duration-200 cursor-pointer active:scale-[0.98] ${
                           isExpanded
                             ? 'border-[#FF384C] shadow-[0_0_25px_rgba(255,56,76,0.25),0_12px_32px_rgba(0,0,0,0.8)] ring-1 ring-[#FF384C]/40'
                             : 'border-white/12 hover:border-[#FF384C]/60 shadow-[0_8px_30px_rgba(0,0,0,0.6)]'

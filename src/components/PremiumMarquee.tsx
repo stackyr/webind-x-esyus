@@ -127,7 +127,7 @@ export const PremiumMarquee: React.FC = () => {
   const marqueeItems = [...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS];
 
   return (
-    <section className="relative z-20 w-full bg-[#080B10] text-[#F5F7FA] py-2 sm:py-3 border-0 overflow-hidden select-none">
+    <section className="relative z-20 w-full bg-black text-[#F5F7FA] py-2 sm:py-3 border-0 overflow-hidden select-none">
       {/* INFINITE MARQUEE STRIP WITH GRADIENT FADE EDGES */}
       <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         <div className="animate-marquee gap-3.5 sm:gap-5 py-2">

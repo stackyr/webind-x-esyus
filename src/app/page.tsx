@@ -34,7 +34,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen w-full max-w-full overflow-x-clip bg-[#080B10] text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white">
+    <div className="relative min-h-screen w-full max-w-full overflow-x-clip bg-black text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white">
       {/* 0. Cinematic Fluid Caustic Wave Preloader */}
       <ModernWaveLoader mode="red" onComplete={() => setIsLoading(false)} />
 

@@ -28,13 +28,13 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
         <div className="flex items-center gap-2.5 sm:gap-3.5">
           {/* Highlighted Partnership Electric Blue Live Status Pill */}
           <div className="relative group">
-            {/* Subtle Ambient Electric Blue Backlight Glow (Matching Partnership Section Aura) */}
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#0038D6] via-[#0070FF] to-[#38BDF8] opacity-60 blur-md group-hover:opacity-90 group-hover:blur-lg transition-all duration-300 pointer-events-none" />
+            {/* Subtle, Refined Ambient Electric Blue Backlight Glow (Toned down on mobile) */}
+            <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#0038D6] via-[#0070FF] to-[#38BDF8] opacity-20 sm:opacity-45 blur-[2px] sm:blur-sm group-hover:opacity-80 transition-all duration-300 pointer-events-none" />
 
-            <div className="relative flex items-center gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#060D1A]/95 backdrop-blur-md border border-[#0070FF]/65 shadow-[0_0_20px_rgba(0,112,255,0.45),0_0_36px_rgba(0,70,220,0.25)] transition-all duration-200">
+            <div className="relative flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#060D1A]/95 backdrop-blur-md border border-[#0070FF]/50 shadow-[0_0_10px_rgba(0,112,255,0.2)] transition-all duration-200">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0070FF] opacity-80" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0070FF] shadow-[0_0_10px_#0070FF,0_0_4px_#BFE0FF]" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0070FF] shadow-[0_0_8px_#0070FF]" />
               </span>
               <span className="text-[11px] sm:text-xs font-semibold text-white tracking-tight drop-shadow-[0_1px_6px_rgba(0,112,255,0.85)]">
                 Digital Solutions
@@ -63,9 +63,9 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
         </div>
       </header>
 
-      {/* 2. MAIN HERO SECTION (Spacious Canvas, Responsive Margin-Aligned Content) */}
-      <main className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 flex-1 flex flex-col justify-end pt-4 pb-1 sm:pb-2 pointer-events-none">
-        {/* LOWER AREA: Pushed flush down and to margins to clear the centered 3D MacBook */}
+      {/* 2. MAIN HERO SECTION (Spacious Canvas, Responsive Margin-Aligned Content, Elevated on Mobile) */}
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 flex-1 flex flex-col justify-end pt-4 pb-20 sm:pb-8 md:pb-4 pointer-events-none">
+        {/* LOWER AREA: Elevated comfortably above the floating mobile dock */}
         <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-4 sm:gap-8 pb-1 sm:pb-2">
           
           {/* LOWER-LEFT AREA: Paragraph + Action Button */}
@@ -73,7 +73,7 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-start gap-2.5 sm:gap-4 max-w-[360px] pointer-events-auto w-full sm:w-auto"
+            className="flex flex-col items-start gap-3 sm:gap-4 max-w-[380px] pointer-events-auto w-full sm:w-auto"
           >
             {/* Supporting paragraph: responsive size, high-contrast drop-shadow */}
             <p className="text-xs sm:text-[15px] leading-relaxed text-[#F1F5F9] font-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
@@ -82,12 +82,12 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
 
             {/* Primary CTA: Highlighted pill-shaped button labelled "Start a Project" with circular arrow */}
             <div className="relative group w-auto">
-              {/* Subtle ambient backlight glow in Webind Crimson */}
-              <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#FF384C] via-[#FF1E38] to-[#FF5E73] opacity-65 blur-md group-hover:opacity-100 group-hover:blur-lg transition-all duration-300 pointer-events-none" />
+              {/* Subtle ambient backlight glow in Webind Crimson - refined and controlled on mobile */}
+              <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#FF384C] via-[#FF1E38] to-[#FF5E73] opacity-25 sm:opacity-50 blur-[3px] sm:blur-sm group-hover:opacity-85 group-hover:blur-md transition-all duration-300 pointer-events-none" />
 
               <button
                 onClick={onStartProject}
-                className="relative inline-flex items-center justify-between sm:justify-start gap-2.5 sm:gap-3 pl-3.5 pr-2 py-2 sm:pl-4.5 sm:pr-2 sm:py-2 rounded-full bg-gradient-to-r from-[#171C26] via-[#10141D] to-[#171C26] border border-[#FF384C]/65 hover:border-[#FF384C] active:scale-95 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF384C] shadow-[0_0_22px_rgba(255,56,76,0.32),0_4px_16px_rgba(0,0,0,0.8)] w-auto"
+                className="relative inline-flex items-center justify-between sm:justify-start gap-2.5 sm:gap-3 pl-3.5 pr-2 py-2 sm:pl-4.5 sm:pr-2 sm:py-2 rounded-full bg-gradient-to-r from-[#171C26] via-[#10141D] to-[#171C26] border border-[#FF384C]/50 hover:border-[#FF384C] active:scale-95 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF384C] shadow-[0_0_12px_rgba(255,56,76,0.2),0_2px_8px_rgba(0,0,0,0.8)] w-auto"
                 aria-label="Start a Project with Webind"
               >
                 {/* Glowing live beacon indicator */}
@@ -101,7 +101,7 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
                 </span>
 
                 <span
-                  className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white text-[#080B10] shadow-[0_0_12px_rgba(255,255,255,0.4)] transition-all duration-200 group-hover:bg-[#FF384C] group-hover:text-white group-hover:translate-x-0.5 group-active:scale-90"
+                  className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white text-black shadow-[0_0_12px_rgba(255,255,255,0.4)] transition-all duration-200 group-hover:bg-[#FF384C] group-hover:text-white group-hover:translate-x-0.5 group-active:scale-90"
                   aria-hidden="true"
                 >
                   <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[2.5]" />
@@ -110,30 +110,30 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
             </div>
           </motion.div>
 
-          {/* LOWER-RIGHT AREA: 2-column mobile app widget cards */}
+          {/* LOWER-RIGHT AREA: 2-column widget cards (desktop/tablet only to keep mobile uncluttered) */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full md:w-auto md:max-w-[360px] pointer-events-auto"
+            className="hidden md:block w-full md:w-auto md:max-w-[360px] pointer-events-auto"
           >
-            <div className="grid grid-cols-2 md:grid-cols-1 gap-2.5 sm:gap-3.5 w-full md:text-right pt-1 md:pt-0">
+            <div className="grid grid-cols-1 gap-3.5 w-full md:text-right">
               {/* Item 1 Card */}
-              <div className="p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-[#0C1017]/70 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none border border-white/8 sm:border-0 shadow-sm sm:shadow-none">
-                <h3 className="text-xs sm:text-base font-semibold sm:font-medium text-white tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+              <div className="p-0">
+                <h3 className="text-sm sm:text-base font-medium text-white tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
                   Web + Digital
                 </h3>
-                <p className="text-[10px] sm:text-xs leading-relaxed text-[#CBD5E1] mt-0.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                <p className="text-xs leading-relaxed text-[#CBD5E1] mt-0.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
                   Websites, landing pages and digital experiences.
                 </p>
               </div>
 
               {/* Item 2 Card */}
-              <div className="p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-[#0C1017]/70 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none border border-white/8 sm:border-0 md:border-t md:border-[#202634] md:pt-3 shadow-sm sm:shadow-none">
-                <h3 className="text-xs sm:text-base font-semibold sm:font-medium text-white tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+              <div className="p-0 border-t border-[#202634] pt-3">
+                <h3 className="text-sm sm:text-base font-medium text-white tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
                   Webind × Esyus
                 </h3>
-                <p className="text-[10px] sm:text-xs leading-relaxed text-[#CBD5E1] mt-0.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                <p className="text-xs leading-relaxed text-[#CBD5E1] mt-0.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
                   A collaborative approach to websites, apps and software.
                 </p>
               </div>
@@ -143,8 +143,8 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
         </div>
       </main>
 
-      {/* 3. BOTTOM SCROLL INDICATOR */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 pb-4 sm:pb-5 flex items-center justify-between pointer-events-auto">
+      {/* 3. BOTTOM SCROLL INDICATOR (Desktop & Tablet only to avoid clashing with mobile navigation dock) */}
+      <div className="hidden sm:flex w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 pb-4 sm:pb-5 items-center justify-between pointer-events-auto">
         <span className="font-mono text-[10px] sm:text-xs font-medium text-[#CBD5E1] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
           01 // OVERVIEW
         </span>

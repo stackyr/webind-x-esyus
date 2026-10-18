@@ -61,7 +61,7 @@ export const ScrollVideoShowcase: React.FC = () => {
     <div
       ref={containerRef}
       id="reel"
-      className="relative z-20 w-full h-[260vh] bg-[#080B10] text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white scroll-mt-12"
+      className="relative z-20 w-full h-[260vh] bg-black text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white scroll-mt-12"
     >
       {/* Sticky Fullscreen Viewport Window */}
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
@@ -156,8 +156,8 @@ export const ScrollVideoShowcase: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* BOTTOM SEAMLESS FADE INTO PURE #080B10 BLACK */}
-      <div className="absolute bottom-0 inset-x-0 h-56 bg-gradient-to-b from-transparent to-[#080B10] pointer-events-none z-10" />
+      {/* BOTTOM SEAMLESS FADE INTO PURE BLACK */}
+      <div className="absolute bottom-0 inset-x-0 h-56 bg-gradient-to-b from-transparent to-black pointer-events-none z-10" />
     </div>
   );
 };

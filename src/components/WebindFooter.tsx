@@ -30,7 +30,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
   };
 
   return (
-    <footer className="relative z-20 w-full bg-[#080B10] text-[#F5F7FA] pt-6 sm:pt-10 pb-2 sm:pb-3 md:pb-4 select-none overflow-hidden">
+    <footer className="relative z-20 w-full bg-black text-[#F5F7FA] pt-6 sm:pt-10 pb-2 sm:pb-3 md:pb-4 select-none overflow-hidden">
       <style>{`
         @keyframes liquidFlowText {
           0% { background-position: 0% 50%; }
@@ -44,11 +44,11 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
       `}</style>
 
       {/* 100% Solid Seamless Black Melt at Top (Zero visible boundary with previous section) */}
-      <div className="absolute top-0 inset-x-0 h-64 sm:h-80 bg-gradient-to-b from-[#080B10] via-[#080B10] via-70% to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 inset-x-0 h-64 sm:h-80 bg-gradient-to-b from-black via-black via-70% to-transparent pointer-events-none z-10" />
 
       {/* SUBTLE SIDE EDGE MASKS */}
-      <div className="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-[#080B10] via-[#080B10]/75 to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-[#080B10] via-[#080B10]/75 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-black via-black/75 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-black via-black/75 to-transparent pointer-events-none z-10" />
 
       {/* VIVID ANIMATED LIVING LIQUID GRADIENT GLOW (Strictly confined to bottom baseline) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -57,7 +57,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(180deg, #080B10 0%, #080B10 82%, #0A080C 88%, rgba(140, 16, 32, 0.15) 94%, rgba(255, 45, 68, 0.35) 100%)',
+              'linear-gradient(180deg, #000000 0%, #000000 82%, #0A080C 88%, rgba(140, 16, 32, 0.15) 94%, rgba(255, 45, 68, 0.35) 100%)',
           }}
         />
 

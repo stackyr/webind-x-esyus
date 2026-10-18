@@ -203,7 +203,7 @@ export const ArcShowcaseSection: React.FC<ArcShowcaseSectionProps> = ({
   const activeProject = SHOWCASE_PROJECTS[activeIndex];
 
   return (
-    <section id="showcase" className="relative z-20 w-full max-w-full bg-[#080B10] text-[#F5F7FA] pt-14 pb-4 sm:pt-16 sm:pb-6 overflow-x-clip overflow-y-visible selection:bg-[#FF384C] selection:text-white scroll-mt-12">
+    <section id="showcase" className="relative z-20 w-full max-w-full bg-black text-[#F5F7FA] pt-14 pb-4 sm:pt-16 sm:pb-6 overflow-x-clip overflow-y-visible selection:bg-[#FF384C] selection:text-white scroll-mt-12">
       {/* 1. TOP CURVED / ROUNDED BOUNDARY ARCH (Electric Blue Laser Glow Outline - 100% Mobile Responsive) */}
       <div className="absolute -top-7 sm:-top-9 md:-top-11 left-0 right-0 w-full pointer-events-none z-30 leading-none overflow-x-clip overflow-y-visible">
         <svg
@@ -233,7 +233,7 @@ export const ArcShowcaseSection: React.FC<ArcShowcaseSectionProps> = ({
           {/* Seamless Solid Fill matching Section Background */}
           <path
             d="M 0 48 Q 720 4 1440 48 L 1440 50 L 0 50 Z"
-            fill="#080B10"
+            fill="#000000"
           />
 
           {/* Soft Bloom Laser Glow along the curve (Electric Blue) */}
@@ -361,7 +361,7 @@ export const ArcShowcaseSection: React.FC<ArcShowcaseSectionProps> = ({
 
                     {/* Active Indicator Dot */}
                     {isCurrent && (
-                      <span className="absolute -bottom-2 w-2.5 h-2.5 rounded-full bg-[#FF384C] ring-2 ring-[#080B10] shadow-[0_0_10px_#FF384C]" />
+                      <span className="absolute -bottom-2 w-2.5 h-2.5 rounded-full bg-[#FF384C] ring-2 ring-black shadow-[0_0_10px_#FF384C]" />
                     )}
                   </div>
                 </motion.div>
@@ -426,7 +426,7 @@ export const ArcShowcaseSection: React.FC<ArcShowcaseSectionProps> = ({
                 <div className="flex items-center justify-center w-full">
                   <button
                     onClick={() => onSelectProjectForInquiry(activeProject.title)}
-                    className="group inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:px-7 sm:py-3 rounded-full bg-[#F5F7FA] text-[#080B10] hover:bg-white text-xs sm:text-sm font-semibold transition-all shadow-xl hover:shadow-[0_0_30px_rgba(255,255,255,0.45)] hover:scale-[1.03] active:scale-95 cursor-pointer w-full max-w-[280px] sm:w-auto"
+                    className="group inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:px-7 sm:py-3 rounded-full bg-[#F5F7FA] text-black hover:bg-white text-xs sm:text-sm font-semibold transition-all shadow-xl hover:shadow-[0_0_30px_rgba(255,255,255,0.45)] hover:scale-[1.03] active:scale-95 cursor-pointer w-full max-w-[280px] sm:w-auto"
                   >
                     <span>Start Similar Project</span>
                     <ArrowRight className="w-4 h-4 stroke-[2.5] transition-transform duration-200 group-hover:translate-x-0.5" />

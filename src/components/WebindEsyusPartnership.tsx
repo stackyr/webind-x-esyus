@@ -31,7 +31,7 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
   return (
     <section
       id="partner"
-      className="relative z-20 w-full max-w-full min-h-[70vh] sm:min-h-[85vh] lg:min-h-[90vh] bg-[#080B10] text-white flex flex-col justify-between py-6 sm:py-8 overflow-hidden select-none scroll-mt-12"
+      className="relative z-20 w-full max-w-full min-h-[70vh] sm:min-h-[85vh] lg:min-h-[90vh] bg-black text-white flex flex-col justify-between py-6 sm:py-8 overflow-hidden select-none scroll-mt-12"
     >
       <style>{`
         @keyframes marqueeRowLeft {
@@ -52,14 +52,14 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
       `}</style>
 
       {/* 1. TOP & BOTTOM DEEP SEAMLESS BLACK GRADIENTS (100% solid pitch black at boundary) */}
-      <div className="absolute top-0 inset-x-0 h-40 sm:h-64 bg-gradient-to-b from-[#080B10] via-[#080B10] via-45% to-transparent pointer-events-none z-20" />
-      <div className="absolute bottom-0 inset-x-0 h-40 sm:h-64 bg-gradient-to-t from-[#080B10] via-[#080B10] via-45% to-transparent pointer-events-none z-20" />
+      <div className="absolute top-0 inset-x-0 h-40 sm:h-64 bg-gradient-to-b from-black via-black via-45% to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 inset-x-0 h-40 sm:h-64 bg-gradient-to-t from-black via-black via-45% to-transparent pointer-events-none z-20" />
 
       {/* 2. FOUR CORNER DEEP BLACK MASKS (Zero visible corner boundaries) */}
-      <div className="absolute top-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute top-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute bottom-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute bottom-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute top-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_left,#000000_0%,#000000_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute top-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_right,#000000_0%,#000000_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_left,#000000_0%,#000000_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute bottom-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_right,#000000_0%,#000000_55%,transparent_85%)] pointer-events-none z-20" />
 
       {/* 3. LEFT SIDE ELECTRIC BLUE FLUID GRADIENT (Original rich desktop aura, softened on mobile) */}
       <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 pointer-events-none z-10 overflow-hidden">
@@ -102,8 +102,8 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
       {/* 5. UPPER SPACE GAP: COMPACT REVIEW MARQUEE (Row 1 - Moving Left, 100% Seamless 60fps) */}
       <div className="relative z-30 w-full max-w-full overflow-hidden my-2 sm:my-3">
         {/* Left & Right Black Gradient Vignette Fades */}
-        <div className="pointer-events-none absolute left-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-r from-[#080B10] to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-l from-[#080B10] to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-r from-black to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-l from-black to-transparent z-10" />
 
         <div className="flex flex-nowrap w-full max-w-full overflow-hidden">
           {/* Track A */}
@@ -168,10 +168,10 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
         <div className="mt-3.5 sm:mt-5 flex flex-col items-center justify-center w-full">
           <button
             onClick={onStartJointProject}
-            className="group relative inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-b from-white via-[#FAFAFA] to-[#EDF2F7] text-[#080B10] text-[11px] sm:text-xs md:text-[13px] font-medium tracking-tight whitespace-nowrap transition-all duration-200 shadow-[0_2px_12px_rgba(0,0,0,0.35),0_0_26px_rgba(56,189,248,0.32)] hover:shadow-[0_4px_32px_rgba(56,189,248,0.6),0_0_16px_rgba(255,255,255,0.7)] hover:scale-[1.03] active:scale-[0.97] cursor-pointer ring-1 ring-white/80"
+            className="group relative inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-b from-white via-[#FAFAFA] to-[#EDF2F7] text-black text-[11px] sm:text-xs md:text-[13px] font-medium tracking-tight whitespace-nowrap transition-all duration-200 shadow-[0_2px_12px_rgba(0,0,0,0.35),0_0_26px_rgba(56,189,248,0.32)] hover:shadow-[0_4px_32px_rgba(56,189,248,0.6),0_0_16px_rgba(255,255,255,0.7)] hover:scale-[1.03] active:scale-[0.97] cursor-pointer ring-1 ring-white/80"
           >
             <span>Get Started / Create Order</span>
-            <span className="w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full bg-[#080B10] text-white flex items-center justify-center transition-all duration-200 group-hover:bg-[#0284C7] group-hover:translate-x-0.5">
+            <span className="w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full bg-black text-white flex items-center justify-center transition-all duration-200 group-hover:bg-[#0284C7] group-hover:translate-x-0.5">
               <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 stroke-[2.5]" />
             </span>
           </button>
@@ -181,8 +181,8 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
       {/* 7. LOWER SPACE GAP: COMPACT REVIEW MARQUEE (Row 2 - Moving in Opposite Direction, 100% Seamless 60fps) */}
       <div className="relative z-30 w-full max-w-full overflow-hidden my-2 sm:my-3">
         {/* Left & Right Black Gradient Vignette Fades */}
-        <div className="pointer-events-none absolute left-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-r from-[#080B10] to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-l from-[#080B10] to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-r from-black to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-l from-black to-transparent z-10" />
 
         <div className="flex flex-nowrap w-full max-w-full overflow-hidden">
           {/* Track A */}

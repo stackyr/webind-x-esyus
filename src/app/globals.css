@@ -8,7 +8,7 @@
   html {
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: 100%;
-    background-color: #080B10;
+    background-color: #000000;
     overflow-x: clip;
   }
 
@@ -39,7 +39,7 @@
 
   body {
     font-family: var(--font-sans);
-    background-color: #080B10;
+    background-color: #000000;
     color: #F5F7FA;
     letter-spacing: -0.015em;
     touch-action: manipulation;
@@ -56,7 +56,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #080b10;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {

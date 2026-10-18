@@ -7,17 +7,17 @@ import "lenis/dist/lenis.css";
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Ultra-luxurious butter-smooth Lenis configuration for both desktop and mobile
+    const isTouch = typeof window !== "undefined" && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: isTouch ? 0.9 : 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.8,
-      syncTouch: true,
-      syncTouchLerp: 0.085,
-      touchInertiaExponent: 1.7,
+      touchMultiplier: 1.0,
+      syncTouch: false, // Disables touch interception so mobile touch scroll runs natively at 120Hz with zero stutter
       autoRaf: false,
     });
 

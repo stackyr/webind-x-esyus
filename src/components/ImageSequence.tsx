@@ -64,34 +64,17 @@ export default function ImageSequenceCanvas() {
     let dy: number;
 
     if (isMobile) {
-      // Mobile: Preserve original widescreen aspect ratio with slight natural zoom (1.22x), sides remain solid #080B10 black
-      const mobileZoom = 1.22;
+      // Mobile: Preserve widescreen aspect ratio with slight zoom, sides remain pure video black #000000
+      const mobileZoom = 1.18;
       scale = (cw / iw) * mobileZoom;
       const dw = iw * scale;
       const dh = ih * scale;
       dx = (cw - dw) * 0.5;
-      dy = (ch - dh) * 0.44; // Centered gracefully in the optical view between hero header and bottom CTA
+      dy = (ch - dh) * 0.38; // Lifted higher on mobile so MacBook is comfortably in upper-center, leaving space below for text & CTA
 
-      ctx.fillStyle = "#080B10";
+      ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, cw, ch);
       ctx.drawImage(img, dx, dy, dw, dh);
-
-      // Smooth organic black gradient feathering on mobile edges to seamlessly dissolve boundary lines into #080B10
-      const featherH = Math.min(50, dh * 0.18);
-
-      // Top edge melt
-      const topMelt = ctx.createLinearGradient(0, dy - 2, 0, dy + featherH);
-      topMelt.addColorStop(0, "#080B10");
-      topMelt.addColorStop(1, "rgba(8, 11, 16, 0)");
-      ctx.fillStyle = topMelt;
-      ctx.fillRect(0, dy - 4, cw, featherH + 4);
-
-      // Bottom edge melt
-      const bottomMelt = ctx.createLinearGradient(0, dy + dh - featherH, 0, dy + dh + 2);
-      bottomMelt.addColorStop(0, "rgba(8, 11, 16, 0)");
-      bottomMelt.addColorStop(1, "#080B10");
-      ctx.fillStyle = bottomMelt;
-      ctx.fillRect(0, dy + dh - featherH, cw, featherH + 4);
     } else {
       // Desktop: Standard cover fit
       scale = Math.max(cw / iw, ch / ih);
@@ -100,7 +83,7 @@ export default function ImageSequenceCanvas() {
       dx = (cw - dw) * 0.5;
       dy = (ch - dh) * 0.5;
 
-      ctx.fillStyle = "#080B10";
+      ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, cw, ch);
       ctx.drawImage(img, dx, dy, dw, dh);
     }
@@ -278,17 +261,17 @@ export default function ImageSequenceCanvas() {
   return (
     <div
       className="fixed inset-0 w-full max-w-full h-screen overflow-hidden pointer-events-none z-0"
-      style={{ backgroundColor: "#080B10" }}
+      style={{ backgroundColor: "#000000" }}
     >
       <canvas
         ref={canvasRef}
         className="w-full h-full block"
-        style={{ backgroundColor: "#080B10" }}
+        style={{ backgroundColor: "#000000" }}
       />
 
       {/* Mobile Top & Bottom Seamless Pure Black Edge Melts (Zero visible boundary) */}
-      <div className="sm:hidden absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#080B10] via-[#080B10]/80 to-transparent pointer-events-none z-10" />
-      <div className="sm:hidden absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#080B10] via-[#080B10]/80 to-transparent pointer-events-none z-10" />
+      <div className="sm:hidden absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-10" />
+      <div className="sm:hidden absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10" />
 
       {/* Ambient Red Gradient Glows (Webind Crimson #FF384C) - Desktop & Tablet Only, Hidden completely on mobile */}
       {/* 1. Top-Left Corner Ambient Glow */}

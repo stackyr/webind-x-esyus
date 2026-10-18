@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="overflow-x-hidden max-w-full bg-[#080B10]" suppressHydrationWarning>
-      <body suppressHydrationWarning className="overflow-x-hidden max-w-full bg-[#080B10] text-[#F5F7FA]">
+    <html lang="en" className="bg-[#080B10]" suppressHydrationWarning>
+      <body suppressHydrationWarning className="bg-[#080B10] text-[#F5F7FA]">
         <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

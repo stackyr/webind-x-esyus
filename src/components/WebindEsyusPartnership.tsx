@@ -56,29 +56,45 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
       <div className="absolute bottom-0 inset-x-0 h-40 sm:h-64 bg-gradient-to-t from-[#080B10] via-[#080B10] via-45% to-transparent pointer-events-none z-20" />
 
       {/* 2. FOUR CORNER DEEP BLACK MASKS (Zero visible corner boundaries) */}
-      <div className="absolute top-0 left-0 w-64 sm:w-[420px] h-48 sm:h-80 bg-[radial-gradient(ellipse_at_top_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute top-0 right-0 w-64 sm:w-[420px] h-48 sm:h-80 bg-[radial-gradient(ellipse_at_top_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute bottom-0 left-0 w-64 sm:w-[420px] h-48 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute bottom-0 right-0 w-64 sm:w-[420px] h-48 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute top-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute top-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute bottom-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
 
-      {/* 3. AMBIENT BACKLIGHT AURA (Natural spherical glow behind center brand on both mobile and desktop) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] md:w-[750px] h-[180px] sm:h-[320px] rounded-full bg-gradient-to-r from-[#0284C7]/25 via-[#38BDF8]/30 to-[#0284C7]/25 blur-[55px] sm:blur-[100px] pointer-events-none z-10" />
-
-      {/* 4. SIDE ELECTRIC BLUE WING GRADIENTS (Desktop & Tablet Wings) */}
-      <div className="hidden sm:block absolute inset-y-0 left-0 w-1/2 pointer-events-none z-10 overflow-hidden">
+      {/* 3. LEFT SIDE ELECTRIC BLUE FLUID GRADIENT (Original rich desktop aura, softened on mobile) */}
+      <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 pointer-events-none z-10 overflow-hidden">
+        {/* Soft Outer Cyan-White Glow Atmosphere */}
         <div
-          className="absolute -left-16 top-1/2 -translate-y-1/2 w-[500px] h-[380px] opacity-65 blur-[90px] pointer-events-none"
+          className="absolute -left-20 top-1/2 -translate-y-1/2 w-[260px] sm:w-[650px] h-[200px] sm:h-[480px] opacity-25 sm:opacity-75 blur-[55px] sm:blur-[100px] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 20% 50%, rgba(195, 235, 255, 0.75) 0%, rgba(0, 110, 255, 0.65) 35%, rgba(0, 45, 175, 0.3) 60%, transparent 80%)',
+            background: 'radial-gradient(ellipse at 15% 50%, rgba(195, 235, 255, 0.8) 0%, rgba(0, 110, 255, 0.75) 35%, rgba(0, 45, 175, 0.35) 60%, transparent 80%)',
+          }}
+        />
+
+        {/* Luminous Electric Blue Core */}
+        <div
+          className="absolute -left-12 top-1/2 -translate-y-1/2 w-[180px] sm:w-[500px] h-[150px] sm:h-[340px] opacity-35 sm:opacity-90 blur-[35px] sm:blur-[70px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at 10% 50%, #BFE0FF 0%, #0070FF 42%, rgba(0, 50, 200, 0.4) 70%, transparent 90%)',
           }}
         />
       </div>
 
-      <div className="hidden sm:block absolute inset-y-0 right-0 w-1/2 pointer-events-none z-10 overflow-hidden">
+      {/* 4. RIGHT SIDE ELECTRIC BLUE FLUID GRADIENT (SYMMETRIC MIRROR) */}
+      <div className="absolute inset-y-0 right-0 w-full sm:w-2/3 pointer-events-none z-10 overflow-hidden">
+        {/* Soft Outer Cyan-White Glow Atmosphere */}
         <div
-          className="absolute -right-16 top-1/2 -translate-y-1/2 w-[500px] h-[380px] opacity-65 blur-[90px] pointer-events-none"
+          className="absolute -right-20 top-1/2 -translate-y-1/2 w-[260px] sm:w-[650px] h-[200px] sm:h-[480px] opacity-25 sm:opacity-75 blur-[55px] sm:blur-[100px] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 80% 50%, rgba(195, 235, 255, 0.75) 0%, rgba(0, 110, 255, 0.65) 35%, rgba(0, 45, 175, 0.3) 60%, transparent 80%)',
+            background: 'radial-gradient(ellipse at 85% 50%, rgba(195, 235, 255, 0.8) 0%, rgba(0, 110, 255, 0.75) 35%, rgba(0, 45, 175, 0.35) 60%, transparent 80%)',
+          }}
+        />
+
+        {/* Luminous Electric Blue Core */}
+        <div
+          className="absolute -right-12 top-1/2 -translate-y-1/2 w-[180px] sm:w-[500px] h-[150px] sm:h-[340px] opacity-35 sm:opacity-90 blur-[35px] sm:blur-[70px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at 90% 50%, #BFE0FF 0%, #0070FF 42%, rgba(0, 50, 200, 0.4) 70%, transparent 90%)',
           }}
         />
       </div>

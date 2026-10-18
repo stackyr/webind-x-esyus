@@ -75,6 +75,23 @@ export default function ImageSequenceCanvas() {
       ctx.fillStyle = "#080B10";
       ctx.fillRect(0, 0, cw, ch);
       ctx.drawImage(img, dx, dy, dw, dh);
+
+      // Smooth organic black gradient feathering on mobile edges to seamlessly dissolve boundary lines into #080B10
+      const featherH = Math.min(50, dh * 0.18);
+
+      // Top edge melt
+      const topMelt = ctx.createLinearGradient(0, dy - 2, 0, dy + featherH);
+      topMelt.addColorStop(0, "#080B10");
+      topMelt.addColorStop(1, "rgba(8, 11, 16, 0)");
+      ctx.fillStyle = topMelt;
+      ctx.fillRect(0, dy - 4, cw, featherH + 4);
+
+      // Bottom edge melt
+      const bottomMelt = ctx.createLinearGradient(0, dy + dh - featherH, 0, dy + dh + 2);
+      bottomMelt.addColorStop(0, "rgba(8, 11, 16, 0)");
+      bottomMelt.addColorStop(1, "#080B10");
+      ctx.fillStyle = bottomMelt;
+      ctx.fillRect(0, dy + dh - featherH, cw, featherH + 4);
     } else {
       // Desktop: Standard cover fit
       scale = Math.max(cw / iw, ch / ih);
@@ -192,7 +209,11 @@ export default function ImageSequenceCanvas() {
         style={{ backgroundColor: "#080B10" }}
       />
 
-      {/* Ambient Red Gradient Glows (Webind Crimson #FF384C) - 2 Corners Only, Completely Clear of MacBook */}
+      {/* Mobile Top & Bottom Seamless Pure Black Edge Melts (Zero visible boundary) */}
+      <div className="sm:hidden absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#080B10] via-[#080B10]/80 to-transparent pointer-events-none z-10" />
+      <div className="sm:hidden absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#080B10] via-[#080B10]/80 to-transparent pointer-events-none z-10" />
+
+      {/* Ambient Red Gradient Glows (Webind Crimson #FF384C) - Desktop & Tablet Only, Hidden completely on mobile */}
       {/* 1. Top-Left Corner Ambient Glow */}
       <motion.div
         animate={{
@@ -206,7 +227,7 @@ export default function ImageSequenceCanvas() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute -top-24 -left-24 w-[500px] sm:w-[660px] h-[500px] sm:h-[660px] bg-[radial-gradient(circle_at_top_left,rgba(255,56,76,0.22),transparent_70%)] blur-3xl pointer-events-none"
+        className="hidden sm:block absolute -top-24 -left-24 w-[500px] sm:w-[660px] h-[500px] sm:h-[660px] bg-[radial-gradient(circle_at_top_left,rgba(255,56,76,0.22),transparent_70%)] blur-3xl pointer-events-none"
       />
 
       {/* 2. Top-Right Corner Ambient Glow */}
@@ -223,7 +244,7 @@ export default function ImageSequenceCanvas() {
           ease: "easeInOut",
           delay: 2,
         }}
-        className="absolute -top-24 -right-24 w-[500px] sm:w-[660px] h-[500px] sm:h-[660px] bg-[radial-gradient(circle_at_top_right,rgba(255,56,76,0.22),transparent_70%)] blur-3xl pointer-events-none"
+        className="hidden sm:block absolute -top-24 -right-24 w-[500px] sm:w-[660px] h-[500px] sm:h-[660px] bg-[radial-gradient(circle_at_top_right,rgba(255,56,76,0.22),transparent_70%)] blur-3xl pointer-events-none"
       />
     </div>
   );

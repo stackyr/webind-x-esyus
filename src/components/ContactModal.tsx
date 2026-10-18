@@ -100,8 +100,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-modal-title"
-        className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-2xl selection:bg-[#FF384C] selection:text-white"
-        style={{ overflowX: "clip" }}
+        data-lenis-prevent="true"
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-2xl selection:bg-[#FF384C] selection:text-white"
+        style={{ touchAction: "pan-y" }}
       >
         {/* Soft Ambient Depth Background Glows */}
         <div className="fixed inset-0 pointer-events-none z-0">
@@ -115,13 +116,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 12 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 w-full max-w-2xl bg-[#090D15]/95 border border-[#1F2739] rounded-2xl sm:rounded-3xl shadow-[0_24px_70px_rgba(0,0,0,0.9),0_0_35px_rgba(255,56,76,0.12)] overflow-hidden my-auto"
+          className="relative z-10 w-full max-w-2xl max-h-[92dvh] sm:max-h-[88vh] flex flex-col bg-[#090D15]/98 border border-[#1F2739] rounded-2xl sm:rounded-3xl shadow-[0_24px_70px_rgba(0,0,0,0.9),0_0_35px_rgba(255,56,76,0.12)] overflow-hidden my-auto"
         >
           {/* Top Decorative Horizon Laser Accent Line */}
           <div className="absolute inset-x-8 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#FF384C]/80 via-40% to-transparent pointer-events-none" />
 
-          {/* Modal Header */}
-          <div className="relative px-5 sm:px-8 pt-6 sm:pt-7 pb-4 flex items-start justify-between border-b border-[#161D2C]">
+          {/* Modal Header (Pinned at top, always accessible) */}
+          <div className="relative px-5 sm:px-8 pt-5 sm:pt-6 pb-4 flex items-start justify-between border-b border-[#161D2C] shrink-0">
             <div className="flex flex-col gap-1.5">
               <div className="flex items-center gap-2">
                 <span className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
@@ -136,7 +137,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               </div>
               <h2
                 id="contact-modal-title"
-                className="text-xl sm:text-2xl font-light text-white tracking-tight"
+                className="text-lg sm:text-2xl font-light text-white tracking-tight"
               >
                 Let’s build something <span className="text-white font-medium">extraordinary</span>.
               </h2>
@@ -145,15 +146,19 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             {/* Circular Close Button */}
             <button
               onClick={handleCloseAndReset}
-              className="p-2 sm:p-2.5 rounded-full bg-[#121722] hover:bg-[#1A2234] border border-[#20293D] hover:border-white/30 text-[#94A3B8] hover:text-white active:scale-95 transition-all cursor-pointer shadow-md"
+              className="p-2 sm:p-2.5 rounded-full bg-[#121722] hover:bg-[#1A2234] border border-[#20293D] hover:border-white/30 text-[#94A3B8] hover:text-white active:scale-95 transition-all cursor-pointer shadow-md shrink-0 ml-3"
               aria-label="Close contact modal"
             >
               <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
 
-          {/* Modal Body */}
-          <div className="px-5 sm:px-8 py-5 sm:py-6">
+          {/* Modal Body (Smoothly scrollable with momentum on mobile & desktop) */}
+          <div
+            data-lenis-prevent="true"
+            className="px-5 sm:px-8 py-5 sm:py-6 overflow-y-auto overscroll-contain flex-1"
+            style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+          >
             {isSubmitted ? (
               /* Success / Message Dispatched View */
               <motion.div

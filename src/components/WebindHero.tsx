@@ -1,13 +1,32 @@
 "use client";
 
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface WebindHeroProps {
   onStartProject: () => void;
   onOpenNav?: () => void;
 }
+
+const CLIENT_AVATARS = [
+  {
+    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&auto=format&fit=crop&q=80',
+    alt: 'Client Founder 1',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&auto=format&fit=crop&q=80',
+    alt: 'Client Founder 2',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=96&auto=format&fit=crop&q=80',
+    alt: 'Client Founder 3',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&auto=format&fit=crop&q=80',
+    alt: 'Client Founder 4',
+  },
+];
 
 export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNav }) => {
   return (
@@ -64,17 +83,61 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
       </header>
 
       {/* 2. MAIN HERO SECTION (Spacious Canvas, Responsive Margin-Aligned Content, Elevated on Mobile) */}
-      <main className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 flex-1 flex flex-col justify-end pt-4 pb-20 sm:pb-8 md:pb-4 pointer-events-none">
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 flex-1 flex flex-col justify-end pt-4 pb-28 sm:pb-8 md:pb-4 pointer-events-none">
         {/* LOWER AREA: Elevated comfortably above the floating mobile dock */}
         <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-4 sm:gap-8 pb-1 sm:pb-2">
           
-          {/* LOWER-LEFT AREA: Paragraph + Action Button */}
+          {/* LOWER-LEFT AREA: Social Proof + Paragraph + Action Button */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-start gap-3 sm:gap-4 max-w-[380px] pointer-events-auto w-full sm:w-auto"
+            className="flex flex-col items-start gap-2.5 sm:gap-3.5 max-w-[420px] pointer-events-auto w-full sm:w-auto -mt-10 sm:mt-0"
           >
+            {/* Social Proof: Verified Client Avatars + Star Rating */}
+            <div className="flex items-center gap-2.5 sm:gap-3 py-0.5">
+              {/* Overlapping Avatar Circles */}
+              <div className="flex items-center -space-x-2">
+                {CLIENT_AVATARS.map((avatar, idx) => (
+                  <div
+                    key={idx}
+                    className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border-[1.5px] border-[#0A0D14] ring-1 ring-white/20 shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+                  >
+                    <img
+                      src={avatar.url}
+                      alt={avatar.alt}
+                      className="w-full h-full object-cover"
+                      loading="eager"
+                    />
+                  </div>
+                ))}
+                {/* +50 Clients Counter */}
+                <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#121722] border-[1.5px] border-[#0A0D14] ring-1 ring-[#FF384C]/50 flex items-center justify-center text-[9px] sm:text-[10px] font-bold text-white shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                  <span className="text-[#FF384C] font-extrabold">+</span>50
+                </div>
+              </div>
+
+              {/* Star Rating & Client Trust Label */}
+              <div className="flex flex-col justify-center">
+                <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-[#FFB800] text-[#FFB800]"
+                      />
+                    ))}
+                  </div>
+                  <span className="text-[10px] sm:text-xs font-semibold text-white tracking-tight ml-0.5 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+                    5.0
+                  </span>
+                </div>
+                <span className="text-[10px] sm:text-[11px] text-[#94A3B8] font-normal leading-tight tracking-tight drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+                  50+ Global Clients & Partners
+                </span>
+              </div>
+            </div>
+
             {/* Supporting paragraph: responsive size, high-contrast drop-shadow */}
             <p className="text-xs sm:text-[15px] leading-relaxed text-[#F1F5F9] font-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
               We design and develop high-performance websites and digital experiences that help ambitious brands grow.

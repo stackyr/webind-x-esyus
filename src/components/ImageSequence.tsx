@@ -70,11 +70,34 @@ export default function ImageSequenceCanvas() {
       const dw = iw * scale;
       const dh = ih * scale;
       dx = (cw - dw) * 0.5;
-      dy = (ch - dh) * 0.38; // Lifted higher on mobile so MacBook is comfortably in upper-center, leaving space below for text & CTA
+      dy = (ch - dh) * 0.30; // Positioned cleanly in upper-center, leaving balanced room below for avatars, text & CTA
 
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, cw, ch);
       ctx.drawImage(img, dx, dy, dw, dh);
+
+      // Feather top edge into pure #000000 (Melts any top compression noise)
+      const topFade = ctx.createLinearGradient(0, dy, 0, dy + dh * 0.22);
+      topFade.addColorStop(0, "#000000");
+      topFade.addColorStop(0.35, "rgba(0,0,0,0.85)");
+      topFade.addColorStop(0.75, "rgba(0,0,0,0.25)");
+      topFade.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = topFade;
+      ctx.fillRect(0, dy - 2, cw, dh * 0.22 + 4);
+
+      // Feather bottom edge into pure #000000 (Completely dissolves the floor shadow/boundary!)
+      const bottomFade = ctx.createLinearGradient(0, dy + dh * 0.68, 0, dy + dh);
+      bottomFade.addColorStop(0, "rgba(0,0,0,0)");
+      bottomFade.addColorStop(0.3, "rgba(0,0,0,0.30)");
+      bottomFade.addColorStop(0.7, "rgba(0,0,0,0.85)");
+      bottomFade.addColorStop(1, "#000000");
+      ctx.fillStyle = bottomFade;
+      ctx.fillRect(0, dy + dh * 0.68 - 2, cw, dh * 0.32 + 4);
+
+      // Hard pure black beyond image boundaries
+      ctx.fillStyle = "#000000";
+      if (dy > 0) ctx.fillRect(0, 0, cw, dy);
+      if (dy + dh < ch) ctx.fillRect(0, dy + dh, cw, ch - (dy + dh));
     } else {
       // Desktop: Standard cover fit
       scale = Math.max(cw / iw, ch / ih);
@@ -269,11 +292,17 @@ export default function ImageSequenceCanvas() {
         style={{ backgroundColor: "#000000" }}
       />
 
-      {/* Mobile Top & Bottom Seamless Pure Black Edge Melts (Zero visible boundary) */}
-      <div className="sm:hidden absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-10" />
-      <div className="sm:hidden absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10" />
+      {/* Atmospheric Ambient Glow behind MacBook (Subtle Webind Crimson #FF384C) */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_48%_at_50%_34%,rgba(255,56,76,0.16),transparent_70%)] pointer-events-none z-10" />
 
-      {/* Ambient Red Gradient Glows (Webind Crimson #FF384C) - Desktop & Tablet Only, Hidden completely on mobile */}
+      {/* Cinematic Vignette Overlay: Melts all canvas edges 100% seamlessly into pure black (#000000) */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_95%_78%_at_50%_36%,transparent_30%,rgba(0,0,0,0.7)_65%,#000000_92%)] pointer-events-none z-10" />
+
+      {/* Extra Soft Edge Gradients */}
+      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-black via-black/85 to-transparent pointer-events-none z-10" />
+
+      {/* Ambient Red Gradient Glows (Webind Crimson #FF384C) - Desktop & Tablet Only */}
       {/* 1. Top-Left Corner Ambient Glow */}
       <motion.div
         animate={{

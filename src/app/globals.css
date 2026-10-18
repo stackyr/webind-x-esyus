@@ -62,22 +62,21 @@
   }
 }
 
-/* Custom minimal scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+/* Universal Invisible Scrollbars across the ENTIRE site (Zero scrollbars visible anywhere) */
+html,
+body,
+* {
+  scrollbar-width: none !important; /* Firefox & modern browsers */
+  -ms-overflow-style: none !important; /* IE & Edge */
 }
 
-::-webkit-scrollbar-track {
-  background: #000000;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #202634;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #323b4e;
+*::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
 
 /* Infinite Marquee Animation */

@@ -203,13 +203,67 @@ export const ArcShowcaseSection: React.FC<ArcShowcaseSectionProps> = ({
   const activeProject = SHOWCASE_PROJECTS[activeIndex];
 
   return (
-    <section id="showcase" className="relative z-20 w-full max-w-full bg-[#080B10] text-[#F5F7FA] pt-14 pb-4 sm:pt-16 sm:pb-6 overflow-hidden selection:bg-[#FF384C] selection:text-white scroll-mt-12">
-      {/* 1. TOP SEAMLESS BLACK GRADIENT MELT (Zero boundary lines, dissolves cleanly into Section 1) */}
-      <div className="absolute top-0 inset-x-0 h-40 sm:h-56 bg-gradient-to-b from-[#080B10] via-[#080B10]/85 via-50% to-transparent pointer-events-none z-20" />
+    <section id="showcase" className="relative z-20 w-full bg-[#080B10] text-[#F5F7FA] pt-14 pb-4 sm:pt-16 sm:pb-6 overflow-visible selection:bg-[#FF384C] selection:text-white scroll-mt-12">
+      {/* 1. TOP CURVED / ROUNDED BOUNDARY ARCH (Electric Blue Laser Glow Outline - 100% Mobile Responsive) */}
+      <div className="absolute -top-7 sm:-top-9 md:-top-11 left-0 right-0 w-full pointer-events-none z-30 leading-none overflow-visible">
+        <svg
+          viewBox="0 0 1440 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-7 sm:h-9 md:h-11 block"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="arcLaserStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#0070FF" stopOpacity="0" />
+              <stop offset="15%" stopColor="#0070FF" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#38BDF8" stopOpacity="1" />
+              <stop offset="85%" stopColor="#0070FF" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#0070FF" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="arcLaserGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#0070FF" stopOpacity="0" />
+              <stop offset="20%" stopColor="#0070FF" stopOpacity="0.3" />
+              <stop offset="50%" stopColor="#0070FF" stopOpacity="0.85" />
+              <stop offset="80%" stopColor="#0070FF" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#0070FF" stopOpacity="0" />
+            </linearGradient>
+          </defs>
 
-      {/* 2. AMBIENT SIDE GLOW ORBS: TWO SIDES STAY MINIMAL RED (NOT INCREASED) */}
-      <div className="absolute top-1/4 -left-36 w-[450px] h-[450px] bg-[#FF384C]/8 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 -right-36 w-[460px] h-[460px] bg-[#FF384C]/8 rounded-full blur-[150px] pointer-events-none" />
+          {/* Seamless Solid Fill matching Section Background */}
+          <path
+            d="M 0 48 Q 720 4 1440 48 L 1440 50 L 0 50 Z"
+            fill="#080B10"
+          />
+
+          {/* Soft Bloom Laser Glow along the curve (Electric Blue) */}
+          <path
+            d="M 0 48 Q 720 4 1440 48"
+            stroke="url(#arcLaserGlow)"
+            strokeWidth="4"
+            fill="none"
+            className="blur-[2px] opacity-80"
+          />
+
+          {/* Precision Crisp Laser Line along the curve (Cyan/Electric Blue) */}
+          <path
+            d="M 0 48 Q 720 4 1440 48"
+            stroke="url(#arcLaserStroke)"
+            strokeWidth="1.5"
+            fill="none"
+          />
+        </svg>
+
+        {/* Ambient Center Glow Bloom at the apex of the curve (Premium Electric Blue) */}
+        <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-64 sm:w-[460px] h-5 bg-gradient-to-r from-transparent via-[#0070FF]/40 to-transparent blur-md" />
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-72 sm:w-[480px] h-14 bg-[#0070FF]/15 blur-2xl pointer-events-none" />
+      </div>
+
+      {/* 2. AMBIENT SIDE GLOW ORBS: TWO SIDES STAY MINIMAL RED (Strictly clipped to section) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-1/4 -left-36 w-[450px] h-[450px] bg-[#FF384C]/8 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/3 -right-36 w-[460px] h-[460px] bg-[#FF384C]/8 rounded-full blur-[150px] pointer-events-none" />
+      </div>
 
       {/* 3. MINIMAL PRECISION TECH GRID OVERLAY */}
       <div

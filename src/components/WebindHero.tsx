@@ -26,17 +26,17 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
 
         {/* Top-right Controls: Live Status Pill & Animated 3-line Navigation Trigger */}
         <div className="flex items-center gap-2.5 sm:gap-3.5">
-          {/* Highlighted Electric Blue Live Status Pill */}
+          {/* Highlighted Partnership Electric Blue Live Status Pill */}
           <div className="relative group">
-            {/* Subtle Ambient Blue Backlight Glow */}
-            <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#0284C7] via-[#38BDF8] to-[#60A5FA] opacity-55 blur-sm group-hover:opacity-85 transition-opacity duration-300 pointer-events-none" />
+            {/* Subtle Ambient Electric Blue Backlight Glow (Matching Partnership Section Aura) */}
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#0038D6] via-[#0070FF] to-[#38BDF8] opacity-60 blur-md group-hover:opacity-90 group-hover:blur-lg transition-all duration-300 pointer-events-none" />
 
-            <div className="relative flex items-center gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#0A101D]/90 backdrop-blur-md border border-[#38BDF8]/55 shadow-[0_0_18px_rgba(56,189,248,0.35)] transition-all duration-200">
+            <div className="relative flex items-center gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#060D1A]/95 backdrop-blur-md border border-[#0070FF]/65 shadow-[0_0_20px_rgba(0,112,255,0.45),0_0_36px_rgba(0,70,220,0.25)] transition-all duration-200">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38BDF8] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0070FF] opacity-80" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0070FF] shadow-[0_0_10px_#0070FF,0_0_4px_#BFE0FF]" />
               </span>
-              <span className="text-[11px] sm:text-xs font-semibold text-[#F0F9FF] tracking-tight drop-shadow-[0_1px_4px_rgba(2,132,199,0.5)]">
+              <span className="text-[11px] sm:text-xs font-semibold text-white tracking-tight drop-shadow-[0_1px_6px_rgba(0,112,255,0.85)]">
                 Digital Solutions
               </span>
             </div>

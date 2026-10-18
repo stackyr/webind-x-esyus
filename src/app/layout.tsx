@@ -22,6 +22,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-[#080B10]" suppressHydrationWarning>
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/sequence/ezgif-frame-001.jpg"
+          // @ts-ignore
+          fetchPriority="high"
+        />
+      </head>
       <body suppressHydrationWarning className="bg-[#080B10] text-[#F5F7FA]">
         <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>

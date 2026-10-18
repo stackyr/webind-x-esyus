@@ -123,23 +123,74 @@ export default function ImageSequenceCanvas() {
     drawFrame(currentFrameRef.current);
   }, [drawFrame]);
 
-  // Preload all 240 frames immediately
+  // Staged progressive loading to avoid choking Vercel's HTTP/2 network queue
   useEffect(() => {
-    if (!preloadingStarted) {
-      preloadingStarted = true;
-      for (let i = 0; i < TOTAL_FRAMES; i++) {
+    if (preloadingStarted) {
+      drawFrame(currentFrameRef.current);
+      return;
+    }
+    preloadingStarted = true;
+
+    const loadSingleFrame = (idx: number, priority: "high" | "auto" | "low" = "auto"): Promise<void> => {
+      return new Promise((resolve) => {
+        if (imageCache[idx] && imageCache[idx].complete) {
+          resolve();
+          return;
+        }
         const img = new Image();
-        img.src = getFrameUrl(i);
+        if ("fetchPriority" in img) {
+          (img as any).fetchPriority = priority;
+        }
         img.onload = () => {
-          if (i === 0 || Math.abs(i - Math.round(currentFrameRef.current)) <= 2) {
+          if (idx === 0 || Math.abs(idx - Math.round(currentFrameRef.current)) <= 3) {
             drawFrame(currentFrameRef.current);
           }
+          resolve();
         };
-        imageCache[i] = img;
-      }
-    } else {
-      drawFrame(currentFrameRef.current);
+        img.onerror = () => resolve();
+        img.src = getFrameUrl(idx);
+        imageCache[idx] = img;
+      });
+    };
+
+    // Phase 1: High Priority initial viewport frames (0 to 5) - Instant visual hero render
+    for (let i = 0; i <= 5; i++) {
+      loadSingleFrame(i, "high");
     }
+
+    // Phase 2: Keyframe Skeleton (every 4th frame across the entire timeline)
+    const keyframes: number[] = [];
+    for (let i = 6; i < TOTAL_FRAMES; i += 4) {
+      keyframes.push(i);
+    }
+
+    // Phase 3: In-between fill frames
+    const fillFrames: number[] = [];
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
+      if (i > 5 && !keyframes.includes(i)) {
+        fillFrames.push(i);
+      }
+    }
+
+    // Concurrent batch loader (8 parallel downloads max so network bandwidth is never choked)
+    const queue = [...keyframes, ...fillFrames];
+    const CONCURRENCY = 8;
+    let active = 0;
+    let index = 0;
+
+    const next = () => {
+      while (active < CONCURRENCY && index < queue.length) {
+        const frameIdx = queue[index++];
+        active++;
+        loadSingleFrame(frameIdx, "auto").finally(() => {
+          active--;
+          next();
+        });
+      }
+    };
+
+    // Start background batch queue smoothly
+    setTimeout(next, 40);
   }, [drawFrame]);
 
   // Main scroll sync and render loop

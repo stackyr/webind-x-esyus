@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Home, Layers, Sparkles, Film, ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -11,53 +11,73 @@ interface MobileAppNavBarProps {
 export const MobileAppNavBar: React.FC<MobileAppNavBarProps> = ({ onInquireClick }) => {
   const [activeTab, setActiveTab] = useState<"home" | "features" | "showcase" | "reel">("home");
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
+  const tickingRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      if (tickingRef.current) return;
+      tickingRef.current = true;
 
-      // Keep dock visible on mobile, or gently tuck if scrolling very fast downwards
-      if (currentScrollY > 100 && currentScrollY > lastScrollY + 80) {
-        setIsVisible(false);
-      } else if (currentScrollY < lastScrollY - 20 || currentScrollY < 120) {
-        setIsVisible(true);
-      }
-      setLastScrollY(currentScrollY);
+      requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        const lastScrollY = lastScrollYRef.current;
 
-      // Section detection
-      const sections = [
-        { id: "sequence-section", tab: "home" as const },
-        { id: "features", tab: "features" as const },
-        { id: "showcase", tab: "showcase" as const },
-        { id: "reel", tab: "reel" as const },
-      ];
+        // Keep dock visible on mobile, or gently tuck if scrolling rapidly downwards
+        if (currentScrollY > 100 && currentScrollY > lastScrollY + 80) {
+          setIsVisible(false);
+        } else if (currentScrollY < lastScrollY - 20 || currentScrollY < 120) {
+          setIsVisible(true);
+        }
+        lastScrollYRef.current = currentScrollY;
 
-      for (const section of sections.reverse()) {
-        const el = document.getElementById(section.id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= window.innerHeight * 0.45) {
-            setActiveTab(section.tab);
-            break;
+        // Section detection
+        const sections = [
+          { id: "sequence-section", tab: "home" as const },
+          { id: "features", tab: "features" as const },
+          { id: "showcase", tab: "showcase" as const },
+          { id: "reel", tab: "reel" as const },
+        ];
+
+        for (const section of sections.reverse()) {
+          const el = document.getElementById(section.id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= window.innerHeight * 0.45) {
+              setActiveTab(section.tab);
+              break;
+            }
           }
         }
-      }
+
+        tickingRef.current = false;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const scrollTo = (id: string, tab: "home" | "features" | "showcase" | "reel") => {
     setActiveTab(tab);
+    const lenis = (window as any).lenis;
+
     if (tab === "home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (lenis) {
+        lenis.scrollTo(0, { duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
       return;
     }
+
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      if (lenis) {
+        lenis.scrollTo(el, { offset: -20, duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 

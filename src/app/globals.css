@@ -29,9 +29,11 @@
     overflow: hidden;
   }
 
-  /* Bypass pointer hover recalculations while scrolling for butter-smooth 120fps */
-  body.is-scrolling * {
-    pointer-events: none !important;
+  /* Bypass pointer hover recalculations while scrolling for butter-smooth 120fps (desktop mouse only) */
+  @media (hover: hover) and (pointer: fine) {
+    body.is-scrolling * {
+      pointer-events: none !important;
+    }
   }
 
   body {

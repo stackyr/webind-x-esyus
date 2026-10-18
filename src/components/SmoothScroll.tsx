@@ -6,15 +6,18 @@ import "lenis/dist/lenis.css";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // High-performance silky Lenis smooth scrolling instance
+    // Ultra-luxurious butter-smooth Lenis configuration for both desktop and mobile
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.4,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.8,
+      syncTouch: true,
+      syncTouchLerp: 0.085,
+      touchInertiaExponent: 1.7,
       autoRaf: false,
     });
 
@@ -29,7 +32,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       if (scrollTimeout) clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         document.body.classList.remove("is-scrolling");
-      }, 120);
+      }, 100);
     });
 
     let rafId: number;

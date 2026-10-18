@@ -147,31 +147,53 @@ export default function ImageSequenceCanvas() {
     isRunningRef.current = true;
     updateCanvasDimensions();
 
-    window.addEventListener("resize", updateCanvasDimensions);
+    const targetProgressRef = { current: 0 };
+    let totalScrollable = 1;
+    let sequenceTop = 0;
+
+    const measure = () => {
+      const sequenceSection = document.getElementById("sequence-section");
+      if (sequenceSection) {
+        totalScrollable = Math.max(1, sequenceSection.offsetHeight - window.innerHeight);
+        sequenceTop = sequenceSection.offsetTop;
+      }
+    };
+
+    measure();
+
+    const onScroll = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      const currentScrolled = scrollY - sequenceTop;
+      targetProgressRef.current = Math.min(Math.max(currentScrolled / totalScrollable, 0), 1);
+    };
+
+    onScroll();
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    const handleResize = () => {
+      measure();
+      onScroll();
+      updateCanvasDimensions();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.on("scroll", onScroll);
+    }
 
     let rafId: number;
     const loop = () => {
       if (!isRunningRef.current) return;
 
-      const sequenceSection = document.getElementById("sequence-section");
-      let progress = 0;
+      const targetFrame = targetProgressRef.current * (TOTAL_FRAMES - 1);
 
-      if (sequenceSection) {
-        const totalScrollable = sequenceSection.offsetHeight - window.innerHeight;
-        const currentScrolled = -sequenceSection.getBoundingClientRect().top;
-        progress = totalScrollable > 0 ? Math.min(Math.max(currentScrolled / totalScrollable, 0), 1) : 0;
-      } else {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
-        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        progress = scrollable > 0 ? Math.min(Math.max(scrollTop / scrollable, 0), 1) : 0;
-      }
-
-      const targetFrame = progress * (TOTAL_FRAMES - 1);
-
-      // Smooth lerping towards target frame
+      // Ultra-smooth lerping (0.18) towards target frame
       const diff = targetFrame - currentFrameRef.current;
       if (Math.abs(diff) > 0.005) {
-        currentFrameRef.current += diff * 0.2;
+        currentFrameRef.current += diff * 0.18;
         const rounded = Math.round(currentFrameRef.current);
         if (rounded !== lastDrawnFrameRef.current) {
           lastDrawnFrameRef.current = rounded;
@@ -194,7 +216,11 @@ export default function ImageSequenceCanvas() {
     return () => {
       isRunningRef.current = false;
       cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", updateCanvasDimensions);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", handleResize);
+      if (lenis) {
+        lenis.off("scroll", onScroll);
+      }
     };
   }, [drawFrame, updateCanvasDimensions]);
 

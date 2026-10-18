@@ -18,6 +18,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       wheelMultiplier: 1.0,
       touchMultiplier: 1.0,
       syncTouch: false, // Disables touch interception so mobile touch scroll runs natively at 120Hz with zero stutter
+      overscroll: true,
       autoRaf: false,
     });
 

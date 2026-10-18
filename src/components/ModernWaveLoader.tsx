@@ -277,7 +277,6 @@ export const ModernWaveLoader: React.FC<ModernWaveLoaderProps> = ({
         setTimeout(() => {
           setIsFinished(true);
           document.body.style.overflow = "";
-          document.body.style.overflowX = "clip";
           if ((window as any).lenis) {
             (window as any).lenis.start();
           }
@@ -289,7 +288,6 @@ export const ModernWaveLoader: React.FC<ModernWaveLoaderProps> = ({
     return () => {
       clearInterval(interval);
       document.body.style.overflow = "";
-      document.body.style.overflowX = "clip";
       if ((window as any).lenis) {
         (window as any).lenis.start();
       }

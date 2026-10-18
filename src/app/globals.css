@@ -10,12 +10,15 @@
     -webkit-text-size-adjust: 100%;
     background-color: #000000;
     overflow-x: clip;
+    overscroll-behavior-y: auto;
+    overscroll-behavior-x: none;
   }
 
   /* Lenis Smooth Scroll Core Rules */
   html.lenis,
   html.lenis body {
     height: auto;
+    overscroll-behavior-y: auto;
   }
 
   .lenis.lenis-smooth {
@@ -50,11 +53,12 @@
     background-color: #000000;
     color: #F5F7FA;
     letter-spacing: -0.015em;
-    touch-action: manipulation;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
     max-width: 100vw;
+    overscroll-behavior-y: auto;
+    overscroll-behavior-x: none;
   }
 }
 

@@ -17,6 +17,7 @@ function getFrameUrl(index: number): string {
 export default function ImageSequenceCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const currentFrameRef = useRef<number>(0);
+  const lastDrawnFrameRef = useRef<number>(-1);
   const isRunningRef = useRef<boolean>(true);
 
   // Draw a frame onto the canvas with cover sizing
@@ -152,13 +153,22 @@ export default function ImageSequenceCanvas() {
 
       // Smooth lerping towards target frame
       const diff = targetFrame - currentFrameRef.current;
-      if (Math.abs(diff) > 0.01) {
-        currentFrameRef.current += diff * 0.18;
-      } else {
+      if (Math.abs(diff) > 0.005) {
+        currentFrameRef.current += diff * 0.2;
+        const rounded = Math.round(currentFrameRef.current);
+        if (rounded !== lastDrawnFrameRef.current) {
+          lastDrawnFrameRef.current = rounded;
+          drawFrame(rounded);
+        }
+      } else if (currentFrameRef.current !== targetFrame) {
         currentFrameRef.current = targetFrame;
+        const rounded = Math.round(targetFrame);
+        if (rounded !== lastDrawnFrameRef.current) {
+          lastDrawnFrameRef.current = rounded;
+          drawFrame(rounded);
+        }
       }
 
-      drawFrame(currentFrameRef.current);
       rafId = requestAnimationFrame(loop);
     };
 

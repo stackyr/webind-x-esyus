@@ -61,46 +61,40 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
           }}
         />
 
-        {/* Living Liquid Wave 1: Molten Crimson Plasma Drift (Anchored low at bottom baseline) */}
+        {/* Living Liquid Wave 1: Molten Crimson Plasma Drift (GPU Hardware-Accelerated) */}
         <motion.div
           animate={{
             x: ['-18%', '20%', '-10%', '-18%'],
             y: ['3%', '-7%', '5%', '3%'],
-            scale: [1, 1.2, 0.95, 1],
+            scaleX: [1, 1.25, 0.95, 1],
+            scaleY: [1, 0.85, 1.15, 1],
             rotate: [0, 25, -18, 0],
-            borderRadius: [
-              '42% 58% 70% 30% / 45% 45% 55% 55%',
-              '58% 42% 30% 70% / 55% 35% 65% 45%',
-              '42% 58% 70% 30% / 45% 45% 55% 55%',
-            ],
           }}
           transition={{
             duration: 7.5,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-24 left-[-2%] w-[460px] sm:w-[720px] h-[180px] sm:h-[260px] bg-gradient-to-tr from-[#FF1E38]/50 via-[#FF384C]/55 to-[#E01E37]/30 blur-[60px] sm:blur-[80px]"
+          style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
+          className="absolute -bottom-24 left-[-2%] w-[460px] sm:w-[720px] h-[180px] sm:h-[260px] rounded-[48%_52%_65%_35%/55%_45%_55%_45%] bg-gradient-to-tr from-[#FF1E38]/50 via-[#FF384C]/55 to-[#E01E37]/30 blur-[60px] sm:blur-[80px] pointer-events-none"
         />
 
-        {/* Living Liquid Wave 2: Molten Ruby-Coral Plasma Flow (Anchored low at bottom baseline) */}
+        {/* Living Liquid Wave 2: Molten Ruby-Coral Plasma Flow (GPU Hardware-Accelerated) */}
         <motion.div
           animate={{
             x: ['20%', '-20%', '10%', '20%'],
             y: ['-6%', '5%', '-4%', '-6%'],
-            scale: [1.12, 0.9, 1.18, 1.12],
+            scaleX: [1.12, 0.9, 1.18, 1.12],
+            scaleY: [0.92, 1.15, 0.88, 0.92],
             rotate: [0, -30, 20, 0],
-            borderRadius: [
-              '50% 50% 30% 70% / 50% 60% 40% 60%',
-              '35% 65% 65% 35% / 60% 40% 60% 40%',
-              '50% 50% 30% 70% / 50% 60% 40% 60%',
-            ],
           }}
           transition={{
             duration: 8.5,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-26 right-[-2%] w-[480px] sm:w-[760px] h-[190px] sm:h-[270px] bg-gradient-to-tl from-[#FF4D61]/40 via-[#FF1E38]/52 to-[#990A1A]/35 blur-[60px] sm:blur-[85px]"
+          style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
+          className="absolute -bottom-26 right-[-2%] w-[480px] sm:w-[760px] h-[190px] sm:h-[270px] rounded-[38%_62%_52%_48%/62%_38%_62%_38%] bg-gradient-to-tl from-[#FF4D61]/40 via-[#FF1E38]/52 to-[#990A1A]/35 blur-[60px] sm:blur-[85px] pointer-events-none"
         />
 
         {/* Living Liquid Wave 3: Pulsing Molten Core directly under watermark letters */}
@@ -116,7 +110,8 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[360px] sm:w-[600px] h-[140px] sm:h-[200px] bg-gradient-to-r from-[#FF1E38]/40 via-[#FF4D61]/65 to-[#FF1E38]/40 blur-[50px] sm:blur-[70px]"
+          style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
+          className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[360px] sm:w-[600px] h-[140px] sm:h-[200px] rounded-[50%] bg-gradient-to-r from-[#FF1E38]/40 via-[#FF4D61]/65 to-[#FF1E38]/40 blur-[50px] sm:blur-[70px] pointer-events-none"
         />
 
         {/* Living Liquid Ribbon 4: Dynamic Molten Horizon Ribbon */}
@@ -131,7 +126,8 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-4 inset-x-0 h-[100px] sm:h-[150px] bg-gradient-to-r from-transparent via-[#FF384C]/60 via-50% to-transparent blur-[40px] sm:blur-[55px]"
+          style={{ willChange: 'transform, opacity', transform: 'translate3d(0,0,0)' }}
+          className="absolute -bottom-4 inset-x-0 h-[100px] sm:h-[150px] bg-gradient-to-r from-transparent via-[#FF384C]/60 via-50% to-transparent blur-[40px] sm:blur-[55px] pointer-events-none"
         />
       </div>
 

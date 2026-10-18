@@ -30,7 +30,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
   };
 
   return (
-    <footer className="relative z-20 w-full bg-[#080B10] text-[#F5F7FA] pt-6 sm:pt-10 pb-28 sm:pb-16 md:pb-12 select-none overflow-hidden">
+    <footer className="relative z-20 w-full bg-[#080B10] text-[#F5F7FA] pt-6 sm:pt-10 pb-2 sm:pb-3 md:pb-4 select-none overflow-hidden">
       <style>{`
         @keyframes liquidFlowText {
           0% { background-position: 0% 50%; }

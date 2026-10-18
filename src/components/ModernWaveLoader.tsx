@@ -23,7 +23,7 @@ export interface ModernCausticWaveProps {
  * Pure, borderless, undulating liquid caustic light wave ribbon on HTML5 Canvas.
  */
 export const ModernCausticWaveCanvas: React.FC<ModernCausticWaveProps> = ({
-  colorTheme = "cyan",
+  colorTheme = "red",
   height = 280,
   width = 960,
   className = "",
@@ -249,7 +249,7 @@ export interface ModernWaveLoaderProps {
 export const ModernWaveLoader: React.FC<ModernWaveLoaderProps> = ({
   onComplete,
   minDurationMs = 2400,
-  mode = "cyan",
+  mode = "red",
   fullscreen = true,
   label = "Webind × Esyus",
   showThemeToggle = true,
@@ -282,7 +282,7 @@ export const ModernWaveLoader: React.FC<ModernWaveLoaderProps> = ({
             (window as any).lenis.start();
           }
           if (onComplete) onComplete();
-        }, 300);
+        }, 200);
       }
     }, 25);
 
@@ -305,9 +305,14 @@ export const ModernWaveLoader: React.FC<ModernWaveLoaderProps> = ({
       {!isFinished && (
         <motion.div
           key="wave-loader"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, filter: "blur(12px)" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{
+            opacity: 0,
+            filter: "blur(22px)",
+            transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+          }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className={containerClasses}
           style={{ overflowX: "clip" }}
         >

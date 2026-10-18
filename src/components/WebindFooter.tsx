@@ -253,7 +253,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
         FROSTED WEBIND × ESYUS TITANIC WATERMARK TYPOGRAPHY:
         Positioned in full-width container outside max-w-7xl with safe viewport scaling so letters NEVER get clipped!
       */}
-      <div className="relative z-20 mt-8 sm:mt-12 w-full max-w-full flex items-end justify-center pointer-events-none px-2 sm:px-4 pb-0 overflow-hidden">
+      <div className="relative z-20 mt-8 sm:mt-12 w-full flex items-end justify-center pointer-events-none px-2 sm:px-4 pb-0 overflow-visible">
         
         {/* Dynamic Molten Liquid Aura directly hugging the typography */}
         <motion.div

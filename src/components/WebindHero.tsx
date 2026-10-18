@@ -1,0 +1,118 @@
+"use client";
+
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { motion } from 'motion/react';
+
+interface WebindHeroProps {
+  onStartProject: () => void;
+}
+
+export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject }) => {
+  return (
+    <div className="min-h-screen w-full bg-transparent text-[#F5F7FA] flex flex-col justify-between selection:bg-[#FF384C] selection:text-white pointer-events-none">
+      {/* 1. TOP NAVIGATION */}
+      <header className="w-full max-w-7xl mx-auto px-4 sm:px-12 lg:px-16 pt-4 sm:pt-8 pb-3 sm:pb-4 flex items-center justify-between pointer-events-auto">
+        {/* Top-left: Webind × Esyus wordmark */}
+        <a
+          href="/"
+          className="text-base sm:text-2xl font-semibold tracking-tight text-white hover:opacity-90 active:scale-95 transition-all drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] flex items-center gap-1.5"
+        >
+          <span>Webind</span>
+          <span className="text-[#FF384C] font-light">×</span>
+          <span>Esyus</span>
+        </a>
+
+        {/* Top-right: App-like live status pill */}
+        <div className="flex items-center gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#0E131E]/80 backdrop-blur-md border border-white/10 shadow-sm">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          </span>
+          <span className="text-[11px] sm:text-xs font-medium text-[#E2E8F0] tracking-tight">
+            Digital Solutions
+          </span>
+        </div>
+      </header>
+
+      {/* 2. MAIN HERO SECTION (Spacious Canvas, Responsive Margin-Aligned Content) */}
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 flex-1 flex flex-col justify-end pt-4 pb-1 sm:pb-2 pointer-events-none">
+        {/* LOWER AREA: Pushed flush down and to margins to clear the centered 3D MacBook */}
+        <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-4 sm:gap-8 pb-1 sm:pb-2">
+          
+          {/* LOWER-LEFT AREA: Paragraph + Action Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-start gap-2.5 sm:gap-4 max-w-[360px] pointer-events-auto w-full sm:w-auto"
+          >
+            {/* Supporting paragraph: responsive size, high-contrast drop-shadow */}
+            <p className="text-xs sm:text-[15px] leading-relaxed text-[#F1F5F9] font-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+              We design and develop high-performance websites and digital experiences that help ambitious brands grow.
+            </p>
+
+            {/* Primary CTA: Minimal pill-shaped button labelled "Start a Project" with circular arrow */}
+            <button
+              onClick={onStartProject}
+              className="group inline-flex items-center justify-between sm:justify-start gap-3 pl-4 pr-2 py-2 sm:pl-5 sm:pr-2.5 sm:py-2 rounded-full bg-[#12161F]/90 backdrop-blur-md border border-[#202634] hover:border-[#FF384C]/60 active:scale-95 transition-all duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#FF384C] shadow-lg shadow-black/60 w-auto"
+              aria-label="Start a Project with Webind"
+            >
+              <span className="text-xs sm:text-base font-medium tracking-tight text-[#F5F7FA]">
+                Start a Project
+              </span>
+              <span
+                className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white text-[#080B10] transition-transform duration-200 group-hover:translate-x-0.5 group-active:scale-90"
+                aria-hidden="true"
+              >
+                <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[2.5]" />
+              </span>
+            </button>
+          </motion.div>
+
+          {/* LOWER-RIGHT AREA: 2-column mobile app widget cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full md:w-auto md:max-w-[360px] pointer-events-auto"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-1 gap-2.5 sm:gap-3.5 w-full md:text-right pt-1 md:pt-0">
+              {/* Item 1 Card */}
+              <div className="p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-[#0C1017]/70 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none border border-white/8 sm:border-0 shadow-sm sm:shadow-none">
+                <h3 className="text-xs sm:text-base font-semibold sm:font-medium text-white tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                  Web + Digital
+                </h3>
+                <p className="text-[10px] sm:text-xs leading-relaxed text-[#CBD5E1] mt-0.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                  Websites, landing pages and digital experiences.
+                </p>
+              </div>
+
+              {/* Item 2 Card */}
+              <div className="p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-[#0C1017]/70 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none border border-white/8 sm:border-0 md:border-t md:border-[#202634] md:pt-3 shadow-sm sm:shadow-none">
+                <h3 className="text-xs sm:text-base font-semibold sm:font-medium text-white tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                  Webind × Esyus
+                </h3>
+                <p className="text-[10px] sm:text-xs leading-relaxed text-[#CBD5E1] mt-0.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                  A collaborative approach to websites, apps and software.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+      </main>
+
+      {/* 3. BOTTOM SCROLL INDICATOR */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 pb-4 sm:pb-5 flex items-center justify-between pointer-events-auto">
+        <span className="font-mono text-[10px] sm:text-xs font-medium text-[#CBD5E1] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+          01 // OVERVIEW
+        </span>
+        <span className="text-[10px] sm:text-xs font-medium text-[#CBD5E1] tracking-wider uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] flex items-center gap-1.5">
+          <span>Scroll to explore capabilities</span>
+          <span className="text-[#FF384C] font-bold">↓</span>
+        </span>
+      </div>
+    </div>
+  );
+};

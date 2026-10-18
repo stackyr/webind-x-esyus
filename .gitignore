@@ -1,25 +1,40 @@
-# Logs
-logs
-*.log
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# local env files
+.env*.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-Video Project 3.mp4
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# temporary archives, videos, and reference downloads
+*.zip
+/*.mp4
+/lunetra---plain-typography-architecture/
+
+# root draft duplicate component files (actual source is in src/components/)
+/*.tsx

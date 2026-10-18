@@ -44,24 +44,24 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
       `}</style>
 
       {/* 100% Solid Seamless Black Melt at Top (Zero visible boundary with previous section) */}
-      <div className="absolute top-0 inset-x-0 h-48 sm:h-64 bg-gradient-to-b from-[#080B10] via-[#080B10] via-60% to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 inset-x-0 h-64 sm:h-80 bg-gradient-to-b from-[#080B10] via-[#080B10] via-70% to-transparent pointer-events-none z-10" />
 
       {/* SUBTLE SIDE EDGE MASKS */}
       <div className="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-[#080B10] via-[#080B10]/75 to-transparent pointer-events-none z-10" />
       <div className="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-[#080B10] via-[#080B10]/75 to-transparent pointer-events-none z-10" />
 
-      {/* VIVID ANIMATED LIVING LIQUID GRADIENT GLOW (Confined strictly to bottom baseline) */}
+      {/* VIVID ANIMATED LIVING LIQUID GRADIENT GLOW (Strictly confined to bottom baseline) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        {/* Base horizon gradient - 100% pitch black across the top 68% of footer */}
+        {/* Base horizon gradient - 100% pitch black across the top 84% of footer */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(180deg, #080B10 0%, #080B10 68%, #0C080E 78%, rgba(130, 16, 32, 0.2) 88%, rgba(210, 25, 48, 0.4) 95%, rgba(255, 45, 68, 0.55) 100%)',
+              'linear-gradient(180deg, #080B10 0%, #080B10 82%, #0A080C 88%, rgba(140, 16, 32, 0.15) 94%, rgba(255, 45, 68, 0.35) 100%)',
           }}
         />
 
-        {/* Living Liquid Wave 1: Molten Crimson Plasma Drift (GPU Hardware-Accelerated) */}
+        {/* Living Liquid Wave 1: Molten Crimson Plasma Drift (Pushed strictly down to baseline) */}
         <motion.div
           animate={{
             x: ['-18%', '20%', '-10%', '-18%'],
@@ -76,10 +76,10 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             ease: 'easeInOut',
           }}
           style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
-          className="absolute -bottom-24 left-[-2%] w-[460px] sm:w-[720px] h-[180px] sm:h-[260px] rounded-[48%_52%_65%_35%/55%_45%_55%_45%] bg-gradient-to-tr from-[#FF1E38]/50 via-[#FF384C]/55 to-[#E01E37]/30 blur-[60px] sm:blur-[80px] pointer-events-none"
+          className="absolute -bottom-36 sm:-bottom-44 left-[-2%] w-[420px] sm:w-[650px] h-[130px] sm:h-[180px] rounded-[48%_52%_65%_35%/55%_45%_55%_45%] bg-gradient-to-tr from-[#FF1E38]/30 via-[#FF384C]/35 to-[#E01E37]/18 blur-[50px] sm:blur-[70px] pointer-events-none"
         />
 
-        {/* Living Liquid Wave 2: Molten Ruby-Coral Plasma Flow (GPU Hardware-Accelerated) */}
+        {/* Living Liquid Wave 2: Molten Ruby-Coral Plasma Flow (Pushed strictly down to baseline) */}
         <motion.div
           animate={{
             x: ['20%', '-20%', '10%', '20%'],
@@ -94,7 +94,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             ease: 'easeInOut',
           }}
           style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
-          className="absolute -bottom-26 right-[-2%] w-[480px] sm:w-[760px] h-[190px] sm:h-[270px] rounded-[38%_62%_52%_48%/62%_38%_62%_38%] bg-gradient-to-tl from-[#FF4D61]/40 via-[#FF1E38]/52 to-[#990A1A]/35 blur-[60px] sm:blur-[85px] pointer-events-none"
+          className="absolute -bottom-36 sm:-bottom-44 right-[-2%] w-[440px] sm:w-[680px] h-[140px] sm:h-[190px] rounded-[38%_62%_52%_48%/62%_38%_62%_38%] bg-gradient-to-tl from-[#FF4D61]/25 via-[#FF1E38]/35 to-[#990A1A]/20 blur-[50px] sm:blur-[70px] pointer-events-none"
         />
 
         {/* Living Liquid Wave 3: Pulsing Molten Core directly under watermark letters */}
@@ -111,14 +111,14 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             ease: 'easeInOut',
           }}
           style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
-          className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[360px] sm:w-[600px] h-[140px] sm:h-[200px] rounded-[50%] bg-gradient-to-r from-[#FF1E38]/40 via-[#FF4D61]/65 to-[#FF1E38]/40 blur-[50px] sm:blur-[70px] pointer-events-none"
+          className="absolute -bottom-28 sm:-bottom-32 left-1/2 -translate-x-1/2 w-[320px] sm:w-[520px] h-[90px] sm:h-[130px] rounded-[50%] bg-gradient-to-r from-[#FF1E38]/25 via-[#FF4D61]/40 to-[#FF1E38]/25 blur-[40px] sm:blur-[55px] pointer-events-none"
         />
 
         {/* Living Liquid Ribbon 4: Dynamic Molten Horizon Ribbon */}
         <motion.div
           animate={{
-            opacity: [0.45, 0.8, 0.45],
-            scaleY: [0.85, 1.2, 0.85],
+            opacity: [0.35, 0.6, 0.35],
+            scaleY: [0.85, 1.15, 0.85],
             x: ['-5%', '5%', '-5%'],
           }}
           transition={{
@@ -127,7 +127,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             ease: 'easeInOut',
           }}
           style={{ willChange: 'transform, opacity', transform: 'translate3d(0,0,0)' }}
-          className="absolute -bottom-4 inset-x-0 h-[100px] sm:h-[150px] bg-gradient-to-r from-transparent via-[#FF384C]/60 via-50% to-transparent blur-[40px] sm:blur-[55px] pointer-events-none"
+          className="absolute -bottom-14 sm:-bottom-16 inset-x-0 h-[70px] sm:h-[110px] bg-gradient-to-r from-transparent via-[#FF384C]/35 via-50% to-transparent blur-[30px] sm:blur-[45px] pointer-events-none"
         />
       </div>
 
@@ -268,13 +268,13 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-[1200px] h-[120px] sm:h-[180px] bg-gradient-to-r from-transparent via-[#FF384C]/50 via-50% to-transparent blur-[45px] sm:blur-[60px] pointer-events-none"
+          className="absolute -bottom-10 sm:-bottom-14 left-1/2 -translate-x-1/2 w-[85%] max-w-[1100px] h-[80px] sm:h-[130px] bg-gradient-to-r from-transparent via-[#FF384C]/32 via-50% to-transparent blur-[35px] sm:blur-[50px] pointer-events-none"
         />
 
         {/* Underlay Ambient Glow Pass (Enhanced with liquid breathing) */}
         <motion.h1
           animate={{
-            opacity: [0.22, 0.42, 0.22],
+            opacity: [0.15, 0.32, 0.15],
             scale: [0.99, 1.015, 0.99],
           }}
           transition={{
@@ -282,25 +282,25 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute text-[9.5vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-[0.015em] sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap text-[#FFA6B0]/25"
+          className="absolute text-[9.5vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-[0.015em] sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap text-[#FFA6B0]/15"
           style={{
-            filter: 'blur(16px)',
+            filter: 'blur(10px)',
             transform: 'translateY(2px)',
           }}
           aria-hidden="true"
         >
-          Webind <span className="text-[#FF384C]/75 mx-2 sm:mx-3 font-light">×</span> Esyus
+          Webind <span className="text-[#FF384C]/65 mx-2 sm:mx-3 font-light">×</span> Esyus
         </motion.h1>
 
         {/* Secondary Soft Frosted Pass */}
         <h1
-          className="absolute text-[9.5vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-[0.015em] sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap text-[#FFD6DC]/30"
+          className="absolute text-[9.5vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-[0.015em] sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap text-[#FFD6DC]/18"
           style={{
-            filter: 'blur(5px)',
+            filter: 'blur(4px)',
           }}
           aria-hidden="true"
         >
-          Webind <span className="text-[#FF384C]/75 mx-2 sm:mx-3 font-light">×</span> Esyus
+          Webind <span className="text-[#FF384C]/65 mx-2 sm:mx-3 font-light">×</span> Esyus
         </h1>
 
         {/* Primary Front Pass with Living Liquid Shimmer Flow */}
@@ -313,7 +313,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             filter: 'blur(0.6px)',
-            textShadow: '0 0 35px rgba(255, 56, 76, 0.42)',
+            textShadow: '0 0 18px rgba(255, 56, 76, 0.28)',
           }}
         >
           Webind <span className="text-[#FF384C]/85 mx-2 sm:mx-3 font-light">×</span> Esyus

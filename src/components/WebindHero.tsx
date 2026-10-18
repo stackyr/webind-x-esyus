@@ -23,15 +23,20 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject }) => {
           <span>Esyus</span>
         </a>
 
-        {/* Top-right: App-like live status pill */}
-        <div className="flex items-center gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#0E131E]/80 backdrop-blur-md border border-white/10 shadow-sm">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span className="text-[11px] sm:text-xs font-medium text-[#E2E8F0] tracking-tight">
-            Digital Solutions
-          </span>
+        {/* Top-right: Highlighted Electric Blue Live Status Pill */}
+        <div className="relative group">
+          {/* Subtle Ambient Blue Backlight Glow */}
+          <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#0284C7] via-[#38BDF8] to-[#60A5FA] opacity-55 blur-sm group-hover:opacity-85 transition-opacity duration-300 pointer-events-none" />
+
+          <div className="relative flex items-center gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#0A101D]/90 backdrop-blur-md border border-[#38BDF8]/55 shadow-[0_0_18px_rgba(56,189,248,0.35)] transition-all duration-200">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38BDF8] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]" />
+            </span>
+            <span className="text-[11px] sm:text-xs font-semibold text-[#F0F9FF] tracking-tight drop-shadow-[0_1px_4px_rgba(2,132,199,0.5)]">
+              Digital Solutions
+            </span>
+          </div>
         </div>
       </header>
 

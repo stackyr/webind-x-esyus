@@ -8,6 +8,7 @@ interface DesktopNavigationModalProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenInquiry: (projectName?: string) => void;
+  onOpenContact?: (topic?: string) => void;
 }
 
 interface NavItem {
@@ -30,6 +31,7 @@ export const DesktopNavigationModal: React.FC<DesktopNavigationModalProps> = ({
   isOpen,
   onClose,
   onOpenInquiry,
+  onOpenContact,
 }) => {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -64,7 +66,11 @@ export const DesktopNavigationModal: React.FC<DesktopNavigationModalProps> = ({
 
     if (item.isAction) {
       setTimeout(() => {
-        onOpenInquiry("Navigation Inquiry");
+        if (onOpenContact) {
+          onOpenContact("Navigation / Let's Talk");
+        } else {
+          onOpenInquiry("Navigation Inquiry");
+        }
       }, 300);
       return;
     }
@@ -141,7 +147,13 @@ export const DesktopNavigationModal: React.FC<DesktopNavigationModalProps> = ({
               <button
                 onClick={() => {
                   onClose();
-                  setTimeout(() => onOpenInquiry("Navigation CTA"), 300);
+                  setTimeout(() => {
+                    if (onOpenContact) {
+                      onOpenContact("Header / Let's Talk");
+                    } else {
+                      onOpenInquiry("Navigation CTA");
+                    }
+                  }, 300);
                 }}
                 className="group relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white/25 hover:border-white bg-transparent hover:bg-white/10 text-xs sm:text-sm font-medium tracking-tight text-white transition-all duration-200 cursor-pointer shadow-[0_2px_12px_rgba(0,0,0,0.5)]"
               >

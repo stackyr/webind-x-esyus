@@ -10,6 +10,7 @@ import { PremiumMarquee } from "@/components/PremiumMarquee";
 import { WebindEsyusPartnership } from "@/components/WebindEsyusPartnership";
 import { WebindFooter } from "@/components/WebindFooter";
 import { ProjectInquiryModal } from "@/components/ProjectInquiryModal";
+import { ContactModal } from "@/components/ContactModal";
 import { MobileAppNavBar } from "@/components/MobileAppNavBar";
 import { DesktopNavigationModal } from "@/components/DesktopNavigationModal";
 import { ModernWaveLoader } from "@/components/ModernWaveLoader";
@@ -17,12 +18,19 @@ import { ModernWaveLoader } from "@/components/ModernWaveLoader";
 export default function Home() {
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [inquiryProject, setInquiryProject] = useState<string | undefined>(undefined);
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [contactTopic, setContactTopic] = useState<string | undefined>(undefined);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleOpenInquiry = (projectName?: string) => {
     setInquiryProject(projectName);
     setIsInquiryOpen(true);
+  };
+
+  const handleOpenContact = (topic?: string) => {
+    setContactTopic(topic);
+    setIsContactOpen(true);
   };
 
   return (
@@ -62,22 +70,30 @@ export default function Home() {
 
       {/* 7. Section 5: Seamless Continuous Living Liquid Footer */}
       <WebindFooter
-        onContactClick={() => handleOpenInquiry("General Inquiry / Partnership")}
+        onContactClick={() => handleOpenContact("General Contact / Consultation")}
         onHomeClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       />
 
-      {/* 8. Interactive Project Inquiry Modal */}
+      {/* 8. Dedicated Theme-Matched Contact Modal */}
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        defaultSubject={contactTopic}
+      />
+
+      {/* 9. Interactive Project Inquiry Modal */}
       <ProjectInquiryModal
         isOpen={isInquiryOpen}
         onClose={() => setIsInquiryOpen(false)}
         initialProject={inquiryProject}
       />
 
-      {/* 9. Fullscreen Desktop/PC Animated Navigation Modal */}
+      {/* 10. Fullscreen Desktop/PC Animated Navigation Modal */}
       <DesktopNavigationModal
         isOpen={isNavOpen}
         onClose={() => setIsNavOpen(false)}
         onOpenInquiry={(project) => handleOpenInquiry(project)}
+        onOpenContact={(topic) => handleOpenContact(topic)}
       />
     </div>
   );

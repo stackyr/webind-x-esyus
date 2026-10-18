@@ -146,7 +146,15 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
               Home
             </button>
             <button
-              onClick={onContactClick}
+              onClick={() => {
+                const el = document.getElementById("showcase");
+                const lenis = (window as any).lenis;
+                if (lenis && el) {
+                  lenis.scrollTo(el, { offset: -20, duration: 1.2 });
+                } else if (el) {
+                  el.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
               className="py-1.5 sm:py-0 hover:text-white/80 active:scale-95 transition-all cursor-pointer text-left"
             >
               Projects
@@ -159,9 +167,10 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             </button>
             <button
               onClick={onContactClick}
-              className="py-1.5 sm:py-0 hover:text-white/80 active:scale-95 transition-all cursor-pointer text-left"
+              className="py-1.5 sm:py-0 text-white hover:text-[#FF384C] active:scale-95 transition-all cursor-pointer text-left font-medium flex items-center gap-1.5"
             >
-              Contact us
+              <span>Contact us</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF384C] animate-pulse" />
             </button>
           </nav>
 
@@ -228,12 +237,16 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             {/* Direct Contact Lines */}
             <div className="space-y-1 text-xs sm:text-sm font-normal text-[#E2E8F0] leading-relaxed">
               <div>
-                <a
-                  href="mailto:hello@webind.cc"
-                  className="hover:text-white transition-colors"
+                <button
+                  type="button"
+                  onClick={onContactClick}
+                  className="hover:text-[#FF384C] transition-colors cursor-pointer text-left inline-flex items-center gap-1.5 group"
                 >
-                  E-mail: hello@webind.cc
-                </a>
+                  <span>E-mail: hello@webind.cc</span>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-[#FF384C]/15 text-[#FF384C] border border-[#FF384C]/30 opacity-80 group-hover:opacity-100 transition-opacity">
+                    Direct Form
+                  </span>
+                </button>
               </div>
               <div className="text-[#CBD5E1]">
                 (415) 886-7023

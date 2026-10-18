@@ -43,31 +43,31 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
         }
       `}</style>
 
-      {/* 100% Solid Seamless Black Melt at Top */}
-      <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#080B10] via-[#080B10] to-transparent pointer-events-none z-10" />
+      {/* 100% Solid Seamless Black Melt at Top (Zero visible boundary with previous section) */}
+      <div className="absolute top-0 inset-x-0 h-48 sm:h-64 bg-gradient-to-b from-[#080B10] via-[#080B10] via-60% to-transparent pointer-events-none z-10" />
 
       {/* SUBTLE SIDE EDGE MASKS */}
       <div className="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-[#080B10] via-[#080B10]/75 to-transparent pointer-events-none z-10" />
       <div className="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-[#080B10] via-[#080B10]/75 to-transparent pointer-events-none z-10" />
 
-      {/* VIVID ANIMATED LIVING LIQUID GRADIENT GLOW BACKGROUND */}
+      {/* VIVID ANIMATED LIVING LIQUID GRADIENT GLOW (Confined strictly to bottom baseline) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        {/* Base horizon gradient */}
+        {/* Base horizon gradient - 100% pitch black across the top 68% of footer */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(180deg, #080B10 0%, #080B10 48%, #0C080E 65%, rgba(130, 16, 32, 0.28) 80%, rgba(210, 25, 48, 0.48) 92%, rgba(255, 45, 68, 0.65) 100%)',
+              'linear-gradient(180deg, #080B10 0%, #080B10 68%, #0C080E 78%, rgba(130, 16, 32, 0.2) 88%, rgba(210, 25, 48, 0.4) 95%, rgba(255, 45, 68, 0.55) 100%)',
           }}
         />
 
-        {/* Living Liquid Wave 1: Molten Crimson Plasma Drift (Left to Center) */}
+        {/* Living Liquid Wave 1: Molten Crimson Plasma Drift (Anchored low at bottom baseline) */}
         <motion.div
           animate={{
-            x: ['-22%', '24%', '-12%', '-22%'],
-            y: ['8%', '-28%', '16%', '8%'],
-            scale: [1, 1.28, 0.92, 1],
-            rotate: [0, 35, -25, 0],
+            x: ['-18%', '20%', '-10%', '-18%'],
+            y: ['3%', '-7%', '5%', '3%'],
+            scale: [1, 1.2, 0.95, 1],
+            rotate: [0, 25, -18, 0],
             borderRadius: [
               '42% 58% 70% 30% / 45% 45% 55% 55%',
               '58% 42% 30% 70% / 55% 35% 65% 45%',
@@ -79,16 +79,16 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-16 left-[-5%] w-[550px] sm:w-[900px] h-[260px] sm:h-[380px] bg-gradient-to-tr from-[#FF1E38]/55 via-[#FF384C]/60 to-[#E01E37]/35 blur-[70px] sm:blur-[95px]"
+          className="absolute -bottom-24 left-[-2%] w-[460px] sm:w-[720px] h-[180px] sm:h-[260px] bg-gradient-to-tr from-[#FF1E38]/50 via-[#FF384C]/55 to-[#E01E37]/30 blur-[60px] sm:blur-[80px]"
         />
 
-        {/* Living Liquid Wave 2: Molten Ruby-Coral Plasma Flow (Right to Center) */}
+        {/* Living Liquid Wave 2: Molten Ruby-Coral Plasma Flow (Anchored low at bottom baseline) */}
         <motion.div
           animate={{
-            x: ['24%', '-24%', '14%', '24%'],
-            y: ['-22%', '18%', '-14%', '-22%'],
-            scale: [1.18, 0.88, 1.25, 1.18],
-            rotate: [0, -42, 28, 0],
+            x: ['20%', '-20%', '10%', '20%'],
+            y: ['-6%', '5%', '-4%', '-6%'],
+            scale: [1.12, 0.9, 1.18, 1.12],
+            rotate: [0, -30, 20, 0],
             borderRadius: [
               '50% 50% 30% 70% / 50% 60% 40% 60%',
               '35% 65% 65% 35% / 60% 40% 60% 40%',
@@ -100,38 +100,38 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-18 right-[-5%] w-[580px] sm:w-[950px] h-[270px] sm:h-[400px] bg-gradient-to-tl from-[#FF4D61]/45 via-[#FF1E38]/58 to-[#990A1A]/40 blur-[75px] sm:blur-[100px]"
+          className="absolute -bottom-26 right-[-2%] w-[480px] sm:w-[760px] h-[190px] sm:h-[270px] bg-gradient-to-tl from-[#FF4D61]/40 via-[#FF1E38]/52 to-[#990A1A]/35 blur-[60px] sm:blur-[85px]"
         />
 
-        {/* Living Liquid Wave 3: Pulsing Molten Core right under the letters */}
+        {/* Living Liquid Wave 3: Pulsing Molten Core directly under watermark letters */}
         <motion.div
           animate={{
-            scaleX: [0.88, 1.35, 0.98, 0.88],
-            scaleY: [1.12, 0.84, 1.22, 1.12],
-            x: ['-10%', '12%', '-6%', '-10%'],
-            y: ['-8%', '12%', '-4%', '-8%'],
+            scaleX: [0.9, 1.25, 0.95, 0.9],
+            scaleY: [1.08, 0.88, 1.15, 1.08],
+            x: ['-8%', '8%', '-4%', '-8%'],
+            y: ['-4%', '5%', '-2%', '-4%'],
           }}
           transition={{
             duration: 6,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[420px] sm:w-[750px] h-[200px] sm:h-[300px] bg-gradient-to-r from-[#FF1E38]/45 via-[#FF4D61]/70 to-[#FF1E38]/45 blur-[60px] sm:blur-[80px]"
+          className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[360px] sm:w-[600px] h-[140px] sm:h-[200px] bg-gradient-to-r from-[#FF1E38]/40 via-[#FF4D61]/65 to-[#FF1E38]/40 blur-[50px] sm:blur-[70px]"
         />
 
         {/* Living Liquid Ribbon 4: Dynamic Molten Horizon Ribbon */}
         <motion.div
           animate={{
-            opacity: [0.45, 0.85, 0.45],
-            scaleY: [0.85, 1.25, 0.85],
-            x: ['-6%', '6%', '-6%'],
+            opacity: [0.45, 0.8, 0.45],
+            scaleY: [0.85, 1.2, 0.85],
+            x: ['-5%', '5%', '-5%'],
           }}
           transition={{
             duration: 4.8,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-2 inset-x-0 h-[140px] sm:h-[200px] bg-gradient-to-r from-transparent via-[#FF384C]/65 via-50% to-transparent blur-[45px] sm:blur-[65px]"
+          className="absolute -bottom-4 inset-x-0 h-[100px] sm:h-[150px] bg-gradient-to-r from-transparent via-[#FF384C]/60 via-50% to-transparent blur-[40px] sm:blur-[55px]"
         />
       </div>
 
@@ -272,7 +272,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-[1200px] h-[180px] sm:h-[280px] bg-gradient-to-r from-transparent via-[#FF384C]/60 via-50% to-transparent blur-[60px] sm:blur-[85px] pointer-events-none"
+          className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-[1200px] h-[120px] sm:h-[180px] bg-gradient-to-r from-transparent via-[#FF384C]/50 via-50% to-transparent blur-[45px] sm:blur-[60px] pointer-events-none"
         />
 
         {/* Underlay Ambient Glow Pass (Enhanced with liquid breathing) */}

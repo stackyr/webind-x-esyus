@@ -48,64 +48,50 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
         }
       `}</style>
 
-      {/* 1. TOP & BOTTOM DEEP SEAMLESS BLACK FADES (100% solid at boundary to blend seamlessly) */}
-      <div className="absolute top-0 inset-x-0 h-44 sm:h-64 bg-gradient-to-b from-[#080B10] from-25% via-[#080B10]/95 via-65% to-transparent pointer-events-none z-25" />
-      <div className="absolute bottom-0 inset-x-0 h-44 sm:h-64 bg-gradient-to-t from-[#080B10] from-25% via-[#080B10]/95 via-65% to-transparent pointer-events-none z-25" />
+      {/* 1. TOP & BOTTOM DEEP SEAMLESS BLACK GRADIENTS (100% solid pitch black at boundary) */}
+      <div className="absolute top-0 inset-x-0 h-48 sm:h-64 bg-gradient-to-b from-[#080B10] via-[#080B10] via-45% to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 inset-x-0 h-48 sm:h-64 bg-gradient-to-t from-[#080B10] via-[#080B10] via-45% to-transparent pointer-events-none z-20" />
 
-      {/* 2. FOUR CORNER BLACK MASKS (Guarantees zero sharp edges or cutoff lines in all 4 corners) */}
-      <div className="absolute top-0 left-0 w-72 sm:w-96 h-56 sm:h-72 bg-[radial-gradient(ellipse_at_top_left,#080B10_0%,#080B10_45%,rgba(8,11,16,0.85)_65%,transparent_90%)] pointer-events-none z-25" />
-      <div className="absolute top-0 right-0 w-72 sm:w-96 h-56 sm:h-72 bg-[radial-gradient(ellipse_at_top_right,#080B10_0%,#080B10_45%,rgba(8,11,16,0.85)_65%,transparent_90%)] pointer-events-none z-25" />
-      <div className="absolute bottom-0 left-0 w-72 sm:w-96 h-56 sm:h-72 bg-[radial-gradient(ellipse_at_bottom_left,#080B10_0%,#080B10_45%,rgba(8,11,16,0.85)_65%,transparent_90%)] pointer-events-none z-25" />
-      <div className="absolute bottom-0 right-0 w-72 sm:w-96 h-56 sm:h-72 bg-[radial-gradient(ellipse_at_bottom_right,#080B10_0%,#080B10_45%,rgba(8,11,16,0.85)_65%,transparent_90%)] pointer-events-none z-25" />
+      {/* 2. FOUR CORNER DEEP BLACK MASKS (Zero visible corner boundaries) */}
+      <div className="absolute top-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute top-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute bottom-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
 
-      {/* 3. LEFT SIDE ELECTRIC BLUE DIAMOND GRADIENT WING (Tapered away from corners) */}
-      <div
-        className="absolute inset-y-0 left-0 w-1/2 pointer-events-none overflow-hidden"
-        style={{
-          maskImage: 'linear-gradient(to bottom, transparent 0%, transparent 16%, black 36%, black 64%, transparent 84%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, transparent 16%, black 36%, black 64%, transparent 84%, transparent 100%)',
-        }}
-      >
+      {/* 3. LEFT SIDE ELECTRIC BLUE FLUID GRADIENT (Completely boundary-free, melts organically into pure black) */}
+      <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 pointer-events-none z-10 overflow-hidden">
         {/* Soft Outer Cyan-White Glow Atmosphere */}
         <div
-          className="absolute -left-16 top-0 bottom-0 w-[90%] opacity-85 blur-3xl pointer-events-none"
+          className="absolute -left-20 top-1/2 -translate-y-1/2 w-[380px] sm:w-[650px] h-[320px] sm:h-[480px] opacity-75 blur-[75px] sm:blur-[100px] pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse at 0% 50%, rgba(195, 230, 255, 0.75) 0%, rgba(0, 110, 255, 0.8) 32%, rgba(0, 55, 200, 0.45) 60%, transparent 80%)',
+            background: 'radial-gradient(ellipse at 15% 50%, rgba(195, 235, 255, 0.8) 0%, rgba(0, 110, 255, 0.75) 35%, rgba(0, 45, 175, 0.35) 60%, transparent 80%)',
           }}
         />
 
-        {/* High-Intensity Electric Blue Diamond Core */}
+        {/* Luminous Electric Blue Core */}
         <div
-          className="absolute -left-10 top-1/2 -translate-y-1/2 w-[85%] h-[74%] opacity-95 blur-2xl pointer-events-none"
+          className="absolute -left-12 top-1/2 -translate-y-1/2 w-[280px] sm:w-[500px] h-[220px] sm:h-[340px] opacity-90 blur-[45px] sm:blur-[70px] pointer-events-none"
           style={{
-            clipPath: 'polygon(0% 0%, 90% 50%, 0% 100%)',
-            background: 'linear-gradient(90deg, #BFE0FF 0%, #0070FF 38%, #003ECC 75%, transparent 100%)',
+            background: 'radial-gradient(ellipse at 10% 50%, #BFE0FF 0%, #0070FF 42%, rgba(0, 50, 200, 0.4) 70%, transparent 90%)',
           }}
         />
       </div>
 
-      {/* 4. RIGHT SIDE ELECTRIC BLUE DIAMOND GRADIENT WING (SYMMETRIC MIRROR) */}
-      <div
-        className="absolute inset-y-0 right-0 w-1/2 pointer-events-none overflow-hidden"
-        style={{
-          maskImage: 'linear-gradient(to bottom, transparent 0%, transparent 16%, black 36%, black 64%, transparent 84%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, transparent 16%, black 36%, black 64%, transparent 84%, transparent 100%)',
-        }}
-      >
+      {/* 4. RIGHT SIDE ELECTRIC BLUE FLUID GRADIENT (SYMMETRIC MIRROR) */}
+      <div className="absolute inset-y-0 right-0 w-full sm:w-2/3 pointer-events-none z-10 overflow-hidden">
         {/* Soft Outer Cyan-White Glow Atmosphere */}
         <div
-          className="absolute -right-16 top-0 bottom-0 w-[90%] opacity-85 blur-3xl pointer-events-none"
+          className="absolute -right-20 top-1/2 -translate-y-1/2 w-[380px] sm:w-[650px] h-[320px] sm:h-[480px] opacity-75 blur-[75px] sm:blur-[100px] pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse at 100% 50%, rgba(195, 230, 255, 0.75) 0%, rgba(0, 110, 255, 0.8) 32%, rgba(0, 55, 200, 0.45) 60%, transparent 80%)',
+            background: 'radial-gradient(ellipse at 85% 50%, rgba(195, 235, 255, 0.8) 0%, rgba(0, 110, 255, 0.75) 35%, rgba(0, 45, 175, 0.35) 60%, transparent 80%)',
           }}
         />
 
-        {/* High-Intensity Electric Blue Diamond Core */}
+        {/* Luminous Electric Blue Core */}
         <div
-          className="absolute -right-10 top-1/2 -translate-y-1/2 w-[85%] h-[74%] opacity-95 blur-2xl pointer-events-none"
+          className="absolute -right-12 top-1/2 -translate-y-1/2 w-[280px] sm:w-[500px] h-[220px] sm:h-[340px] opacity-90 blur-[45px] sm:blur-[70px] pointer-events-none"
           style={{
-            clipPath: 'polygon(100% 0%, 10% 50%, 100% 100%)',
-            background: 'linear-gradient(270deg, #BFE0FF 0%, #0070FF 38%, #003ECC 75%, transparent 100%)',
+            background: 'radial-gradient(ellipse at 90% 50%, #BFE0FF 0%, #0070FF 42%, rgba(0, 50, 200, 0.4) 70%, transparent 90%)',
           }}
         />
       </div>

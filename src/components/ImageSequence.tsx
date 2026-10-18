@@ -226,7 +226,7 @@ export default function ImageSequenceCanvas() {
 
   return (
     <div
-      className="fixed inset-0 w-screen h-screen overflow-hidden pointer-events-none z-0"
+      className="fixed inset-0 w-full max-w-full h-screen overflow-hidden pointer-events-none z-0"
       style={{ backgroundColor: "#080B10" }}
     >
       <canvas

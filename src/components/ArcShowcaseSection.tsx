@@ -203,9 +203,9 @@ export const ArcShowcaseSection: React.FC<ArcShowcaseSectionProps> = ({
   const activeProject = SHOWCASE_PROJECTS[activeIndex];
 
   return (
-    <section id="showcase" className="relative z-20 w-full bg-[#080B10] text-[#F5F7FA] pt-14 pb-4 sm:pt-16 sm:pb-6 overflow-visible selection:bg-[#FF384C] selection:text-white scroll-mt-12">
+    <section id="showcase" className="relative z-20 w-full max-w-full bg-[#080B10] text-[#F5F7FA] pt-14 pb-4 sm:pt-16 sm:pb-6 overflow-x-clip overflow-y-visible selection:bg-[#FF384C] selection:text-white scroll-mt-12">
       {/* 1. TOP CURVED / ROUNDED BOUNDARY ARCH (Electric Blue Laser Glow Outline - 100% Mobile Responsive) */}
-      <div className="absolute -top-7 sm:-top-9 md:-top-11 left-0 right-0 w-full pointer-events-none z-30 leading-none overflow-visible">
+      <div className="absolute -top-7 sm:-top-9 md:-top-11 left-0 right-0 w-full pointer-events-none z-30 leading-none overflow-x-clip overflow-y-visible">
         <svg
           viewBox="0 0 1440 48"
           fill="none"
@@ -301,14 +301,14 @@ export const ArcShowcaseSection: React.FC<ArcShowcaseSectionProps> = ({
         >
           {/* DYNAMIC AMBIENT BACKLIGHT BEHIND THE ARCH */}
           <div
-            className="absolute top-4 left-1/2 -translate-x-1/2 w-[650px] h-[360px] rounded-full blur-[110px] pointer-events-none transition-all duration-700 opacity-60"
+            className="absolute top-4 left-1/2 -translate-x-1/2 w-[90vw] max-w-[650px] h-[360px] rounded-full blur-[110px] pointer-events-none transition-all duration-700 opacity-60"
             style={{
               background: `radial-gradient(circle, ${activeProject.glowColor} 0%, rgba(255, 56, 76, 0.22) 50%, transparent 80%)`,
             }}
           />
 
           {/* LARGE ARCH CANOPY OF SQUIRCLES */}
-          <div className="absolute top-2 left-0 right-0 h-[320px] sm:h-[400px] flex items-center justify-center pointer-events-none">
+          <div className="absolute top-2 left-0 right-0 h-[320px] sm:h-[400px] flex items-center justify-center pointer-events-none overflow-x-clip">
             {SHOWCASE_PROJECTS.map((project, idx) => {
               let diff = idx - activeIndex;
               if (diff > total / 2) diff -= total;

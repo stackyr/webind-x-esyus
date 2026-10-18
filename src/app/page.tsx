@@ -26,7 +26,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#080B10] text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white">
+    <div className="relative min-h-screen w-full max-w-full overflow-x-clip bg-[#080B10] text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white">
       {/* 0. Cinematic Futuristic Scan Preloader */}
       <ScanLoadingScreen onComplete={() => setIsLoading(false)} />
 

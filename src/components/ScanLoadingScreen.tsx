@@ -48,6 +48,7 @@ export const ScanLoadingScreen: React.FC<ScanLoadingScreenProps> = ({ onComplete
         setTimeout(() => {
           setIsFinished(true);
           document.body.style.overflow = "";
+          document.body.style.overflowX = "clip";
           if ((window as any).lenis) {
             (window as any).lenis.start();
           }
@@ -61,6 +62,7 @@ export const ScanLoadingScreen: React.FC<ScanLoadingScreenProps> = ({ onComplete
     return () => {
       cancelAnimationFrame(rafId);
       document.body.style.overflow = "";
+      document.body.style.overflowX = "clip";
       if ((window as any).lenis) {
         (window as any).lenis.start();
       }
@@ -75,14 +77,14 @@ export const ScanLoadingScreen: React.FC<ScanLoadingScreenProps> = ({ onComplete
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            scale: 1.08,
-            filter: "blur(16px)",
-            transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+            filter: "blur(8px)",
+            transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
           }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#000000] text-white select-none overflow-hidden"
+          className="fixed inset-0 z-[9999] w-full h-full max-w-full flex flex-col items-center justify-center bg-[#000000] text-white select-none overflow-hidden touch-none"
+          style={{ overflowX: "clip" }}
         >
           {/* Subtle Ambient Depth Lighting */}
-          <div className="absolute w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(0,112,255,0.08)_0%,transparent_70%)] pointer-events-none" />
+          <div className="absolute w-[90vw] max-w-[500px] h-[90vw] max-h-[500px] rounded-full bg-[radial-gradient(circle,rgba(0,112,255,0.08)_0%,transparent_70%)] pointer-events-none" />
 
           {/* MAIN CIRCULAR ORBITAL HUD (Exact match to reference image) */}
           <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center">

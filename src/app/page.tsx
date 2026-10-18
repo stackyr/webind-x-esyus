@@ -12,7 +12,7 @@ import { WebindFooter } from "@/components/WebindFooter";
 import { ProjectInquiryModal } from "@/components/ProjectInquiryModal";
 import { MobileAppNavBar } from "@/components/MobileAppNavBar";
 import { DesktopNavigationModal } from "@/components/DesktopNavigationModal";
-import { ScanLoadingScreen } from "@/components/ScanLoadingScreen";
+import { ModernWaveLoader } from "@/components/ModernWaveLoader";
 
 export default function Home() {
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
@@ -27,8 +27,8 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen w-full max-w-full overflow-x-clip bg-[#080B10] text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white">
-      {/* 0. Cinematic Futuristic Scan Preloader */}
-      <ScanLoadingScreen onComplete={() => setIsLoading(false)} />
+      {/* 0. Cinematic Fluid Caustic Wave Preloader */}
+      <ModernWaveLoader onComplete={() => setIsLoading(false)} />
 
       {/* Floating Mobile App Bottom Dock */}
       <MobileAppNavBar onInquireClick={() => handleOpenInquiry("Mobile Quick Inquiry")} />

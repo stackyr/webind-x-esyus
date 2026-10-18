@@ -11,10 +11,12 @@ import { WebindEsyusPartnership } from "@/components/WebindEsyusPartnership";
 import { WebindFooter } from "@/components/WebindFooter";
 import { ProjectInquiryModal } from "@/components/ProjectInquiryModal";
 import { MobileAppNavBar } from "@/components/MobileAppNavBar";
+import { DesktopNavigationModal } from "@/components/DesktopNavigationModal";
 
 export default function Home() {
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [inquiryProject, setInquiryProject] = useState<string | undefined>(undefined);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const handleOpenInquiry = (projectName?: string) => {
     setInquiryProject(projectName);
@@ -30,7 +32,10 @@ export default function Home() {
 
       {/* 2. Section 1 Visual Sequence Area: WebindHero + FeatureFlowSection over continuous Image Sequence */}
       <div id="sequence-section" className="relative z-10 w-full">
-        <WebindHero onStartProject={() => handleOpenInquiry()} />
+        <WebindHero
+          onStartProject={() => handleOpenInquiry()}
+          onOpenNav={() => setIsNavOpen(true)}
+        />
         <FeatureFlowSection />
       </div>
 
@@ -61,6 +66,13 @@ export default function Home() {
         isOpen={isInquiryOpen}
         onClose={() => setIsInquiryOpen(false)}
         initialProject={inquiryProject}
+      />
+
+      {/* 9. Fullscreen Desktop/PC Animated Navigation Modal */}
+      <DesktopNavigationModal
+        isOpen={isNavOpen}
+        onClose={() => setIsNavOpen(false)}
+        onOpenInquiry={(project) => handleOpenInquiry(project)}
       />
     </div>
   );

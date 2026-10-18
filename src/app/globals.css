@@ -8,6 +8,10 @@
   html {
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: 100%;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: #080B10;
   }
 
   /* Lenis Smooth Scroll Core Rules */
@@ -39,6 +43,10 @@
     color: #F5F7FA;
     letter-spacing: -0.015em;
     touch-action: manipulation;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

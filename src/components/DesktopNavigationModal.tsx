@@ -113,7 +113,7 @@ export const DesktopNavigationModal: React.FC<DesktopNavigationModalProps> = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -24 }}
           transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-[120] bg-[#07090E] text-[#F5F7FA] overflow-y-auto overflow-x-hidden flex flex-col justify-between selection:bg-[#FF384C] selection:text-white"
+          className="fixed inset-0 z-[120] w-full max-w-full bg-[#07090E] text-[#F5F7FA] overflow-y-auto overflow-x-hidden flex flex-col justify-between selection:bg-[#FF384C] selection:text-white"
         >
           {/* Subtle luxury ambient backlights */}
           <div className="absolute top-0 right-1/4 w-[500px] h-[350px] bg-[#FF384C]/8 rounded-full blur-[120px] pointer-events-none" />

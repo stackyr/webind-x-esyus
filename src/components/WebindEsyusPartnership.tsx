@@ -29,7 +29,10 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
   onStartJointProject,
 }) => {
   return (
-    <section id="partner" className="relative z-20 w-full min-h-[75vh] sm:min-h-[85vh] lg:min-h-[90vh] bg-[#080B10] text-white flex flex-col justify-between py-6 sm:py-8 overflow-hidden select-none scroll-mt-12">
+    <section
+      id="partner"
+      className="relative z-20 w-full max-w-full min-h-[70vh] sm:min-h-[85vh] lg:min-h-[90vh] bg-[#080B10] text-white flex flex-col justify-between py-6 sm:py-8 overflow-hidden select-none scroll-mt-12"
+    >
       <style>{`
         @keyframes marqueeRowLeft {
           0% { transform: translate3d(0, 0, 0); }
@@ -49,60 +52,44 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
       `}</style>
 
       {/* 1. TOP & BOTTOM DEEP SEAMLESS BLACK GRADIENTS (100% solid pitch black at boundary) */}
-      <div className="absolute top-0 inset-x-0 h-48 sm:h-64 bg-gradient-to-b from-[#080B10] via-[#080B10] via-45% to-transparent pointer-events-none z-20" />
-      <div className="absolute bottom-0 inset-x-0 h-48 sm:h-64 bg-gradient-to-t from-[#080B10] via-[#080B10] via-45% to-transparent pointer-events-none z-20" />
+      <div className="absolute top-0 inset-x-0 h-40 sm:h-64 bg-gradient-to-b from-[#080B10] via-[#080B10] via-45% to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 inset-x-0 h-40 sm:h-64 bg-gradient-to-t from-[#080B10] via-[#080B10] via-45% to-transparent pointer-events-none z-20" />
 
       {/* 2. FOUR CORNER DEEP BLACK MASKS (Zero visible corner boundaries) */}
-      <div className="absolute top-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute top-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_top_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute bottom-0 left-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute bottom-0 right-0 w-80 sm:w-[420px] h-60 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute top-0 left-0 w-64 sm:w-[420px] h-48 sm:h-80 bg-[radial-gradient(ellipse_at_top_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute top-0 right-0 w-64 sm:w-[420px] h-48 sm:h-80 bg-[radial-gradient(ellipse_at_top_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 w-64 sm:w-[420px] h-48 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_left,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
+      <div className="absolute bottom-0 right-0 w-64 sm:w-[420px] h-48 sm:h-80 bg-[radial-gradient(ellipse_at_bottom_right,#080B10_0%,#080B10_55%,transparent_85%)] pointer-events-none z-20" />
 
-      {/* 3. LEFT SIDE ELECTRIC BLUE FLUID GRADIENT (Completely boundary-free, melts organically into pure black) */}
-      <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 pointer-events-none z-10 overflow-hidden">
-        {/* Soft Outer Cyan-White Glow Atmosphere */}
-        <div
-          className="absolute -left-20 top-1/2 -translate-y-1/2 w-[380px] sm:w-[650px] h-[320px] sm:h-[480px] opacity-75 blur-[75px] sm:blur-[100px] pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse at 15% 50%, rgba(195, 235, 255, 0.8) 0%, rgba(0, 110, 255, 0.75) 35%, rgba(0, 45, 175, 0.35) 60%, transparent 80%)',
-          }}
-        />
+      {/* 3. AMBIENT BACKLIGHT AURA (Natural spherical glow behind center brand on both mobile and desktop) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] md:w-[750px] h-[180px] sm:h-[320px] rounded-full bg-gradient-to-r from-[#0284C7]/25 via-[#38BDF8]/30 to-[#0284C7]/25 blur-[55px] sm:blur-[100px] pointer-events-none z-10" />
 
-        {/* Luminous Electric Blue Core */}
+      {/* 4. SIDE ELECTRIC BLUE WING GRADIENTS (Desktop & Tablet Wings) */}
+      <div className="hidden sm:block absolute inset-y-0 left-0 w-1/2 pointer-events-none z-10 overflow-hidden">
         <div
-          className="absolute -left-12 top-1/2 -translate-y-1/2 w-[280px] sm:w-[500px] h-[220px] sm:h-[340px] opacity-90 blur-[45px] sm:blur-[70px] pointer-events-none"
+          className="absolute -left-16 top-1/2 -translate-y-1/2 w-[500px] h-[380px] opacity-65 blur-[90px] pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse at 10% 50%, #BFE0FF 0%, #0070FF 42%, rgba(0, 50, 200, 0.4) 70%, transparent 90%)',
+            background: 'radial-gradient(circle at 20% 50%, rgba(195, 235, 255, 0.75) 0%, rgba(0, 110, 255, 0.65) 35%, rgba(0, 45, 175, 0.3) 60%, transparent 80%)',
           }}
         />
       </div>
 
-      {/* 4. RIGHT SIDE ELECTRIC BLUE FLUID GRADIENT (SYMMETRIC MIRROR) */}
-      <div className="absolute inset-y-0 right-0 w-full sm:w-2/3 pointer-events-none z-10 overflow-hidden">
-        {/* Soft Outer Cyan-White Glow Atmosphere */}
+      <div className="hidden sm:block absolute inset-y-0 right-0 w-1/2 pointer-events-none z-10 overflow-hidden">
         <div
-          className="absolute -right-20 top-1/2 -translate-y-1/2 w-[380px] sm:w-[650px] h-[320px] sm:h-[480px] opacity-75 blur-[75px] sm:blur-[100px] pointer-events-none"
+          className="absolute -right-16 top-1/2 -translate-y-1/2 w-[500px] h-[380px] opacity-65 blur-[90px] pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse at 85% 50%, rgba(195, 235, 255, 0.8) 0%, rgba(0, 110, 255, 0.75) 35%, rgba(0, 45, 175, 0.35) 60%, transparent 80%)',
-          }}
-        />
-
-        {/* Luminous Electric Blue Core */}
-        <div
-          className="absolute -right-12 top-1/2 -translate-y-1/2 w-[280px] sm:w-[500px] h-[220px] sm:h-[340px] opacity-90 blur-[45px] sm:blur-[70px] pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse at 90% 50%, #BFE0FF 0%, #0070FF 42%, rgba(0, 50, 200, 0.4) 70%, transparent 90%)',
+            background: 'radial-gradient(circle at 80% 50%, rgba(195, 235, 255, 0.75) 0%, rgba(0, 110, 255, 0.65) 35%, rgba(0, 45, 175, 0.3) 60%, transparent 80%)',
           }}
         />
       </div>
 
-      {/* 4. UPPER SPACE GAP: COMPACT REVIEW MARQUEE (Row 1 - Moving Left, 100% Seamless 60fps) */}
-      <div className="relative z-30 w-full overflow-hidden my-2 sm:my-3">
+      {/* 5. UPPER SPACE GAP: COMPACT REVIEW MARQUEE (Row 1 - Moving Left, 100% Seamless 60fps) */}
+      <div className="relative z-30 w-full max-w-full overflow-hidden my-2 sm:my-3">
         {/* Left & Right Black Gradient Vignette Fades */}
-        <div className="pointer-events-none absolute left-0 inset-y-0 w-16 sm:w-48 bg-gradient-to-r from-[#080B10] to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 inset-y-0 w-16 sm:w-48 bg-gradient-to-l from-[#080B10] to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-r from-[#080B10] to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-l from-[#080B10] to-transparent z-10" />
 
-        <div className="flex flex-nowrap w-max overflow-visible">
+        <div className="flex flex-nowrap w-full max-w-full overflow-hidden">
           {/* Track A */}
           <div className="marquee-track-left flex shrink-0 items-center gap-2.5 sm:gap-4 pr-2.5 sm:pr-4 py-1">
             {REVIEWS_ROW_1.map((review, i) => (
@@ -145,8 +132,8 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
         </div>
       </div>
 
-      {/* 5. CENTER BRAND LOGOS & CTA BUTTON */}
-      <div className="relative z-30 flex flex-col items-center justify-center px-4 sm:px-6 py-6 sm:py-8 text-center my-auto w-full">
+      {/* 6. CENTER BRAND LOGOS & CTA BUTTON */}
+      <div className="relative z-30 flex flex-col items-center justify-center px-4 sm:px-6 py-6 sm:py-8 text-center my-auto w-full max-w-full">
         {/* BRAND ROW: WEBIND | ESYUS in identical sleek typography */}
         <div className="flex items-center justify-center gap-2.5 sm:gap-5 md:gap-7">
           <span className="font-sans font-black tracking-normal sm:tracking-wider text-2xl min-[380px]:text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
@@ -175,13 +162,13 @@ export const WebindEsyusPartnership: React.FC<WebindEsyusPartnershipProps> = ({
         </div>
       </div>
 
-      {/* 6. LOWER SPACE GAP: COMPACT REVIEW MARQUEE (Row 2 - Moving in Opposite Direction, 100% Seamless 60fps) */}
-      <div className="relative z-30 w-full overflow-hidden my-2 sm:my-3">
+      {/* 7. LOWER SPACE GAP: COMPACT REVIEW MARQUEE (Row 2 - Moving in Opposite Direction, 100% Seamless 60fps) */}
+      <div className="relative z-30 w-full max-w-full overflow-hidden my-2 sm:my-3">
         {/* Left & Right Black Gradient Vignette Fades */}
-        <div className="pointer-events-none absolute left-0 inset-y-0 w-16 sm:w-48 bg-gradient-to-r from-[#080B10] to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 inset-y-0 w-16 sm:w-48 bg-gradient-to-l from-[#080B10] to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-r from-[#080B10] to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 inset-y-0 w-12 sm:w-48 bg-gradient-to-l from-[#080B10] to-transparent z-10" />
 
-        <div className="flex flex-nowrap w-max overflow-visible">
+        <div className="flex flex-nowrap w-full max-w-full overflow-hidden">
           {/* Track A */}
           <div className="marquee-track-right flex shrink-0 items-center gap-2.5 sm:gap-4 pr-2.5 sm:pr-4 py-1">
             {REVIEWS_ROW_2.map((review, i) => (

@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#080B10] text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white">
+    <div className="relative w-full max-w-full min-h-screen bg-[#080B10] text-[#F5F7FA] overflow-x-hidden selection:bg-[#FF384C] selection:text-white">
       {/* Floating Mobile App Bottom Dock */}
       <MobileAppNavBar onInquireClick={() => handleOpenInquiry("Mobile Quick Inquiry")} />
       {/* 1. Background Fixed Image Sequence Canvas */}

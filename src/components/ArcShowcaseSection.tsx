@@ -203,7 +203,7 @@ export const ArcShowcaseSection: React.FC<ArcShowcaseSectionProps> = ({
   const activeProject = SHOWCASE_PROJECTS[activeIndex];
 
   return (
-    <section id="showcase" className="relative z-20 w-full bg-[#080B10] text-[#F5F7FA] pt-14 pb-4 sm:pt-16 sm:pb-6 overflow-x-clip selection:bg-[#FF384C] selection:text-white scroll-mt-12">
+    <section id="showcase" className="relative z-20 w-full max-w-full bg-[#080B10] text-[#F5F7FA] pt-14 pb-4 sm:pt-16 sm:pb-6 overflow-hidden selection:bg-[#FF384C] selection:text-white scroll-mt-12">
       {/* 1. TOP SEAMLESS BLACK GRADIENT MELT (Zero boundary lines, dissolves cleanly into Section 1) */}
       <div className="absolute top-0 inset-x-0 h-40 sm:h-56 bg-gradient-to-b from-[#080B10] via-[#080B10]/85 via-50% to-transparent pointer-events-none z-20" />
 

@@ -86,7 +86,7 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
       <main className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 flex-1 flex flex-col justify-end pt-4 pb-44 sm:pb-8 md:pb-4 pointer-events-none">
         {/* LOWER AREA: Elevated comfortably above the floating mobile dock */}
         <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-4 sm:gap-8 pb-1 sm:pb-2">
-          
+
           {/* LOWER-LEFT AREA: Social Proof + Paragraph + Action Button */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}

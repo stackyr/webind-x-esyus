@@ -351,9 +351,8 @@ export const ModernWaveLoader: React.FC<ModernWaveLoaderProps> = ({
                 {label}
               </span>
               <span
-                className={`font-mono text-xs sm:text-sm font-semibold ${
-                  colorTheme === "red" ? "text-[#FF384C]" : "text-[#00D4FF]"
-                }`}
+                className={`font-mono text-xs sm:text-sm font-semibold ${colorTheme === "red" ? "text-[#FF384C]" : "text-[#00D4FF]"
+                  }`}
               >
                 {progress}%
               </span>
@@ -375,22 +374,20 @@ export const ModernWaveLoader: React.FC<ModernWaveLoaderProps> = ({
             <div className="absolute bottom-6 flex items-center gap-3 text-[11px] text-[#A0AEC0]">
               <button
                 onClick={() => setColorTheme("cyan")}
-                className={`px-3 py-1 rounded-full border transition-all cursor-pointer ${
-                  colorTheme === "cyan"
+                className={`px-3 py-1 rounded-full border transition-all cursor-pointer ${colorTheme === "cyan"
                     ? "border-[#00D4FF]/60 text-[#00D4FF] bg-[#00D4FF]/10 shadow-[0_0_12px_rgba(0,212,255,0.3)]"
                     : "border-[#1E2638] text-[#CBD5E1] hover:text-white"
-                }`}
+                  }`}
                 aria-label="Switch to Cyan Wave Theme"
               >
                 Cyan Wave
               </button>
               <button
                 onClick={() => setColorTheme("red")}
-                className={`px-3 py-1 rounded-full border transition-all cursor-pointer ${
-                  colorTheme === "red"
+                className={`px-3 py-1 rounded-full border transition-all cursor-pointer ${colorTheme === "red"
                     ? "border-[#FF384C]/60 text-[#FF384C] bg-[#FF384C]/10 shadow-[0_0_12px_rgba(255,56,76,0.3)]"
                     : "border-[#1E2638] text-[#CBD5E1] hover:text-white"
-                }`}
+                  }`}
                 aria-label="Switch to Crimson Red Wave Theme"
               >
                 Crimson Red Wave

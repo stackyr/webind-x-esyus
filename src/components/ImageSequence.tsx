@@ -159,28 +159,26 @@ export default function ImageSequenceCanvas() {
       });
     };
 
-    // Phase 1: High Priority initial viewport frames (0 to 5) - Instant visual hero render
-    for (let i = 0; i <= 5; i++) {
-      loadSingleFrame(i, "high");
-    }
+    // Phase 1: High Priority initial hero frame (0)
+    loadSingleFrame(0, "high");
 
-    // Phase 2: Keyframe Skeleton (every 4th frame across the entire timeline)
+    // Phase 2: Keyframe Skeleton (every 3rd frame across the timeline for fast response)
     const keyframes: number[] = [];
-    for (let i = 6; i < TOTAL_FRAMES; i += 4) {
+    for (let i = 1; i < TOTAL_FRAMES; i += 3) {
       keyframes.push(i);
     }
 
     // Phase 3: In-between fill frames
     const fillFrames: number[] = [];
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
-      if (i > 5 && !keyframes.includes(i)) {
+    for (let i = 1; i < TOTAL_FRAMES; i++) {
+      if (!keyframes.includes(i)) {
         fillFrames.push(i);
       }
     }
 
-    // Concurrent batch loader (8 parallel downloads max so network bandwidth is never choked)
+    // Concurrent batch loader (6 parallel downloads so animation is ready smoothly)
     const queue = [...keyframes, ...fillFrames];
-    const CONCURRENCY = 8;
+    const CONCURRENCY = 6;
     let active = 0;
     let index = 0;
 
@@ -195,8 +193,8 @@ export default function ImageSequenceCanvas() {
       }
     };
 
-    // Start background batch queue smoothly
-    setTimeout(next, 40);
+    // Start background queue immediately
+    next();
   }, [drawFrame]);
 
   // Main scroll sync and render loop
@@ -218,39 +216,39 @@ export default function ImageSequenceCanvas() {
 
     measure();
 
-    const onScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
-      const currentScrolled = scrollY - sequenceTop;
-      targetProgressRef.current = Math.min(Math.max(currentScrolled / totalScrollable, 0), 1);
-    };
-
-    onScroll();
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-
     const handleResize = () => {
       measure();
-      onScroll();
       updateCanvasDimensions();
     };
 
     window.addEventListener("resize", handleResize);
 
-    const lenis = (window as any).lenis;
-    if (lenis) {
-      lenis.on("scroll", onScroll);
-    }
-
     let rafId: number;
+
     const loop = () => {
       if (!isRunningRef.current) return;
 
+      // Check live scroll position from Lenis or standard window.scrollY
+      const lenis = (window as any).lenis;
+      const scrollY = (lenis && typeof lenis.scroll === "number")
+        ? lenis.scroll
+        : (window.scrollY || document.documentElement.scrollTop || 0);
+
+      // Performance Optimization: If user has scrolled past sequence-section, don't compute or redraw
+      if (scrollY > sequenceTop + totalScrollable + 300) {
+        rafId = requestAnimationFrame(loop);
+        return;
+      }
+
+      const currentScrolled = scrollY - sequenceTop;
+      targetProgressRef.current = Math.min(Math.max(currentScrolled / totalScrollable, 0), 1);
+
       const targetFrame = targetProgressRef.current * (TOTAL_FRAMES - 1);
 
-      // Ultra-smooth lerping (0.18) towards target frame
+      // Ultra-smooth lerping (0.2) towards target frame
       const diff = targetFrame - currentFrameRef.current;
       if (Math.abs(diff) > 0.005) {
-        currentFrameRef.current += diff * 0.18;
+        currentFrameRef.current += diff * 0.2;
         const rounded = Math.round(currentFrameRef.current);
         if (rounded !== lastDrawnFrameRef.current) {
           lastDrawnFrameRef.current = rounded;
@@ -273,11 +271,7 @@ export default function ImageSequenceCanvas() {
     return () => {
       isRunningRef.current = false;
       cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", handleResize);
-      if (lenis) {
-        lenis.off("scroll", onScroll);
-      }
     };
   }, [drawFrame, updateCanvasDimensions]);
 

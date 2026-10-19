@@ -5,7 +5,40 @@ import { CustomCursor } from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Webind × Esyus — Digital Solutions",
-  description: "High-performance web architecture and digital flagship engineering.",
+  description: "High-performance websites, apps, and digital experiences that help ambitious brands grow.",
+  metadataBase: new URL("https://webind.cc"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Webind × Esyus — Digital Solutions",
+    description: "High-performance websites, apps, and digital experiences that help ambitious brands grow.",
+    url: "https://webind.cc",
+    siteName: "Webind × Esyus",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Webind × Esyus — Digital Solutions",
+    description: "High-performance websites, apps, and digital experiences that help ambitious brands grow.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export const viewport: Viewport = {
@@ -13,6 +46,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: "#000000",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({

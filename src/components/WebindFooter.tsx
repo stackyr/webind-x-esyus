@@ -30,7 +30,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
   };
 
   return (
-    <footer className="relative z-20 w-full bg-black text-[#F5F7FA] pt-6 sm:pt-10 pb-2 sm:pb-3 md:pb-4 select-none overflow-hidden">
+    <footer className="relative z-20 w-full bg-black text-[#F5F7FA] pt-8 sm:pt-12 pb-24 sm:pb-8 md:pb-6 select-none overflow-hidden">
       <style>{`
         @keyframes liquidFlowText {
           0% { background-position: 0% 50%; }
@@ -285,7 +285,7 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
         />
 
         {/* Underlay Ambient Glow Pass (Enhanced with liquid breathing) */}
-        <motion.h1
+        <motion.div
           animate={{
             opacity: [0.15, 0.32, 0.15],
             scale: [0.99, 1.015, 0.99],
@@ -295,30 +295,30 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute text-[9.5vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-[0.015em] sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap text-[#FFA6B0]/15"
+          className="absolute text-[8.2vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-tight sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap text-[#FFA6B0]/15"
           style={{
             filter: 'blur(10px)',
             transform: 'translateY(2px)',
           }}
           aria-hidden="true"
         >
-          Webind <span className="text-[#FF384C]/65 mx-2 sm:mx-3 font-light">×</span> Esyus
-        </motion.h1>
+          Webind <span className="text-[#FF384C]/65 mx-1.5 sm:mx-3 font-light">×</span> Esyus
+        </motion.div>
 
         {/* Secondary Soft Frosted Pass */}
-        <h1
-          className="absolute text-[9.5vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-[0.015em] sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap text-[#FFD6DC]/18"
+        <div
+          className="absolute text-[8.2vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-tight sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap text-[#FFD6DC]/18"
           style={{
             filter: 'blur(4px)',
           }}
           aria-hidden="true"
         >
-          Webind <span className="text-[#FF384C]/65 mx-2 sm:mx-3 font-light">×</span> Esyus
-        </h1>
+          Webind <span className="text-[#FF384C]/65 mx-1.5 sm:mx-3 font-light">×</span> Esyus
+        </div>
 
         {/* Primary Front Pass with Living Liquid Shimmer Flow */}
-        <h1
-          className="liquid-animated-text relative text-[9.5vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-[0.015em] sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap"
+        <div
+          className="liquid-animated-text relative text-[8.2vw] sm:text-[11.2vw] md:text-[12.6vw] lg:text-[13.8vw] font-['Manrope'] font-medium tracking-tight sm:tracking-[0.025em] leading-[0.8] select-none text-center whitespace-nowrap"
           style={{
             background:
               'linear-gradient(90deg, rgba(255, 180, 195, 0.2) 0%, rgba(255, 60, 85, 0.65) 25%, rgba(255, 235, 242, 0.96) 50%, rgba(255, 60, 85, 0.65) 75%, rgba(255, 180, 195, 0.2) 100%)',
@@ -328,9 +328,10 @@ export const WebindFooter: React.FC<WebindFooterProps> = ({
             filter: 'blur(0.6px)',
             textShadow: '0 0 18px rgba(255, 56, 76, 0.28)',
           }}
+          aria-hidden="true"
         >
-          Webind <span className="text-[#FF384C]/85 mx-2 sm:mx-3 font-light">×</span> Esyus
-        </h1>
+          Webind <span className="text-[#FF384C]/85 mx-1.5 sm:mx-3 font-light">×</span> Esyus
+        </div>
 
       </div>
     </footer>

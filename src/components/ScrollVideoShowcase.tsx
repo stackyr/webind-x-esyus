@@ -24,6 +24,29 @@ export const ScrollVideoShowcase: React.FC = () => {
     return () => window.removeEventListener('resize', check);
   }, []);
 
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (videoRef.current && videoRef.current.paused) {
+              videoRef.current.play().catch(() => {});
+            }
+          } else {
+            if (videoRef.current && !videoRef.current.paused) {
+              videoRef.current.pause();
+            }
+          }
+        });
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const toggleSound = () => {
     if (videoRef.current) {
       videoRef.current.muted = !videoRef.current.muted;
@@ -105,10 +128,11 @@ export const ScrollVideoShowcase: React.FC = () => {
           <video
             ref={videoRef}
             src="https://res.cloudinary.com/rqfwenpk/video/upload/lv_0_20261006132723.mp4"
-            autoPlay
             loop
             muted
             playsInline
+            preload="none"
+            aria-label="Webind Cinematic Showcase Reel"
             className="w-full h-full object-cover select-none"
           />
 

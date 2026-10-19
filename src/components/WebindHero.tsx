@@ -83,7 +83,7 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
       </header>
 
       {/* 2. MAIN HERO SECTION (Spacious Canvas, Responsive Margin-Aligned Content, Elevated on Mobile) */}
-      <main className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 flex-1 flex flex-col justify-end pt-4 pb-28 sm:pb-8 md:pb-4 pointer-events-none">
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-14 flex-1 flex flex-col justify-end pt-4 pb-44 sm:pb-8 md:pb-4 pointer-events-none">
         {/* LOWER AREA: Elevated comfortably above the floating mobile dock */}
         <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-4 sm:gap-8 pb-1 sm:pb-2">
           
@@ -92,7 +92,7 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-start gap-2.5 sm:gap-3.5 max-w-[420px] pointer-events-auto w-full sm:w-auto -mt-10 sm:mt-0"
+            className="flex flex-col items-start gap-2.5 sm:gap-3.5 max-w-[420px] pointer-events-auto w-full sm:w-auto"
           >
             {/* Social Proof: Verified Client Avatars + Star Rating */}
             <div className="flex items-center gap-2.5 sm:gap-3 py-0.5">
@@ -106,6 +106,8 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
                     <img
                       src={avatar.url}
                       alt={avatar.alt}
+                      width={28}
+                      height={28}
                       className="w-full h-full object-cover"
                       loading="eager"
                     />
@@ -138,10 +140,10 @@ export const WebindHero: React.FC<WebindHeroProps> = ({ onStartProject, onOpenNa
               </div>
             </div>
 
-            {/* Supporting paragraph: responsive size, high-contrast drop-shadow */}
-            <p className="text-xs sm:text-[15px] leading-relaxed text-[#F1F5F9] font-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+            {/* Main Page Heading: Single semantic H1 for SEO & Accessibility */}
+            <h1 className="text-xs sm:text-[15px] leading-relaxed text-[#F1F5F9] font-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
               We design and develop high-performance websites and digital experiences that help ambitious brands grow.
-            </p>
+            </h1>
 
             {/* Primary CTA: Highlighted pill-shaped button labelled "Start a Project" with circular arrow */}
             <div className="relative group w-auto">

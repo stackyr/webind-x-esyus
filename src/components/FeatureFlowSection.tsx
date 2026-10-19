@@ -94,7 +94,16 @@ export const FeatureFlowSection: React.FC = () => {
                     className="w-[86%] sm:w-auto mr-auto md:col-span-5 lg:col-span-4"
                   >
                     <div
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={isExpanded}
                       onClick={() => setActiveItem(isExpanded ? null : feat.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setActiveItem(isExpanded ? null : feat.id);
+                        }
+                      }}
                       className={`p-4 sm:p-6 rounded-2xl bg-[#0A0E17]/92 sm:bg-[#0A0E17]/70 sm:backdrop-blur-md border transition-all duration-200 cursor-pointer active:scale-[0.98] ${
                         isExpanded
                           ? 'border-[#FF384C] shadow-[0_0_25px_rgba(255,56,76,0.25),0_12px_32px_rgba(0,0,0,0.8)] ring-1 ring-[#FF384C]/40'
@@ -158,7 +167,16 @@ export const FeatureFlowSection: React.FC = () => {
                       className="w-[86%] sm:w-auto ml-auto md:col-span-5 lg:col-span-4"
                     >
                       <div
+                        role="button"
+                        tabIndex={0}
+                        aria-expanded={isExpanded}
                         onClick={() => setActiveItem(isExpanded ? null : feat.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setActiveItem(isExpanded ? null : feat.id);
+                          }
+                        }}
                         className={`p-4 sm:p-6 rounded-2xl bg-[#0A0E17]/92 sm:bg-[#0A0E17]/70 sm:backdrop-blur-md border transition-all duration-200 cursor-pointer active:scale-[0.98] ${
                           isExpanded
                             ? 'border-[#FF384C] shadow-[0_0_25px_rgba(255,56,76,0.25),0_12px_32px_rgba(0,0,0,0.8)] ring-1 ring-[#FF384C]/40'

@@ -9,6 +9,8 @@ import { ScrollVideoShowcase } from "@/components/ScrollVideoShowcase";
 import { PremiumMarquee } from "@/components/PremiumMarquee";
 import { WebindEsyusPartnership } from "@/components/WebindEsyusPartnership";
 import { WebindFooter } from "@/components/WebindFooter";
+import { RoadmapJourney } from "@/components/RoadmapJourney";
+import { LeadersSection } from "@/components/LeadersSection";
 import { ProjectInquiryModal } from "@/components/ProjectInquiryModal";
 import { ContactModal } from "@/components/ContactModal";
 import { MobileAppNavBar } from "@/components/MobileAppNavBar";
@@ -21,7 +23,6 @@ export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [contactTopic, setContactTopic] = useState<string | undefined>(undefined);
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   const handleOpenInquiry = (projectName?: string) => {
     setInquiryProject(projectName);
@@ -36,10 +37,10 @@ export default function Home() {
   return (
     <div className="relative min-h-screen w-full max-w-full overflow-x-clip bg-black text-[#F5F7FA] selection:bg-[#FF384C] selection:text-white">
       {/* 0. Cinematic Fluid Caustic Wave Preloader */}
-      <ModernWaveLoader mode="red" onComplete={() => setIsLoading(false)} />
+      <ModernWaveLoader mode="red" />
 
       {/* Floating Mobile App Bottom Dock */}
-      {!isLoading && <MobileAppNavBar onInquireClick={() => handleOpenInquiry("Mobile Quick Inquiry")} />}
+      <MobileAppNavBar onInquireClick={() => handleOpenInquiry("Mobile Quick Inquiry")} />
 
       {/* 1. Background Fixed Image Sequence Canvas */}
       <ImageSequenceCanvas />
@@ -47,9 +48,7 @@ export default function Home() {
       {/* 2. Section 1 Visual Sequence Area: WebindHero + FeatureFlowSection over continuous Image Sequence */}
       <div
         id="sequence-section"
-        className={`relative z-10 w-full transition-opacity duration-700 ${
-          isLoading ? "opacity-0" : "opacity-100"
-        }`}
+        className="relative z-10 w-full"
       >
         <WebindHero
           onStartProject={() => handleOpenInquiry()}
@@ -74,7 +73,13 @@ export default function Home() {
         onStartJointProject={() => handleOpenInquiry("Webind × Esyus Joint Venture")}
       />
 
-      {/* 7. Section 5: Seamless Continuous Living Liquid Footer */}
+      {/* 7. Section 5: Roadmap & Execution Journey */}
+      <RoadmapJourney />
+
+      {/* 8. Section 6: Ecosystem Leaders & Strategic Partners */}
+      <LeadersSection />
+
+      {/* 9. Section 7: Seamless Continuous Living Liquid Footer */}
       <WebindFooter
         onContactClick={() => handleOpenContact("General Contact / Consultation")}
         onHomeClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
